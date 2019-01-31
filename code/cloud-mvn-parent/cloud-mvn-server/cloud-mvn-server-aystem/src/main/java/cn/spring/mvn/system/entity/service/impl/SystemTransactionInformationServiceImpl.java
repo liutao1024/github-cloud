@@ -4,10 +4,10 @@ import org.springframework.stereotype.Service;
 
 import cn.spring.mvn.system.entity.SystemTransactionInformation;
 import cn.spring.mvn.system.entity.service.SystemTransactionInformationService;
-import cn.spring.mvn.basic.hibernat.HibernatServiceImpl;
+import cn.spring.mvn.basic.hibernate.HibernateServiceImpl;
 
 @Service("SystemTransactionInformationService")
-public class SystemTransactionInformationServiceImpl extends HibernatServiceImpl<SystemTransactionInformation> implements SystemTransactionInformationService{
+public class SystemTransactionInformationServiceImpl extends HibernateServiceImpl<SystemTransactionInformation> implements SystemTransactionInformationService{
 //
 //	@Resource 
 //	private SystemTransactionInformationDao systemTransactionInformationDao;

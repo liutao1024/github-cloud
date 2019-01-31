@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import cn.spring.mvn.basic.hibernat.HibernatService;
+import cn.spring.mvn.basic.hibernate.HibernateService;
 import cn.spring.mvn.web.entity.SysUserRole;
 /**
  * @author LiuTao @date 2018年5月23日 下午1:55:29
  * @ClassName: SysRoleUserService 
  * @Description: TODO(定义sysRoleUser的业务方法)
  */
-public interface SysUserRoleService extends HibernatService<SysUserRole>{
+public interface SysUserRoleService extends HibernateService<SysUserRole>{
 	/**
 	 * 检查主键是否唯一
 	 * @param id 主键对象

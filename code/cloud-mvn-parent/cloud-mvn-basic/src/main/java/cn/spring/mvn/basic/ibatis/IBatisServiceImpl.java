@@ -13,7 +13,7 @@ import cn.spring.mvn.basic.util.BasicUtil;
 
 public class IBatisServiceImpl<T> implements IBatisService<T>{
 	@Autowired
-	private IBatisDao<T> iBatisDao;
+	private IBatisDao<T> IBatisDao;
 	
 	/********************************增********************************/
 	/**
@@ -26,7 +26,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 	@Override
 	public Integer insertEntity(T t) {
 		String insertSQL = BasicReflection.getSQLStringByReflectForIBatis(t, BasicReflection.INSERT);
-		return iBatisDao.insertBySQL(insertSQL);
+		return IBatisDao.insertBySQL(insertSQL);
 	}
 	/**
 	 * @Author LiuTao @Date 2018年11月14日 下午3:53:28
@@ -52,7 +52,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 	 */
 	@Override
 	public Integer insertEntityByCondition(IBatisTParam<T> iBatisParam) {
-		return iBatisDao.insertByCondition(iBatisParam);
+		return IBatisDao.insertByCondition(iBatisParam);
 	}
 	/********************************删********************************/
 	/**
@@ -65,7 +65,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 	@Override
 	public Integer deleteEntity(T t) {
 		String deletSQL = BasicReflection.getSQLStringByReflectForIBatis(t, BasicReflection.DELETE);
-		return iBatisDao.deleteBySQL(deletSQL);
+		return IBatisDao.deleteBySQL(deletSQL);
 	}
 	/**
 	 * @Author LiuTao @Date 2018年11月14日 下午3:53:28
@@ -91,7 +91,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 	 */
 	@Override
 	public Integer deleteEntityByCondition(IBatisTParam<T> iBatisParam) {
-		return iBatisDao.deleteByCondition(iBatisParam);
+		return IBatisDao.deleteByCondition(iBatisParam);
 	}
 	/********************************改********************************/
 	/**
@@ -104,7 +104,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 	@Override
 	public Integer updateEntity(T t) {
 		String updateSQL = BasicReflection.getSQLStringByReflectForIBatis(t, BasicReflection.UPDATE);
-		return iBatisDao.updateBySQL(updateSQL);
+		return IBatisDao.updateBySQL(updateSQL);
 	}
 	/**
 	 * @Author LiuTao @Date 2018年11月14日 下午3:53:28
@@ -136,7 +136,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 			iBatisParam = new IBatisTParam<T>(iBatisParam.getEntity(), iBatisParam.getPage(), iBatisParam.getSize(), iBatisParam.getOrderColumn(), iBatisParam.getOrderTurn());
 		}
 		
-		return iBatisDao.updateByCondition(iBatisParam);
+		return IBatisDao.updateByCondition(iBatisParam);
 	}
 	/********************************查********************************/
 	/**
@@ -166,7 +166,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 	public List<T> selectEntities(T t) {
 		Class<?> clazz = t.getClass();
 		String selectSQL = BasicReflection.getSQLStringByReflectForIBatis(t, BasicReflection.SELECT);
-		List<Map<String, Object>> daoResult = iBatisDao.selectBySQL(selectSQL);
+		List<Map<String, Object>> daoResult = IBatisDao.selectBySQL(selectSQL);
 		List<T> result = BasicReflection.getObjectListByReflectClassAndMapList(clazz, daoResult);
 		return result;
 	}
@@ -180,7 +180,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 	@Override
 	public Long selectEntitiesCount(T t) {
 		String countSQL = BasicReflection.getSQLStringByReflectForIBatis(t, BasicReflection.SCOUNT);
-		return iBatisDao.selectCountBySQL(countSQL);
+		return IBatisDao.selectCountBySQL(countSQL);
 	}
 	/**
 	 * @Author LiuTao @Date 2018年11月14日 下午3:53:28
@@ -220,7 +220,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 	@Override
 	public IBatisTResult<T> selectEntitiesWithCountByCondition(IBatisTParam<T> iBatisParam) {
 		T t = iBatisParam.getEntity();
-		List<Map<String, Object>> daoResult = iBatisDao.selectByCondition(iBatisParam);
+		List<Map<String, Object>> daoResult = IBatisDao.selectByCondition(iBatisParam);
 		List<T> resultList = BasicReflection.getObjectListByReflectClassAndMapList(t.getClass(), daoResult);
 		IBatisTResult<T> ibatisResult = new IBatisTResult<T>(resultList);
 		return ibatisResult;
@@ -235,7 +235,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 	@Override
 	public IBatisTResult<T> selectPageEntitiesWithCountByCondition(IBatisTParam<T> iBatisParam) {//需要修改因为他是Page的...
 		T t = iBatisParam.getEntity();
-		List<Map<String, Object>> daoResult = iBatisDao.selectByCondition(iBatisParam);
+		List<Map<String, Object>> daoResult = IBatisDao.selectByCondition(iBatisParam);
 		List<T> resultList = BasicReflection.getObjectListByReflectClassAndMapList(t.getClass(), daoResult);
 		IBatisTResult<T> ibatisResult = new IBatisTResult<T>(resultList);
 		return ibatisResult;
@@ -255,7 +255,7 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 		Example.Criteria criteria = example.createCriteria();
 		criteria.andEqualTo(t);//当t有Date类型的属性时会出现问题Criteria中将时间按最长的类型进行转的
 		List<T> resultList = new ArrayList<T>();//这个还可以用如下三种方式获取
-		resultList = iBatisDao.selectByExample(example);
+		resultList = IBatisDao.selectByExample(example);
 		IBatisTResult<T> ibatisResult = new IBatisTResult<T>(resultList);
 		return ibatisResult;
 	}
@@ -281,31 +281,31 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 		Example.Criteria criteria = example.createCriteria();
 		criteria.andEqualTo(t);
 		List<T> resultList = new ArrayList<T>();//这个还可以用如下三种方式获取
-		resultList = iBatisDao.selectByExampleAndRowBounds(example, rowBounds);
+		resultList = IBatisDao.selectByExampleAndRowBounds(example, rowBounds);
 		IBatisTResult<T> ibatisResult = new IBatisTResult<T>(resultList);
-		ibatisResult.setCount((long) iBatisDao.selectByExample(example).size());
+		ibatisResult.setCount((long) IBatisDao.selectByExample(example).size());
 		return ibatisResult;
 	}
 	
 	@Override
 	public List<T> selectEntitiesByTK(T t){
-		return iBatisDao.select(t);
+		return IBatisDao.select(t);
 	}
 	@Override
 	public List<T> selectEntitiesByTKExample(T t) {
 		Example example = new Example(t.getClass());
 		Example.Criteria criteria = example.createCriteria();
 		criteria.andEqualTo(t);
-		return iBatisDao.selectByExample(example);
+		return IBatisDao.selectByExample(example);
 	}
 	@Override
 	public List<T> selectEntitiesByTKExampleCriteria(Example example){
-		return iBatisDao.selectByExample(example);
+		return IBatisDao.selectByExample(example);
 	}
 	@Override
 	public List<T> selectEntitiesByTKRowBounds(T t, Integer page, Integer size) {
 		RowBounds rowBounds = new RowBounds(page * size, size);
-		return iBatisDao.selectByRowBounds(t, rowBounds);
+		return IBatisDao.selectByRowBounds(t, rowBounds);
 	}
 	@Override
 	public List<T> selectEntitiesByTKExampleRowBounds(T t, Integer page, Integer size) {
@@ -313,6 +313,6 @@ public class IBatisServiceImpl<T> implements IBatisService<T>{
 		Example.Criteria criteria = example.createCriteria();
 		criteria.andEqualTo(t);
 		RowBounds rowBounds = new RowBounds(page * size, size);
-		return iBatisDao.selectByExampleAndRowBounds(example, rowBounds);
+		return IBatisDao.selectByExampleAndRowBounds(example, rowBounds);
 	}
 }

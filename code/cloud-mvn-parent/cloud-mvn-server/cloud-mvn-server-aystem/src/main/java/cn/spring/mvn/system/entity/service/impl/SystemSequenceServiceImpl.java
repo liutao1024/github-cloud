@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 
 import cn.spring.mvn.system.entity.SystemSequence;
 import cn.spring.mvn.system.entity.service.SystemSequenceService;
-import cn.spring.mvn.basic.hibernat.HibernatServiceImpl;
+import cn.spring.mvn.basic.hibernate.HibernateServiceImpl;
 import cn.spring.mvn.basic.util.BasicUtil;
 
 @Service("SystemSequenceService")
-public class SystemSequenceServiceImpl extends HibernatServiceImpl<SystemSequence> implements SystemSequenceService{
+public class SystemSequenceServiceImpl extends HibernateServiceImpl<SystemSequence> implements SystemSequenceService{
 
 	@Override
 	public SystemSequence selectOne(String sequenceType) {

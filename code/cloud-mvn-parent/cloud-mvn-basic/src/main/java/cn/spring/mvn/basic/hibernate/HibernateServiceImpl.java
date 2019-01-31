@@ -1,4 +1,4 @@
-package cn.spring.mvn.basic.hibernat;
+package cn.spring.mvn.basic.hibernate;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -10,26 +10,30 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.dialect.Dialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+//import org.springframework.stereotype.Service;
 
 import cn.spring.mvn.basic.tools.BasicReflection;
 import cn.spring.mvn.basic.util.BasicUtil;
 //import cn.spring.mvn.basic.util.BasicUtilHqlFilter;
 
-
-
-@Service
-@Repository("HibernatService")
+/**
+ * @author LiuTao @date 2019年1月31日 下午8:15:09
+ * @ClassName: HibernateServiceImpl 
+ * @Description: 用@Service和@Repository同样的效果
+ * @param <T>
+ */
+//@Service
+@Repository("HibernateService")
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class HibernatServiceImpl<T> implements HibernatService<T>{
+public class HibernateServiceImpl<T> implements HibernateService<T>{
 	/**
 	 * 实体类.class
 	 */
-	protected Class<T> entityClass;
+	protected Class<T> entityClazz;
 	/**
 	 * 实体类名称
 	 */
-	protected String entityClassName;
+	protected String entityClazzName;
 	/**
 	 * 数据库方言
 	 */
@@ -40,20 +44,20 @@ public class HibernatServiceImpl<T> implements HibernatService<T>{
 	private Boolean booleanFour;
 	
 	@Autowired
-	private HibernatDao<T> baseDaoImpl;
+	private HibernateDao<T> hibernateDaoImpl;
 	/**
 	 * <p>Title: </p> 
 	 * <p>Description: 构造函数</p>
 	 */
-	public HibernatServiceImpl() {
-		this.entityClass = (Class<T>) getSuperClassGenricType(getClass(), 0);
-		this.entityClassName = this.entityClass.getSimpleName();
+	public HibernateServiceImpl() {
+		this.entityClazz = (Class<T>) getSuperClassGenricType(getClass(), 0);
+		this.entityClazzName = this.entityClazz.getSimpleName();
 	}
 	
 	
 	@Override
 	public Dialect getDialect() {
-		return this.baseDaoImpl.getDialect();
+		return this.hibernateDaoImpl.getDialect();
 	}
 	@Override
 	public boolean isMySQL() {
@@ -110,52 +114,52 @@ public class HibernatServiceImpl<T> implements HibernatService<T>{
 	//
 	@Override
 	public T saveEntity(T entity) throws Exception {
-		return baseDaoImpl.saveEntity(entity);
+		return hibernateDaoImpl.saveEntity(entity);
 	}
 	@Override
 	public List<T> saveEntities(List<T> entities) throws Exception {
-		return baseDaoImpl.saveEntities(entities);
+		return hibernateDaoImpl.saveEntities(entities);
 	}
 	@Override
 	public void saveOrUpdate(T entity) {
-		this.baseDaoImpl.saveOrUpdate(entity);
+		this.hibernateDaoImpl.saveOrUpdate(entity);
 	}
 	@Override
 	public void deleteEntity(T entity) {
-		baseDaoImpl.deleteEntity(entity);
+		hibernateDaoImpl.deleteEntity(entity);
 	}
 	@Override
 	public void deleteEntities(List<T> entities) {
-		baseDaoImpl.deleteEntities(entities);
+		hibernateDaoImpl.deleteEntities(entities);
 	}
 	@Override
 	public T selectOneEntity(T entity) {
 		String entityName = entity.getClass().getSimpleName();
 		Map<String, Object> paramMap = BasicReflection.getMapByReflectWithOutNullValueObject(entity);
 		String hqlStr = BasicUtil.getSqlStrByEntityNameAndParamMap(entityName, paramMap);
-		return baseDaoImpl.findOneByHqlParamMap(hqlStr, paramMap);
+		return hibernateDaoImpl.findOneByHqlParamMap(hqlStr, paramMap);
 	}
 	@Override
 	public List<T> selectAllEntities(T entity) {
 		String entityName = entity.getClass().getSimpleName();
 		Map<String, Object> paramMap = BasicReflection.getMapByReflectWithOutNullValueObject(entity);
 		String hqlStr = BasicUtil.getSqlStrByEntityNameAndParamMap(entityName, paramMap);
-		return baseDaoImpl.findAllByHqlParamMap(hqlStr, paramMap);
+		return hibernateDaoImpl.findAllByHqlParamMap(hqlStr, paramMap);
 	}
 	@Override
 	public List<T> selectAllEntitiesWihtPageSize(T entity, int page, int size) {
 		String entityName = entity.getClass().getSimpleName();
 		Map<String, Object> paramMap = BasicReflection.getMapByReflectWithOutNullValueObject(entity);
 		String hqlStr = BasicUtil.getSqlStrByEntityNameAndParamMap(entityName, paramMap);
-		return baseDaoImpl.findAllByHqlParamMapPageSize(hqlStr, paramMap, page, size);
+		return hibernateDaoImpl.findAllByHqlParamMapPageSize(hqlStr, paramMap, page, size);
 	}
 	@Override
 	public void updateEntity(T entity) {
-		baseDaoImpl.updateEntity(entity);
+		hibernateDaoImpl.updateEntity(entity);
 	}
 	@Override
 	public void updateEntities(List<T> entities) {
-		baseDaoImpl.updateEntities(entities);
+		hibernateDaoImpl.updateEntities(entities);
 	}
 
 	
@@ -163,13 +167,13 @@ public class HibernatServiceImpl<T> implements HibernatService<T>{
 //	public List<T> findByFilter(BasicUtilHqlFilter hqlFilter) {
 //		String str1 = ((Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]).getName();
 //		String str2 = "select distinct t from " + str1 + " t";
-//		return baseDaoImpl.findAllByHqlParamMap(str2 + hqlFilter.getWhereAndOrderHql(), hqlFilter.getParams());
+//		return hibernateDaoImpl.findAllByHqlParamMap(str2 + hqlFilter.getWhereAndOrderHql(), hqlFilter.getParams());
 //	}
 //	@Override
 //	public List<T> findByFilter(BasicUtilHqlFilter hqlFilter, int page, int size) {
 //		String str1 = ((Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]).getName();
 //		String str2 = "select distinct t from " + str1 + " t";
-//		return baseDaoImpl.findAllByHqlParamMapPageSize(str2 + hqlFilter.getWhereAndOrderHql(), hqlFilter.getParams(), page, size);
+//		return hibernateDaoImpl.findAllByHqlParamMapPageSize(str2 + hqlFilter.getWhereAndOrderHql(), hqlFilter.getParams(), page, size);
 //	}
 	
 	@Override
@@ -179,11 +183,11 @@ public class HibernatServiceImpl<T> implements HibernatService<T>{
 	}
 	@Override
 	public void commit() {
-		this.baseDaoImpl.commit();
+		this.hibernateDaoImpl.commit();
 	}
 	@Override
 	public void rollback() {
-		this.baseDaoImpl.rollback();
+		this.hibernateDaoImpl.rollback();
 	}
 
 	
@@ -193,7 +197,7 @@ public class HibernatServiceImpl<T> implements HibernatService<T>{
 		String entityName = entity.getClass().getSimpleName();
 		Map<String, Object> paramMap = BasicReflection.getMapByReflectWithOutNullValueObject(entity);
 		String hqlStr = BasicUtil.getSqlStrByEntityNameAndParamMap(entityName, paramMap);
-		return baseDaoImpl.countByHqlParamMap(hqlStr, paramMap);
+		return hibernateDaoImpl.countByHqlParamMap(hqlStr, paramMap);
 	}
 
 //	@Override
@@ -203,30 +207,30 @@ public class HibernatServiceImpl<T> implements HibernatService<T>{
 	
 	@Override
 	public List<T> findAllByHql(String hqlStr) {
-		return baseDaoImpl.findAllByHql(hqlStr);
+		return hibernateDaoImpl.findAllByHql(hqlStr);
 	}
 	@Override
 	public T findOneByHql(String hqlStr) {
-		return baseDaoImpl.findOneByHql(hqlStr);
+		return hibernateDaoImpl.findOneByHql(hqlStr);
 	}
 
 
 	@Override
 	public List<T> findAllBySql(String sqlStr) {
-		return (List<T>) baseDaoImpl.findAllBySql(sqlStr);
+		return (List<T>) hibernateDaoImpl.findAllBySql(sqlStr);
 	}
 	/**
 	 * @author LiuTao 
 	 */
 	@Override
 	public T findOneBySql(String sqlStr) {
-		return baseDaoImpl.findOneBySql(sqlStr);
+		return hibernateDaoImpl.findOneBySql(sqlStr);
 	}
 	
 	@Override
 	public List<T> findAll(T entity){
 		String hqlStr = "from " + entity.getClass().getSimpleName() ;
-		return baseDaoImpl.findAllByHql(hqlStr);
+		return hibernateDaoImpl.findAllByHql(hqlStr);
 	}
 	
 	@Override
@@ -234,7 +238,7 @@ public class HibernatServiceImpl<T> implements HibernatService<T>{
 		String entityName = entity.getClass().getSimpleName();
 		Map<String, Object> paramMap = BasicReflection.getMapByReflectWithOutNullValueObject(entity);
 		String hqlStr = BasicUtil.getSqlStrByEntityNameAndParamMap(entityName, paramMap);
-		return baseDaoImpl.findAllByHqlParamMap(hqlStr, paramMap);
+		return hibernateDaoImpl.findAllByHqlParamMap(hqlStr, paramMap);
 	}
 	
 	/**
@@ -266,20 +270,20 @@ public class HibernatServiceImpl<T> implements HibernatService<T>{
 		String entityName = entity.getClass().getSimpleName();
 		Map<String, Object> paramMap = BasicReflection.getMapByReflectWithOutNullValueObject(entity);
 		String hqlStr = BasicUtil.getSqlStrByEntityNameAndParamMap(entityName, paramMap);
-		return baseDaoImpl.findAllByHqlParamMapPageSize(hqlStr, paramMap, page, size);
+		return hibernateDaoImpl.findAllByHqlParamMapPageSize(hqlStr, paramMap, page, size);
 	}
 
 
 	@Override
 	public List<T> findAllByHqlPageSize(String hqlStr, int page, int size) {
-		List<T> list = baseDaoImpl.findAllByHqlPageSize(hqlStr, page, size);
+		List<T> list = hibernateDaoImpl.findAllByHqlPageSize(hqlStr, page, size);
 		return list;
 	}
 
 
 	@Override
 	public List<T> findAllBySqlPageSize(String sqlStr, int page, int size) {
-		return (List<T>) baseDaoImpl.findAllBySqlPageSize(sqlStr, page, size);
+		return (List<T>) hibernateDaoImpl.findAllBySqlPageSize(sqlStr, page, size);
 	}
 	
 	@Override

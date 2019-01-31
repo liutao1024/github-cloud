@@ -1,4 +1,4 @@
-package cn.spring.mvn.basic.hibernat;
+package cn.spring.mvn.basic.hibernate;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -22,9 +22,9 @@ import cn.spring.mvn.basic.util.BasicUtilNullValue;
 import cn.spring.mvn.basic.util.BasicUtilResultTransFormer;
 
 
-@Repository("HibernatDao")
+@Repository("HibernateDao")
 @SuppressWarnings({"unchecked", "rawtypes", "null", "deprecation"})
-public class HibernatDaoImpl<T> implements HibernatDao<T> {
+public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	/**@serialField 
 	 * 获取数据库连接
 	 */

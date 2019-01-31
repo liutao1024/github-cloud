@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import cn.spring.mvn.basic.hibernat.HibernatService;
+import cn.spring.mvn.basic.hibernate.HibernateService;
 import cn.spring.mvn.web.entity.SysRoleAuth;
 
-public interface SysRoleAuthService extends HibernatService<SysRoleAuth>{
+public interface SysRoleAuthService extends HibernateService<SysRoleAuth>{
 	/**
 	 * 检查主键是否唯一
 	 * @param id 主键对象

@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 
 import cn.spring.mvn.system.entity.SystemBatchTimeTaskDispathResult;
 import cn.spring.mvn.system.entity.service.SystemBatchTimeTaskDispathResultService;
-import cn.spring.mvn.basic.hibernat.HibernatServiceImpl;
+import cn.spring.mvn.basic.hibernate.HibernateServiceImpl;
 
 @Service("SystemBatchTimeTaskDispathResultService")
-public class SystemBatchTimeTaskDispathResultServiceImpl extends HibernatServiceImpl<SystemBatchTimeTaskDispathResult> implements SystemBatchTimeTaskDispathResultService{
+public class SystemBatchTimeTaskDispathResultServiceImpl extends HibernateServiceImpl<SystemBatchTimeTaskDispathResult> implements SystemBatchTimeTaskDispathResultService{
 
 }

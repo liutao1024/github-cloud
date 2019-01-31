@@ -1,4 +1,4 @@
-package cn.spring.mvn.basic.hibernat;
+package cn.spring.mvn.basic.hibernate;
 
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -10,12 +10,12 @@ import org.hibernate.jdbc.ReturningWork;
 import org.hibernate.jdbc.Work;
 /**
  * @author LiuTao @date 2018年5月24日 下午5:31:46
- * @ClassName: HibernatDao 
+ * @ClassName: HibernateDao 
  * @Description: TODO(Dao类最基础的增删查改) 
  * @param <T>
  */
 @SuppressWarnings("rawtypes")
-public abstract interface HibernatDao<T> {
+public abstract interface HibernateDao<T> {
 	
 	public abstract Dialect getDialect();//获取数据库方言
 

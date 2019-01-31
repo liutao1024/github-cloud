@@ -1,4 +1,4 @@
-package cn.spring.mvn.basic.hibernat;
+package cn.spring.mvn.basic.hibernate;
 
 import java.util.List;
 import java.util.Map;
@@ -9,11 +9,11 @@ import org.hibernate.dialect.Dialect;
 
 /**
  * @author LiuTao @date 2018年5月24日 下午5:32:32
- * @ClassName: HibernatService 
+ * @ClassName: HibernateService 
  * @Description: TODO(Service类最基础的增删查改) 
  * @param <T>
  */
-public interface HibernatService<T> {
+public interface HibernateService<T> {
 	//系统级接口
 	public abstract Dialect getDialect();
 	public abstract boolean isMySQL();

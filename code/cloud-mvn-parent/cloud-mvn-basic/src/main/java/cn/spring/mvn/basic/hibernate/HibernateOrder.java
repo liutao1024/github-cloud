@@ -1,4 +1,4 @@
-package cn.spring.mvn.basic.hibernat;
+package cn.spring.mvn.basic.hibernate;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -9,17 +9,17 @@ import org.hibernate.criterion.Order;
  * @ClassName: HibernatOrder
  * @Description: Hibernate排序使用的工具类-针对中文排序
  */
-public class HibernatOrder extends Order {
+public class HibernateOrder extends Order {
 	/**@Fields serialVersionUID : TODO(Describe) 
 	 */
 	private static final long serialVersionUID = 5571348706914497131L;
 	private String propertyName;
 	
-	protected HibernatOrder(String propertyName, boolean ascending) {
+	protected HibernateOrder(String propertyName, boolean ascending) {
 		super(propertyName, ascending);//
 		this.propertyName = propertyName;// TODO Auto-generated constructor stub
 	}
-	protected HibernatOrder(String propertyName) {
+	protected HibernateOrder(String propertyName) {
 		super(propertyName, false);//降序
 		this.propertyName = propertyName;// TODO Auto-generated constructor stub
 	}
@@ -30,8 +30,8 @@ public class HibernatOrder extends Order {
 		String[] columns = criteriaQuery.getColumnsUsingProjection(criteria, propertyName);
 		return " convert (" + columns[0] + " using gbk) asc ";
 	}
-	public static HibernatOrder getOrder(String propertyName) {
+	public static HibernateOrder getOrder(String propertyName) {
 //		Order a = new Order
-		return new HibernatOrder(propertyName);
+		return new HibernateOrder(propertyName);
 	}
 }

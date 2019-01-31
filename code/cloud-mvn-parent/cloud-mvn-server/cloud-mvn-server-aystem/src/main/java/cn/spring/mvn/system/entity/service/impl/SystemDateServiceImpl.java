@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 
 import cn.spring.mvn.system.entity.SystemDate;
 import cn.spring.mvn.system.entity.service.SystemDateService;
-import cn.spring.mvn.basic.hibernat.HibernatServiceImpl;
+import cn.spring.mvn.basic.hibernate.HibernateServiceImpl;
 
 @Service("SystemDateService")
-public class SystemDateServiceImpl extends HibernatServiceImpl<SystemDate> implements SystemDateService{
+public class SystemDateServiceImpl extends HibernateServiceImpl<SystemDate> implements SystemDateService{
 
 }

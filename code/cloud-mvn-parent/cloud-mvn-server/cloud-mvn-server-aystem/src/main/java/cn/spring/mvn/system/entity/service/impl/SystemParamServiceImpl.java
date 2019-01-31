@@ -4,10 +4,10 @@ import org.springframework.stereotype.Service;
 
 import cn.spring.mvn.system.entity.SystemParam;
 import cn.spring.mvn.system.entity.service.SystemParamService;
-import cn.spring.mvn.basic.hibernat.HibernatServiceImpl;
+import cn.spring.mvn.basic.hibernate.HibernateServiceImpl;
 
 @Service("SystemParamService")
-public class SystemParamServiceImpl extends HibernatServiceImpl<SystemParam>
+public class SystemParamServiceImpl extends HibernateServiceImpl<SystemParam>
 		implements SystemParamService {
 
 }

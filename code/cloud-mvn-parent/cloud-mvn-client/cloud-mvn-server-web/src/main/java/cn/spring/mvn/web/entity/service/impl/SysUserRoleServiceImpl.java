@@ -7,12 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import cn.spring.mvn.basic.hibernat.HibernatServiceImpl;
+import cn.spring.mvn.basic.hibernate.HibernateServiceImpl;
 import cn.spring.mvn.web.entity.SysUserRole;
 import cn.spring.mvn.web.entity.service.SysUserRoleService;
 
 @Service("SysUserRoleService")
-public class SysUserRoleServiceImpl extends  HibernatServiceImpl<SysUserRole> implements SysUserRoleService {
+public class SysUserRoleServiceImpl extends  HibernateServiceImpl<SysUserRole> implements SysUserRoleService {
 
 	@Override
 	public boolean checkUnique(SysUserRole sysUserRole) {

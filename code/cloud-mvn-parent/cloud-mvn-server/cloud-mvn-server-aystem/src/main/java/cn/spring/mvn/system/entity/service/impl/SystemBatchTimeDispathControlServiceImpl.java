@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 
 import cn.spring.mvn.system.entity.SystemBatchTimeDispathControl;
 import cn.spring.mvn.system.entity.service.SystemBatchTimeDispathControlService;
-import cn.spring.mvn.basic.hibernat.HibernatServiceImpl;
+import cn.spring.mvn.basic.hibernate.HibernateServiceImpl;
 
 @Service("SystemBatchTimeDispathControlService")
-public class SystemBatchTimeDispathControlServiceImpl extends HibernatServiceImpl<SystemBatchTimeDispathControl> implements SystemBatchTimeDispathControlService{
+public class SystemBatchTimeDispathControlServiceImpl extends HibernateServiceImpl<SystemBatchTimeDispathControl> implements SystemBatchTimeDispathControlService{
 
 }
