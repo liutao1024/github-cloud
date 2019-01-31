@@ -23,7 +23,7 @@
 
 		<!-- 请求超时时间 -->
 		<property name="checkoutTimeout" value="30000" />
-		<!-- 每60秒检查所有连接池中的空闲连接。默认值: 0,不检查 -->
+		<!-- 每60秒检查所有连接池中的空闲连接.默认值: 0,不检查 -->
 		<property name="idleConnectionTestPeriod" value="30" />
 		<!-- 连接数据库连接池最大空闲时间 -->
 		<property name="maxIdleTime" value="30" />
@@ -31,7 +31,7 @@
 		<property name="initialPoolSize" value="5" />
 		<property name="minPoolSize" value="5" />
 		<property name="maxPoolSize" value="20" />
-		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数.默认值: 3 -->
 		<property name="acquireIncrement" value="5" />
 	</bean>
 
