@@ -10,6 +10,18 @@
 	<packaging>pom</packaging>
 	<name>cloud-mvn-server</name>
 	<description>cloud-mvn-server-side</description>
+	<dependencies>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-basic</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-comm</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 	<modules>
 		<module>cloud-mvn-server-core</module>
 		<module>cloud-mvn-server-task</module>

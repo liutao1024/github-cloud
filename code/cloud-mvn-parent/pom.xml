@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>cloud-mvn-parent</name>
-	<description>cloud-mvn-parent</description>
+	<description>cloud-mvn-parent 父工程,用于聚合所有的模块.其中包括:基础通用工具+核心服务+web应用+app应用</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
