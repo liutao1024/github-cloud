@@ -148,10 +148,18 @@
 			<artifactId>pagehelper</artifactId>
 			<version>5.1.8</version>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<plugins>
+			<!-- mvn clean install 时跳过Test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.0</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
 			<!-- 指定mavne项目的jdk版本 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

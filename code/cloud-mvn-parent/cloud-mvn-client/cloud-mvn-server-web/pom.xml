@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cloud</groupId>
+		<artifactId>cloud-mvn-client</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>cloud-mvn-server-web</artifactId>
+	<packaging>war</packaging>
+	<name>cloud-mvn-server-web Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<c3p0.version>0.9.5.2</c3p0.version>
+	</properties>
+	<dependencies>
+		<!-- c3p0数据源开始 -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-aystem</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-deposit</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-fund</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-loan</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-socket</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-task</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>cloud-mvn-server-web</finalName>
+	</build>
+</project>
