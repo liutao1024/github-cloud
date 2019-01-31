@@ -1,4 +1,4 @@
-package cn.spring.mvn.basic.util;
+package cn.spring.mvn.basic.repository;
 
 import java.io.Serializable;
 
@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
-public interface BasicUtilRepository<T, PK extends Serializable> extends JpaRepository<T, PK>,JpaSpecificationExecutor<T>{
+public interface BasicRepository<T, PK extends Serializable> extends JpaRepository<T, PK>,JpaSpecificationExecutor<T>{
 	
 }

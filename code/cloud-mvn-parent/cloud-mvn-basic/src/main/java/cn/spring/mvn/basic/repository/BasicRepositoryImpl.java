@@ -1,4 +1,4 @@
-package cn.spring.mvn.basic.util;
+package cn.spring.mvn.basic.repository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,92 +11,92 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
-public class BasicUtilRepositoryImpl<T, PK extends Serializable> implements
-		BasicUtilRepository<T, PK> {
+public class BasicRepositoryImpl<T, PK extends Serializable> implements
+		BasicRepository<T, PK> {
 
 	@Autowired
-	private BasicUtilRepository<T, Serializable> basicUtilRepositoryImpl;
+	private BasicRepository<T, Serializable> basicRepositoryImpl;
 
 	// 从Repository中继承来的
 	@Override
 	public void deleteAllInBatch() {
-		basicUtilRepositoryImpl.deleteAllInBatch();
+		basicRepositoryImpl.deleteAllInBatch();
 	}
 
 	@Override
 	public void deleteInBatch(Iterable<T> arg0) {
-		basicUtilRepositoryImpl.deleteInBatch(arg0);
+		basicRepositoryImpl.deleteInBatch(arg0);
 	}
 
 	@Override
 	public List<T> findAll() {
-		return basicUtilRepositoryImpl.findAll();
+		return basicRepositoryImpl.findAll();
 	}
 
 	@Override
 	public List<T> findAll(Sort arg0) {
-		return basicUtilRepositoryImpl.findAll(arg0);
+		return basicRepositoryImpl.findAll(arg0);
 	}
 
 	@Override
 	public T getOne(Serializable arg0) {
-		return basicUtilRepositoryImpl.getOne(arg0);
+		return basicRepositoryImpl.getOne(arg0);
 	}
 
 	@Override
 	public <S extends T> S saveAndFlush(S arg0) {
-		return basicUtilRepositoryImpl.saveAndFlush(arg0);
+		return basicRepositoryImpl.saveAndFlush(arg0);
 	}
 
 	@Override
 	public Page<T> findAll(Pageable arg0) {
-		return basicUtilRepositoryImpl.findAll(arg0);
+		return basicRepositoryImpl.findAll(arg0);
 	}
 
 	@Override
 	public void deleteAll() {
-		basicUtilRepositoryImpl.deleteAll();
+		basicRepositoryImpl.deleteAll();
 	}
 
 	@Override
 	public long count(Specification<T> arg0) {
-		return basicUtilRepositoryImpl.count(arg0);
+		return basicRepositoryImpl.count(arg0);
 	}
 
 	@Override
 	public List<T> findAll(Specification<T> arg0) {
-		return basicUtilRepositoryImpl.findAll(arg0);
+		return basicRepositoryImpl.findAll(arg0);
 	}
 
 	@Override
 	public Page<T> findAll(Specification<T> arg0, Pageable arg1) {
-		return basicUtilRepositoryImpl.findAll(arg0, arg1);
+		return basicRepositoryImpl.findAll(arg0, arg1);
 	}
 
 	@Override
 	public List<T> findAll(Specification<T> arg0, Sort arg1) {
-		return basicUtilRepositoryImpl.findAll(arg0, arg1);
+		return basicRepositoryImpl.findAll(arg0, arg1);
 	}
 
 	@Override
 	public <S extends T> S save(S arg0) {
-		return basicUtilRepositoryImpl.save(arg0);
+		return basicRepositoryImpl.save(arg0);
 	}
 
 	@Override
 	public void flush() {
-		basicUtilRepositoryImpl.flush();
+		basicRepositoryImpl.flush();
 
 	}
 
 	@Override
 	public long count() {
-		return basicUtilRepositoryImpl.count();
+		return basicRepositoryImpl.count();
 	}
 
 	@Override
 	public void delete(T entity) {
-		basicUtilRepositoryImpl.delete(entity);
+		basicRepositoryImpl.delete(entity);
 	}
 
 	@Override
@@ -106,61 +106,61 @@ public class BasicUtilRepositoryImpl<T, PK extends Serializable> implements
 
 	@Override
 	public <S extends T> List<S> saveAll(Iterable<S> entities) {
-		return basicUtilRepositoryImpl.saveAll(entities);
+		return basicRepositoryImpl.saveAll(entities);
 	}
 
 	@Override
 	public <S extends T> List<S> findAll(Example<S> example) {
-		return basicUtilRepositoryImpl.findAll(example);
+		return basicRepositoryImpl.findAll(example);
 	}
 
 	@Override
 	public <S extends T> List<S> findAll(Example<S> example, Sort sort) {
-		return basicUtilRepositoryImpl.findAll(example, sort);
+		return basicRepositoryImpl.findAll(example, sort);
 	}
 
 	@Override
 	public void deleteAll(Iterable<? extends T> arg0) {
-		basicUtilRepositoryImpl.deleteAll(arg0);
+		basicRepositoryImpl.deleteAll(arg0);
 	}
 
 	@Override
 	public void deleteById(PK arg0) {
-		basicUtilRepositoryImpl.deleteById(arg0);
+		basicRepositoryImpl.deleteById(arg0);
 	}
 
 	@Override
 	public boolean existsById(PK arg0) {
-		return basicUtilRepositoryImpl.existsById(arg0);
+		return basicRepositoryImpl.existsById(arg0);
 	}
 
 	@Override
 	public Optional<T> findById(PK arg0) {
-		return basicUtilRepositoryImpl.findById(arg0);
+		return basicRepositoryImpl.findById(arg0);
 	}
 
 	@Override
 	public <S extends T> long count(Example<S> arg0) {
-		return basicUtilRepositoryImpl.count(arg0);
+		return basicRepositoryImpl.count(arg0);
 	}
 
 	@Override
 	public <S extends T> boolean exists(Example<S> arg0) {
-		return basicUtilRepositoryImpl.exists(arg0);
+		return basicRepositoryImpl.exists(arg0);
 	}
 
 	@Override
 	public <S extends T> Page<S> findAll(Example<S> arg0, Pageable arg1) {
-		return basicUtilRepositoryImpl.findAll(arg0, arg1);
+		return basicRepositoryImpl.findAll(arg0, arg1);
 	}
 
 	@Override
 	public <S extends T> Optional<S> findOne(Example<S> arg0) {
-		return basicUtilRepositoryImpl.findOne(arg0);
+		return basicRepositoryImpl.findOne(arg0);
 	}
 
 	@Override
 	public Optional<T> findOne(Specification<T> spec) {
-		return basicUtilRepositoryImpl.findOne(spec);
+		return basicRepositoryImpl.findOne(spec);
 	}
 }
