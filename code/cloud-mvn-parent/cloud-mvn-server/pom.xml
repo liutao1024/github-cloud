@@ -11,6 +11,18 @@
 	<name>cloud-mvn-server</name>
 	<description>cloud-mvn-server-side</description>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>${spring.data.redis.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${redis.jedis.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>cloud</groupId>
 			<artifactId>cloud-mvn-basic</artifactId>
@@ -25,6 +37,7 @@
 	<modules>
 		<module>cloud-mvn-server-core</module>
 		<module>cloud-mvn-server-task</module>
+		<module>cloud-mvn-server-aystem</module>
 		<module>cloud-mvn-server-socket</module>
 	</modules>
 </project>

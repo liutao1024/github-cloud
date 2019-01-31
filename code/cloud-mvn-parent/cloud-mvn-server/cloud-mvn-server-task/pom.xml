@@ -11,7 +11,20 @@
 	<artifactId>cloud-mvn-server-task</artifactId>
 	<name>cloud-mvn-server-task</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<quartz.version>2.3.0</quartz.version>
+	</properties>
 	<dependencies>
-		
+		<!-- 定时任务依赖 20180601 -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${quartz.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-aystem</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

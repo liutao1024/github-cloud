@@ -4,6 +4,12 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="cloud-mvn-server-core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-core/cloud-mvn-server-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cloud-mvn-server-aystem-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-aystem/cloud-mvn-server-aystem">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="cloud-mvn-basic-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-basic/cloud-mvn-basic">
             <dependency-type>uses</dependency-type>
         </dependent-module>

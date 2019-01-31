@@ -12,6 +12,13 @@
 	<packaging>war</packaging>
 	<name>cloud-mvn-client-web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<finalName>cloud-mvn-client-web</finalName>
 	</build>

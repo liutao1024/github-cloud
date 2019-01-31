@@ -14,6 +14,12 @@
 	<name>cloud-mvn-comm</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- dom4j依赖用于解析接口的xml配置文件 -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 		<dependency>
 			<groupId>cloud</groupId>
 			<artifactId>cloud-mvn-basic</artifactId>
