@@ -11,13 +11,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.spring.mvn.client.basic.exception.SumpException;
-import cn.spring.mvn.client.basic.tools.DateTool;
-import cn.spring.mvn.client.basic.utils.CommUtil;
-import cn.spring.mvn.client.com.client.Constants;
-import cn.spring.mvn.client.com.client.Message;
-import cn.spring.mvn.client.com.model.ApSysMsg;
-import cn.spring.mvn.client.com.model.repository.ApSysMsgRepository;
+import cn.spring.mvn.basic.exception.SumpException;
+import cn.spring.mvn.client.Constants;
+import cn.spring.mvn.client.Message;
+import cn.spring.mvn.client.model.ApSysMsg;
+import cn.spring.mvn.client.model.repository.ApSysMsgRepository;
+import cn.spring.mvn.comm.tools.DateTool;
+import cn.spring.mvn.comm.util.CommUtil;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;

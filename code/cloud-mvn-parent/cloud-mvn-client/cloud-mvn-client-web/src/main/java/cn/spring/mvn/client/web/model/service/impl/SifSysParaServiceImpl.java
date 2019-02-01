@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import cn.spring.mvn.client.basic.exception.SumpException;
+import cn.spring.mvn.basic.exception.SumpException;
 import cn.spring.mvn.client.web.model.SifSysPara;
 import cn.spring.mvn.client.web.model.dao.SifSysParaDao;
 import cn.spring.mvn.client.web.model.service.SifSysParaService;

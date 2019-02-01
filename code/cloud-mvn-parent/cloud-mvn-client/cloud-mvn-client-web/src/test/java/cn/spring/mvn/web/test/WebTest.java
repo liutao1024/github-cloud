@@ -11,14 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.spring.mvn.client.basic.exception.SumpException;
-import cn.spring.mvn.client.basic.tools.DateTool;
-import cn.spring.mvn.client.basic.tools.MD5Tool;
-import cn.spring.mvn.client.com.client.Client;
-import cn.spring.mvn.client.com.client.Constants;
-import cn.spring.mvn.client.com.client.Message;
-import cn.spring.mvn.client.com.model.ApSysMsg;
-import cn.spring.mvn.client.com.model.repository.ApSysMsgRepository;
+import cn.spring.mvn.basic.exception.SumpException;
+import cn.spring.mvn.client.Client;
+import cn.spring.mvn.client.Constants;
+import cn.spring.mvn.client.Message;
+import cn.spring.mvn.client.model.ApSysMsg;
+import cn.spring.mvn.client.model.repository.ApSysMsgRepository;
+import cn.spring.mvn.comm.tools.DateTool;
+import cn.spring.mvn.comm.tools.MD5Tool;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-context.xml" })

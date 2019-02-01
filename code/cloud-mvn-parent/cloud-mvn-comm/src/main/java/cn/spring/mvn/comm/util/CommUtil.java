@@ -11,6 +11,10 @@ import java.util.Map;
 
 //import org.springframework.data.domain.Sort;
 
+
+
+import org.springframework.data.domain.Sort;
+
 import cn.spring.mvn.basic.util.BasicUtil;
 
 /**
@@ -181,51 +185,16 @@ public class CommUtil extends BasicUtil{//继承自BasicUtil
 		return t;
 	}
 	/**
-	 * @author LiuTao @date 2018年5月22日 下午9:28:48 
-	 * @Title: isNull 
-	 * @Description: TODO(判断对象是否为空)  还有种情况是object = "null"
-	 * @param object
+	 * @author LiuTao @date 2018年10月17日 上午10:10:52 
+	 * @Title: getObject 
+	 * @Description: 前者为空返回后者  三目运算
+	 * @param obj
+	 * @param jacObj
 	 * @return
 	 */
-//	@SuppressWarnings("rawtypes")
-//	public static boolean isNull(Object object){
-//		boolean rstBoolean = false;
-//		if(null == object){
-//			rstBoolean = true;
-//		}else if("".equals(object)){
-//			rstBoolean = true;
-//		}
-//		return rstBoolean;
-//		boolean b = false;
-//		if(object == null){
-//			b = true;
-//		}
-//		if(object instanceof CharSequence){
-//			b = ((CharSequence) object).length() == 0;
-//		}
-//		if (object instanceof Collection) {
-//			b = ((Collection) object).isEmpty();
-//		}
-//		if(object instanceof Map){
-//			b = ((Map) object).isEmpty();
-//		}
-//		if(object instanceof Object[]){
-//			Object[] objects = (Object[]) object;
-//			if(objects.length == 0){
-//				b = true;
-//			}else {
-//				boolean nb = false;
-//				for(int i = 0; i < objects.length; i++){
-//					if(isNull(objects[i])){
-//						nb = true;
-//						break;
-//					}
-//				}
-//				b = nb;
-//			}
-//		}
-//		return b;
-//	}
+	public static Object getObject(Object obj, Object jacObj){
+		return null == obj ? jacObj : obj;
+	}
 	/**
 	 * @author LiuTao @date 2018年5月22日 下午11:06:35 
 	 * @Title: isNotNull 
@@ -300,4 +269,16 @@ public class CommUtil extends BasicUtil{//继承自BasicUtil
 		rstMap.put("size", size);
 		return rstMap;
 	}
+	
+	/**
+	 * @author LiuTao @date 2018年6月2日 下午6:00:40 
+	 * @Title: getSortBySort 
+	 * @Description: 根据sort对list进行排序 
+	 * @param list
+	 * @param sort
+	 * @return
+	 */
+	public static <T> List<T> getSortBySort(List<T> list, Sort sort){
+		return null;
+	} 
 }

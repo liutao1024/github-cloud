@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import cn.spring.mvn.client.basic.exception.SumpException;
+import cn.spring.mvn.basic.exception.SumpException;
 import cn.spring.mvn.client.web.model.SifSysTeamMember;
 import cn.spring.mvn.client.web.model.SifSysUser;
 

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import cn.spring.mvn.client.basic.tools.MD5Tool;
-import cn.spring.mvn.client.com.client.Client;
+import cn.spring.mvn.client.Client;
 import cn.spring.mvn.client.web.model.BSBUser;
+import cn.spring.mvn.comm.tools.MD5Tool;
 
 @Controller("LoginController")
 @ResponseBody

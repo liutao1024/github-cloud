@@ -21,6 +21,11 @@
 		</dependency>
 		<dependency>
 			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-client-socket</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
 			<artifactId>cloud-mvn-server-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
