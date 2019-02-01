@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		xmlns="http://java.sun.com/xml/ns/javaee" 
-		xmlns:web="http://java.sun.com/xml/ns/javaee" 
-		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-							http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:web="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+						http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-  <display-name>cloud-mvn-client-web</display-name>
+	<display-name>Archetype Created Web Application</display-name>
+	<!-- 引入spring上下文配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring-context.xml</param-value><!-- web.xml 只加载spring-context.xml其他的定时任务/hibernat/mybatis/jpa/redis/都在context中加载-->
+	</context-param>
+	<!-- 自定义过滤器 -->
+	<filter>
+		<filter-name>WebFilter</filter-name>
+		<filter-class>cn.spring.mvn.client.web.filter.WebFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>WebFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 解决乱码过滤器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<url-pattern>*.htmls</url-pattern>
+	</filter-mapping>
+	<!-- 设置Session的有效时间(默认30分钟):以分钟为单位-->
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+	<!-- 开启上下文监听 这两个监听的位置不能乱否则浏览器显示的东西不对 交换后显示源码-->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+    	<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  	</listener>
+	<!--  -->
+	<servlet>
+		<servlet-name>webServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>webServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<!-- 主页面 -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 </web-app>

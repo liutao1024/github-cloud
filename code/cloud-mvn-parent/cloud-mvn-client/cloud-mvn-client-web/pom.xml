@@ -13,6 +13,12 @@
 	<name>cloud-mvn-client-web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- 数据源 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.11</version>
+		</dependency>
 		<dependency>
 			<groupId>cloud</groupId>
 			<artifactId>cloud-mvn-server-core</artifactId>

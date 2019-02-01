@@ -11,8 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
-public class RepositoryImpl<T, PK extends Serializable> implements
-		Repository<T, PK> {
+public class RepositoryImpl<T, PK extends Serializable> implements Repository<T, PK> {
 
 	@Autowired
 	private Repository<T, Serializable> repositoryImpl;

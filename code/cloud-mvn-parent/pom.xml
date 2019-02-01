@@ -91,7 +91,7 @@
 		<dependency>
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-jpa</artifactId>
-		    <version>2.0.8.RELEASE</version><!-- 最新版本报错由于运行时解不开jar包 -->
+		    <version>2.0.8.RELEASE</version><!-- 2.0.8.RELEASE/1.10.1.RELEASE最新版本报错由于运行时解不开jar包 -->
 		</dependency>
 		<!-- c3p0数据源开始 -->
 		<dependency>
