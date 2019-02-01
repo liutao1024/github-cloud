@@ -47,7 +47,7 @@ public class SpringContextUtil implements ApplicationContextAware{
         return applicationContext.isSingleton(name);
     }
  
-    public static Class<?> getType(String name)    throws NoSuchBeanDefinitionException {
+    public static Class<?> getType(String name) throws NoSuchBeanDefinitionException {
         return applicationContext.getType(name);
     }
  

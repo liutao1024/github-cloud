@@ -177,16 +177,16 @@ public class SpringMVCHeibrntTest {
 				systemBatchTaskDispathControlImpl.findAllByHql(hqlStr_Flage_Y);
 		System.out.println(systemBatchTaskDispathControlList.size());
 		for (SystemBatchTaskDispathControl systemBatchTaskDispathControl : systemBatchTaskDispathControlList) {
-			String jobGroupClassName = "cn.spring.mvc.global.comm.batch.task.impl." + systemBatchTaskDispathControl.getJobClass();
+			String jobGroupClazzName = "cn.spring.mvc.global.comm.batch.task.impl." + systemBatchTaskDispathControl.getJobClass();
 			String jobGroupMethodName = systemBatchTaskDispathControl.getJobMethod();
-			System.out.println("jobGroupClassName:"+jobGroupClassName);
+			System.out.println("jobGroupClassName:"+jobGroupClazzName);
 			System.out.println("jobGroupMethodName:"+jobGroupMethodName);
 			//鍚屾牱閫氳繃鍙戝皠鎵惧埌绫昏皟鐢ㄥ搴旂殑鏂规硶
 			@SuppressWarnings("rawtypes")
 			Class[] classes = {};
 			Object[] objects = {};
 			try {
-				BasicReflection.executeMethodByReflectClassNameAndMethodName(jobGroupClassName, jobGroupMethodName, classes, objects);
+				BasicReflection.executeMethodByReflectClassNameAndMethodName(jobGroupClazzName, jobGroupMethodName, classes, objects);
 				// TODO:鐧昏鎵ц鎴愬姛淇℃伅
 			} catch (Exception e) {
 				// TODO:寮傚父淇℃伅

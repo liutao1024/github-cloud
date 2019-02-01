@@ -30,10 +30,10 @@ public class EntityTest {
 	public void Test0004() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
 //		String str = "{\"custna\":\"刘涛\",\"acctno\":\"9527\"}";
 		String str = "{\"sada\":2,\"count\":2,\"infos\":[{\"addrcd\":\"\",\"addres\":\"中国香港\",\"birthd\":\"\",\"brchno\":\"\",\"closdt\":\"\",\"clossq\":\"\",\"corpno\":\"\",\"cuslvl\":\"\",\"custna\":\"张家辉\",\"custno\":\"7011001100002\",\"custst\":\"1\",\"datetm\":\"\",\"emails\":\"\",\"emplcu\":\"\",\"idtfno\":\"511024198612030398\",\"idtftp\":\"01\",\"opendt\":\"\",\"opensq\":\"\",\"postcd\":\"\",\"sextyp\":\"1\",\"teleno\":\"18581598359\",\"timetm\":\"\"},{\"addrcd\":\"\",\"addres\":\"中国四川\",\"birthd\":\"\",\"brchno\":\"\",\"closdt\":\"\",\"clossq\":\"\",\"corpno\":\"\",\"cuslvl\":\"\",\"custna\":\"刘涛\",\"custno\":\"7011001100001\",\"custst\":\"2\",\"datetm\":\"\",\"emails\":\"\",\"emplcu\":\"\",\"idtfno\":\"511024199112030398\",\"idtftp\":\"01\",\"opendt\":\"\",\"opensq\":\"\",\"postcd\":\"\",\"sextyp\":\"1\",\"teleno\":\"15928435559\",\"timetm\":\"\"}]}";
-//		String className = "cn.spring.mvn.core.account.zport.QrcustInput";
-		String className = "cn.spring.mvn.core.account.zport.QrcustOutput";
+//		String clazzName = "cn.spring.mvn.core.account.zport.QrcustInput";
+		String clazzName = "cn.spring.mvn.core.account.zport.QrcustOutput";
 		Object obj = JSONObject.parse(str);
-		Class<?> clazz = BasicReflection.getClassByReflectClassName(className);
+		Class<?> clazz = BasicReflection.getClassByReflectClassName(clazzName);
 		obj = SocketTool.praseToClass(clazz, obj);
 		System.out.println(obj);
 	}

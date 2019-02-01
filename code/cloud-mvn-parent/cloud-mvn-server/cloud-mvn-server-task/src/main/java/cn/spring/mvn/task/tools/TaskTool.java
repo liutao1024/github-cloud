@@ -22,27 +22,27 @@ public class TaskTool {
 	 * @param fileList
 	 * @return
 	 */
-	public static List<Object> getAttributeByAutowiredAnnotation(List<String> fileList, Class<?> parentClass) throws Exception{
+	public static List<Object> getAttributeByAutowiredAnnotation(List<String> fileList, Class<?> parentClazz) throws Exception{
 		List<String> subFileList = new ArrayList<String>();
 		List<Object> subObjectList = new ArrayList<Object>();
 		try {
-			for(String classStr : fileList){
+			for(String clazzStr : fileList){
 				//反射的得到子类
-				if(BasicReflection.toJudgeByReflectClassIsSonOfParentClass(classStr, parentClass)){
-					subFileList.add(classStr);
+				if(BasicReflection.toJudgeByReflectClassIsSonOfParentClass(clazzStr, parentClazz)){
+					subFileList.add(clazzStr);
 				}
 			}
-			for(String subClassStr : subFileList){
-				Class<?> subClass = BasicReflection.getClassByReflectClassName(subClassStr);
-				Object obj = subClass.newInstance();
+			for(String subClazzStr : subFileList){
+				Class<?> subClazz = BasicReflection.getClassByReflectClassName(subClazzStr);
+				Object obj = subClazz.newInstance();
 				Map<Type, Object> map = new HashMap<Type, Object>();
 				map = BasicReflection.getMapByReflectAttributeAnnotationAutowiredObject(obj);
 				for (Entry<Type, Object> entry : map.entrySet()) {
-					Class<?> s = (Class<?>) entry.getKey();
+					Class<?> clazz = (Class<?>) entry.getKey();
 					Object object = entry.getValue();
-//					object = TaskJob.getService(s);
+//					object = TaskJob.getService(clazz);
 					subObjectList.add(object);
-					System.out.println(s);
+					System.out.println(clazz);
 				}
 			}
 		} catch (Exception e) {

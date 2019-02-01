@@ -203,25 +203,25 @@ public class SocketOperatorImpl {
 					//input 和 output如何精确的定位到该方法对应的两个类
 					//prcscd首字母大写
 					String Prcscd = prcscd.substring(0, 1).toUpperCase() + prcscd.substring(1);
-					String inputClassStr = path + CommUtil.DOT + module + CommUtil.ZPORT + Prcscd + INPUT;
-					String outputClassStr = path + CommUtil.DOT + module + CommUtil.ZPORT + Prcscd + OUTPUT;
-					Class<?> inClass = BasicReflection.getClassByReflectClassName(inputClassStr);
-					Class<?> outClass = BasicReflection.getClassByReflectClassName(outputClassStr);
+					String inputClazzStr = path + CommUtil.DOT + module + CommUtil.ZPORT + Prcscd + INPUT;
+					String outputClazzStr = path + CommUtil.DOT + module + CommUtil.ZPORT + Prcscd + OUTPUT;
+					Class<?> inClazz = BasicReflection.getClassByReflectClassName(inputClazzStr);
+					Class<?> outClazz = BasicReflection.getClassByReflectClassName(outputClazzStr);
 					//当接收到的input的字段比我们自己定义的input类多时需要怎么处理
-					objInput = SocketTool.praseToClass(inClass, objInput);
-					objOutput = SocketTool.praseToClass(outClass, objOutput);
+					objInput = SocketTool.praseToClass(inClazz, objInput);
+					objOutput = SocketTool.praseToClass(outClazz, objOutput);
 					//就算objInput 和objOutput是null也要返回一个空对象
 //					Qrcust.input;
 //					Qrcust i = new Qrcust();
 					//接口的输入输出都需要封装成类 input.class,output.class
-					Class<?>[] classes = {inClass, outClass};
+					Class<?>[] clazzes = {inClazz, outClazz};
 					//input output
 					Object[] objects = {objInput, objOutput};
 					
 					/**
 					 * 分割线
 					 */
-					BasicReflection.executeMethodByReflectClassNameAndMethodName(className, methodName, classes, objects);
+					BasicReflection.executeMethodByReflectClassNameAndMethodName(className, methodName, clazzes, objects);
 					status = SUCCESS;
 				}else {
 					status =  ERROR;

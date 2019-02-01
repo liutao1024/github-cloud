@@ -37,7 +37,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @ClassName: BasicReflection 
  * @Description: 反射工具类
  */
-//@SuppressWarnings({"rawtypes", "unchecked"})
 public class BasicReflection {
 	private static final Logger LOGGER = Logger.getLogger(BasicReflection.class);
 	
@@ -67,11 +66,11 @@ public class BasicReflection {
 	 * @throws NoSuchMethodException 
 	 * @throws Exception
 	 */
-	public static void executeMethodByReflectClassNameAndMethodName(String className, String methodName, Class<?>[] classes, Object[] objects) throws ReflectiveOperationException{
+	public static void executeMethodByReflectClassNameAndMethodName(String clazzName, String methodName, Class<?>[] clazzes, Object[] objects) throws ReflectiveOperationException{
 		try {
-			Class<?> theClass = getClassByReflectClassName(className);
-			Object obj = theClass.newInstance();
-			Method method = theClass.getMethod(methodName, classes);
+			Class<?> clazz = getClassByReflectClassName(clazzName);
+			Object obj = clazz.newInstance();
+			Method method = clazz.getMethod(methodName, clazzes);
 			method.setAccessible(true);//对于类中的private方法也可以通过这只后可以访问
 			method.invoke(obj, objects);
 		} catch (ClassNotFoundException e) {
@@ -106,13 +105,13 @@ public class BasicReflection {
 	 * @return
 	 * @throws ClassNotFoundException 
 	 */
-	public static Class<?> getClassByReflectClassName(String className) throws ClassNotFoundException {
+	public static Class<?> getClassByReflectClassName(String clazzName) throws ClassNotFoundException {
 		try {
-			Class<?> clazz = Class.forName(className);
+			Class<?> clazz = Class.forName(clazzName);
 			return clazz;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			LOGGER.info("根据字符串" + className + "获取类失败:" + e.getMessage());
+			LOGGER.info("根据字符串" + clazzName + "获取类失败:" + e.getMessage());
 			throw e;
 		}
 	}
@@ -170,11 +169,11 @@ public class BasicReflection {
      * @param parentClazz
      * @return
      */
-    public static boolean toJudgeByReflectClassIsSonOfParentClass(String className, Class<?> parentClazz){  
-        if(className == null) return false;  
+    public static boolean toJudgeByReflectClassIsSonOfParentClass(String clazzName, Class<?> parentClazz){  
+        if(clazzName == null) return false;  
         Class<?> clazz = null;  
         try {  
-            clazz = Class.forName(className);  
+            clazz = Class.forName(clazzName);  
             if(Modifier.isAbstract(clazz.getModifiers())){//抽象类忽略  
                 return false;  
             }  
@@ -344,12 +343,12 @@ public class BasicReflection {
 			// 设置属性可以被访问
 			field.setAccessible(true);
 			Object value = field.get(obj);
-			Class<?> valueClass = value.getClass();
-			if (valueClass.isPrimitive()) {
+			Class<?> valueClazz = value.getClass();
+			if (valueClazz.isPrimitive()) {
 				map.put(fieldName, value.toString());
 
-			} else if (valueClass.getName().contains(JAVAP)) {// 判断是不是基本类型
-				if (valueClass.getName().equals(JAVADATESTR)) {
+			} else if (valueClazz.getName().contains(JAVAP)) {// 判断是不是基本类型
+				if (valueClazz.getName().equals(JAVADATESTR)) {
 					// 格式化Date类型
 					SimpleDateFormat sdf = new SimpleDateFormat(formatStr);
 					Date date = (Date) value;
@@ -529,9 +528,9 @@ public class BasicReflection {
 				return field;
 			}
 		}
-		Class<?> superClass = clazz.getSuperclass();
-		if (superClass != null) {// 简单的递归一下
-			return getFieldByReflectClassFieldName(superClass, fieldName);
+		Class<?> superClazz = clazz.getSuperclass();
+		if (superClazz != null) {// 简单的递归一下
+			return getFieldByReflectClassFieldName(superClazz, fieldName);
 		}
 		return null;
 	}
@@ -709,7 +708,6 @@ public class BasicReflection {
 			// 有该类型的注解存在
 			if (annotation != null) {
 				//获取属性上Column注解的name方法
-				
 				Type theType = field.getGenericType();
 				//将注解Column注解的name属性和field的属性名称fieldName 组成一个键值对放在rstMap中
 				rstMap.put(theType, field);

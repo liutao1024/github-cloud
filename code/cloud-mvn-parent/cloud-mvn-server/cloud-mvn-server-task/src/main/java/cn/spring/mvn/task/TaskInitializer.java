@@ -90,16 +90,16 @@ public class TaskInitializer{
 				String hour = entity.getDispathPeriodHour();
 				String minute = entity.getDispathPeriodMinute();
 				String second = entity.getDispathPeriodSecond();
-				String className = triggerGroupPath + CommUtil.DOT + triggerGroupModule + CommUtil.JOB + triggerGroupClass;//定时任务的入口类
+				String clazzName = triggerGroupPath + CommUtil.DOT + triggerGroupModule + CommUtil.JOB + triggerGroupClass;//定时任务的入口类
 				//是否可以利用发射将batchJob转换成类BatchJob1001------可以的20180602
 				//systemBatchTimeDispathControlStatusRuning获得corn的规则
 				String  cron = (second == null ? "*": second) +" "+ (minute == null ? "*": minute) +" "+ (hour == null ? "*":hour) +" "+  
 						(day == null ? "*":day) +" "+ (month == null ? "":month) +" "+ (week == null ? "":week) +" "+ (year == null ? "*":year);
 				cron = "0/30 * * * * ?";//每分钟的每15秒执行一次  ----具体的cron配置不太懂,需要看一看
 				try {
-					Class<?> jobClass = BasicReflection.getClassByReflectClassName(className);
+					Class<?> jobClazz = BasicReflection.getClassByReflectClassName(clazzName);
 					//添加或修改定时任务
-					TaskManager.addOrModifyJobByCron(jobClass, jobName, jobGroupName, triggerGroupName, triggerGroupNumber, cron);
+					TaskManager.addOrModifyJobByCron(jobClazz, jobName, jobGroupName, triggerGroupName, triggerGroupNumber, cron);
 					// TODO:登记成功信息
 				} catch (Exception e) {
 					// TODO:登记异常信息

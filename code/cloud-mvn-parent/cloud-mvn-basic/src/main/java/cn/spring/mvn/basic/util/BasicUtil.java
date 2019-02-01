@@ -131,24 +131,24 @@ public class BasicUtil{
 	 * @param fieldType 属性的类型
 	 * @return 转换后的值
 	 */
-	public static Object convertValueTypeForJava(Object value, Class<?> fieldType) {
+	public static Object convertValueTypeForJava(Object object, Class<?> fieldClazz) {
 		Object retVal = null;
-		if (Long.class.getName().equals(fieldType.getName()) || long.class.getName().equals(fieldType.getName())) {
-			retVal = Long.parseLong(value.toString());
-		} else if (Integer.class.getName().equals(fieldType.getName()) || int.class.getName().equals(fieldType.getName())) {
-			retVal = Integer.parseInt(value.toString());
-		} else if (Float.class.getName().equals(fieldType.getName()) || float.class.getName().equals(fieldType.getName())) {
-			retVal = Float.parseFloat(value.toString());
-		} else if (Double.class.getName().equals(fieldType.getName()) || double.class.getName().equals(fieldType.getName())) {
-			retVal = Double.parseDouble(value.toString());
-		} else if (Boolean.class.getName().equals(fieldType.getName()) || boolean.class.getName().equals(fieldType.getName())) {
-			retVal = Boolean.parseBoolean(value.toString());
-		} else if (Character.class.getName().equals(fieldType.getName()) || char.class.getName().equals(fieldType.getName())) {
-			retVal = value.toString().charAt(0);//20181112
-		} else if(Date.class.getName().equals(fieldType.getName())){
-			retVal = strConvertDate(value.toString());
-		} else if(String.class.getName().equals(fieldType.getName())){
-			retVal = value.toString();
+		if (Long.class.getName().equals(fieldClazz.getName()) || long.class.getName().equals(fieldClazz.getName())) {
+			retVal = Long.parseLong(object.toString());
+		} else if (Integer.class.getName().equals(fieldClazz.getName()) || int.class.getName().equals(fieldClazz.getName())) {
+			retVal = Integer.parseInt(object.toString());
+		} else if (Float.class.getName().equals(fieldClazz.getName()) || float.class.getName().equals(fieldClazz.getName())) {
+			retVal = Float.parseFloat(object.toString());
+		} else if (Double.class.getName().equals(fieldClazz.getName()) || double.class.getName().equals(fieldClazz.getName())) {
+			retVal = Double.parseDouble(object.toString());
+		} else if (Boolean.class.getName().equals(fieldClazz.getName()) || boolean.class.getName().equals(fieldClazz.getName())) {
+			retVal = Boolean.parseBoolean(object.toString());
+		} else if (Character.class.getName().equals(fieldClazz.getName()) || char.class.getName().equals(fieldClazz.getName())) {
+			retVal = object.toString().charAt(0);//20181112
+		} else if(Date.class.getName().equals(fieldClazz.getName())){
+			retVal = strConvertDate(object.toString());
+		} else if(String.class.getName().equals(fieldClazz.getName())){
+			retVal = object.toString();
 		}
 		return retVal;
 	}
@@ -157,27 +157,27 @@ public class BasicUtil{
 	 * @Title: convertValueTypeForDB 
 	 * @Description: TODO(Describe) 
 	 * @param value
-	 * @param fieldType
+	 * @param fieldClazz
 	 * @return
 	 */
-	public static Object convertValueTypeForDB(Object value, Class<?> fieldType) {
+	public static Object convertValueTypeForDB(Object object, Class<?> fieldClazz) {
 		Object retVal = null;
-		if (Long.class.getName().equals(fieldType.getName()) || long.class.getName().equals(fieldType.getName())) {
-			retVal = Long.parseLong(value.toString());
-		} else if (Integer.class.getName().equals(fieldType.getName()) || int.class.getName().equals(fieldType.getName())) {
-			retVal = Integer.parseInt(value.toString());
-		} else if (Float.class.getName().equals(fieldType.getName()) || float.class.getName().equals(fieldType.getName())) {
-			retVal = Float.parseFloat(value.toString());
-		} else if (Double.class.getName().equals(fieldType.getName()) || double.class.getName().equals(fieldType.getName())) {
-			retVal = Double.parseDouble(value.toString());
-		} else if (Boolean.class.getName().equals(fieldType.getName()) || boolean.class.getName().equals(fieldType.getName())) {
-			retVal = Boolean.parseBoolean(value.toString());
-		} else if (Character.class.getName().equals(fieldType.getName()) || char.class.getName().equals(fieldType.getName())) {
-			retVal = "'"+value.toString().charAt(0)+"'";//20181112
-		} else if(Date.class.getName().equals(fieldType.getName())){
-			retVal = "'"+dateConvertStr(value)+"'";
-		} else if(String.class.getName().equals(fieldType.getName())){
-			retVal = "'"+value.toString()+"'";
+		if (Long.class.getName().equals(fieldClazz.getName()) || long.class.getName().equals(fieldClazz.getName())) {
+			retVal = Long.parseLong(object.toString());
+		} else if (Integer.class.getName().equals(fieldClazz.getName()) || int.class.getName().equals(fieldClazz.getName())) {
+			retVal = Integer.parseInt(object.toString());
+		} else if (Float.class.getName().equals(fieldClazz.getName()) || float.class.getName().equals(fieldClazz.getName())) {
+			retVal = Float.parseFloat(object.toString());
+		} else if (Double.class.getName().equals(fieldClazz.getName()) || double.class.getName().equals(fieldClazz.getName())) {
+			retVal = Double.parseDouble(object.toString());
+		} else if (Boolean.class.getName().equals(fieldClazz.getName()) || boolean.class.getName().equals(fieldClazz.getName())) {
+			retVal = Boolean.parseBoolean(object.toString());
+		} else if (Character.class.getName().equals(fieldClazz.getName()) || char.class.getName().equals(fieldClazz.getName())) {
+			retVal = "'"+object.toString().charAt(0)+"'";//20181112
+		} else if(Date.class.getName().equals(fieldClazz.getName())){
+			retVal = "'"+dateConvertStr(object)+"'";
+		} else if(String.class.getName().equals(fieldClazz.getName())){
+			retVal = "'"+object.toString()+"'";
 		}
 		return retVal;
 	}

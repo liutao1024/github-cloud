@@ -30,14 +30,14 @@ public class TaskManager {
 	 * @author LiuTao @date 2018年6月5日 上午11:09:58 
 	 * @Title: addOrModifyJobByCron 
 	 * @Description:  添加一个定时任务,使用传入的任务组名,触发器名,触发器组名
-	 * @param jobClass 任务
+	 * @param jobClazz 任务
 	 * @param jobName 任务名
 	 * @param triggerGroupName 定时器组
 	 * @param jobGroupName 任务组名
 	 * @param cron 定时规则
 	 * @throws Exception
 	 */
-	public static void addOrModifyJobByCron(Class<?> jobClass, String jobName, String jobGroupName, String triggerGroupName, String triggerGroupNumber, String cron) throws Exception{
+	public static void addOrModifyJobByCron(Class<?> jobClazz, String jobName, String jobGroupName, String triggerGroupName, String triggerGroupNumber, String cron) throws Exception{
 		try {
 			Scheduler scheduler = schedulerFactory.getScheduler();
 			TriggerKey triggerKey = new TriggerKey(jobName, triggerGroupName);
@@ -46,7 +46,7 @@ public class TaskManager {
 				// job 唯一标识 
 				JobKey jobKey = new JobKey(jobName,jobGroupName);
 				// 任务名,任务组,任务执行类
-				JobDetail jobDetail = JobBuilder.newJob((Class<? extends Job>) jobClass).withIdentity(jobKey).build();
+				JobDetail jobDetail = JobBuilder.newJob((Class<? extends Job>) jobClazz).withIdentity(jobKey).build();
 				// 触发器
 				CronTrigger cronTrigger = TriggerBuilder
 										.newTrigger()
@@ -70,7 +70,7 @@ public class TaskManager {
 				String oldCron = cronTrigger.getCronExpression();
 				if(!(oldCron.equalsIgnoreCase(cron))){
 					removeJob(jobName, triggerGroupName, jobGroupName);
-					addOrModifyJobByCron(jobClass, jobName, jobGroupName, triggerGroupName, triggerGroupNumber, cron);
+					addOrModifyJobByCron(jobClazz, jobName, jobGroupName, triggerGroupName, triggerGroupNumber, cron);
 				}
 			}
 		} catch (SchedulerException e) {
@@ -82,19 +82,19 @@ public class TaskManager {
 	 * @author LiuTao @date 2018年6月4日 下午11:25:17 
 	 * @Title: addJobByCron 
 	 * @Description:  添加一个定时任务,使用传入的任务组名,触发器名,触发器组名
-	 * @param jobClass 任务
+	 * @param jobClazz 任务
 	 * @param jobName 任务名
 	 * @param triggerGroupName 定时器组
 	 * @param jobGroupName 任务组名
 	 * @param cron 定时规则
 	 */
-	public static void addJobByCron(Class<?> jobClass, String jobName, String triggerGroupName, String jobGroupName, String cron) {
+	public static void addJobByCron(Class<?> jobClazz, String jobName, String triggerGroupName, String jobGroupName, String cron) {
 		try {
 			Scheduler scheduler = schedulerFactory.getScheduler();
 			// job 唯一标识 
 			JobKey jobKey = new JobKey(jobName,jobGroupName);
 			// 任务名,任务组,任务执行类
-			JobDetail jobDetail = JobBuilder.newJob((Class<? extends Job>) jobClass).withIdentity(jobKey).build();
+			JobDetail jobDetail = JobBuilder.newJob((Class<? extends Job>) jobClazz).withIdentity(jobKey).build();
 			// 触发器
 			TriggerKey triggerKey = new TriggerKey(jobName, triggerGroupName);
 			CronTrigger cronTrigger = TriggerBuilder
@@ -134,9 +134,9 @@ public class TaskManager {
 				if(!(oldCron.equalsIgnoreCase(cron))){
 					JobKey jobKey = new JobKey(jobName, jobGroupName);
 					JobDetail jobDetail = scheduler.getJobDetail(jobKey);
-					Class<?> jobClass = jobDetail.getJobClass();
+					Class<?> jobClazz = jobDetail.getJobClass();
 					removeJob(jobName, triggerGroupName, jobGroupName);
-					addJobByCron(jobClass, jobName, triggerGroupName, jobGroupName, cron);
+					addJobByCron(jobClazz, jobName, triggerGroupName, jobGroupName, cron);
 				}
 			}
 		} catch (Exception e) {
@@ -147,13 +147,15 @@ public class TaskManager {
 	
 	/**
 	 * @author LiuTao @date 2018年6月1日 下午12:04:30 
-	 * @Title: addJob 
+	 * @Title: addJobByTime 
 	 * @Description: 添加一个定时任务,使用存入的任务组名,触发器名,触发器组名
+	 * @param jobClazz
 	 * @param jobName 任务名
-	 * @param cls 任务
+	 * @param triggerGroupName
+	 * @param jobGroupName 任务
 	 * @param time 时间设置
 	 */
-	public static void addJobByTime(Class<?> jobClass, String jobName, String triggerGroupName, String jobGroupName, long time) {
+	public static void addJobByTime(Class<?> jobClazz, String jobName, String triggerGroupName, String jobGroupName, long time) {
 		Date date = new Date();
 		Calendar ca = Calendar.getInstance();
 		long millis = date.getTime() + time;
@@ -164,7 +166,7 @@ public class TaskManager {
 			// job 唯一标识 
 			JobKey jobKey = new JobKey(jobName,jobGroupName);
 			// 任务名,任务组,任务执行类
-			JobDetail jobDetail = JobBuilder.newJob((Class<? extends Job>) jobClass).withIdentity(jobKey).build();
+			JobDetail jobDetail = JobBuilder.newJob((Class<? extends Job>) jobClazz).withIdentity(jobKey).build();
 			// 触发器
 			TriggerKey triggerKey = new TriggerKey(jobName, triggerGroupName);
 			Trigger trigger = TriggerBuilder
@@ -173,9 +175,8 @@ public class TaskManager {
 					// 延迟一秒执行
 					.startAt(date)
 					// 每隔一秒执行 并一直重复
-					.withSchedule(
-							SimpleScheduleBuilder.simpleSchedule()
-									.withIntervalInSeconds(10).repeatForever())
+					.withSchedule(SimpleScheduleBuilder.simpleSchedule()
+										.withIntervalInSeconds(10).repeatForever())
 					.build();
 			// 触发器时间设定
 			scheduler.scheduleJob(jobDetail, trigger);
@@ -206,9 +207,9 @@ public class TaskManager {
 			}else {
 				JobKey jobKey = new JobKey(jobName, jobGroupName);
 				JobDetail jobDetail = scheduler.getJobDetail(jobKey);
-				Class<?> jobClass = jobDetail.getJobClass();
+				Class<?> jobClazz = jobDetail.getJobClass();
 				removeJob(jobName, triggerGroupName, jobGroupName);
-				addJobByTime(jobClass, jobName, triggerGroupName, jobGroupName, time);
+				addJobByTime(jobClazz, jobName, triggerGroupName, jobGroupName, time);
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
