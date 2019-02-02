@@ -37,8 +37,8 @@ public class SocketOperatorImpl {
 	private static String OUTPUT = "Output";
 	private static final Logger LOGGER = Logger.getLogger(SocketOperatorImpl.class);
 	//
-	private static SysTransactionService systemTransactionServiceImpl = (SysTransactionService) SpringContextUtil.getBean("SysTransactionService");
-	private static SysTransactionInformationService systemTransactionInformationServiceImpl = (SysTransactionInformationService) SpringContextUtil.getBean("SysTransactionInformationService");
+	private static SysTransactionService sysTransactionServiceImpl = (SysTransactionService) SpringContextUtil.getBean("SysTransactionService");
+	private static SysTransactionInformationService sysTransactionInformationServiceImpl = (SysTransactionInformationService) SpringContextUtil.getBean("SysTransactionInformationService");
 	
 	/**
 	 * 1.请求报文格式为:
@@ -185,12 +185,12 @@ public class SocketOperatorImpl {
 //			String s = SocketOperatorImpl.class.getClassLoader().getResource("/xml/" + prcscd + POSTFIX).getPath();
 			boolean exists = true;//xmlFile.exists()
 			if(exists){
-				SysTransaction systemTransaction = systemTransactionServiceImpl.selectOne(prcscd, "");
-				if(CommUtil.isNotNull(systemTransaction) && "YES".equals(systemTransaction.getRunmak())){
-					String path = systemTransaction.getPath();
-					String module = systemTransaction.getModule();
-					String eclass = systemTransaction.getEclass();
-					String method = systemTransaction.getMethod();
+				SysTransaction sysTransaction = sysTransactionServiceImpl.selectOne(prcscd, "");
+				if(CommUtil.isNotNull(sysTransaction) && "YES".equals(sysTransaction.getRunmak())){
+					String path = sysTransaction.getPath();
+					String module = sysTransaction.getModule();
+					String eclass = sysTransaction.getEclass();
+					String method = sysTransaction.getMethod();
 					//获取实现类
 					String className = path + CommUtil.DOT + module + CommUtil.ZPORTIMPL + eclass;
 					//方法名
@@ -255,16 +255,16 @@ public class SocketOperatorImpl {
 			sys.setMesage(mesage);
 			rspJsonStr = SocketTool.formatResponse(sys, comm, objOutput);
 			//登记通讯处理记录
-			SysTransactionInformation systemTransactionInformation = new SysTransactionInformation();
-			systemTransactionInformation.setSerialNumber(serial);
-			systemTransactionInformation.setSerialDate(trandt);
-			systemTransactionInformation.setSerialTime(trantm);
-			systemTransactionInformation.setIpAddress(ipAddress);//
-			systemTransactionInformation.setInput(reqJsonStr);
-			systemTransactionInformation.setOutput(rspJsonStr);
-			systemTransactionInformation.setErrorMesage(mesage);
-			systemTransactionInformation.setTimesTamp(String.valueOf(System.currentTimeMillis()));
-			systemTransactionInformationServiceImpl.saveOrUpdate(systemTransactionInformation);
+			SysTransactionInformation sysTransactionInformation = new SysTransactionInformation();
+			sysTransactionInformation.setSerialNumber(serial);
+			sysTransactionInformation.setSerialDate(trandt);
+			sysTransactionInformation.setSerialTime(trantm);
+			sysTransactionInformation.setIpAddress(ipAddress);//
+			sysTransactionInformation.setInput(reqJsonStr);
+			sysTransactionInformation.setOutput(rspJsonStr);
+			sysTransactionInformation.setErrorMesage(mesage);
+			sysTransactionInformation.setTimesTamp(String.valueOf(System.currentTimeMillis()));
+			sysTransactionInformationServiceImpl.saveOrUpdate(sysTransactionInformation);
 		}
 		return rspJsonStr;
 	}

@@ -24,7 +24,7 @@ import cn.spring.mvn.system.entity.service.SysTransactionService;
 public class SocketHandlerImpl {
 	private static String ERROR = "ERROR";
 	private static String SUCCESS = "SUCCESS";
-	private static SysTransactionService systemTransactionServiceImpl = (SysTransactionService) SpringContextUtil.getBean("SysTransactionService");
+	private static SysTransactionService sysTransactionServiceImpl = (SysTransactionService) SpringContextUtil.getBean("SysTransactionService");
 	
 	/**
 	 * @author LiuTao @date 2018年10月16日 上午10:35:35 
@@ -126,11 +126,11 @@ public class SocketHandlerImpl {
 					 * 		判断后反编译执行 transactionModule+transactionMethod
 					 * 	2.不存在,返回错误信息
 					 */
-					SysTransaction systemTransaction = systemTransactionServiceImpl.selectOne(corecd, asktyp);
-					if(CommUtil.isNotNull(systemTransaction) && "YES".equals(systemTransaction.getRunmak())){
-						String module = systemTransaction.getModule();
-						String eclass = systemTransaction.getEclass();
-						String method = systemTransaction.getMethod();
+					SysTransaction sysTransaction = sysTransactionServiceImpl.selectOne(corecd, asktyp);
+					if(CommUtil.isNotNull(sysTransaction) && "YES".equals(sysTransaction.getRunmak())){
+						String module = sysTransaction.getModule();
+						String eclass = sysTransaction.getEclass();
+						String method = sysTransaction.getMethod();
 						String className = "cn.spring.mvn." + module + "." + eclass;
 						String methodName = method;
 						Class[] classes = {Input.class, Output.class};//接口的输入输出都需要封装成类 input.class,output.class
