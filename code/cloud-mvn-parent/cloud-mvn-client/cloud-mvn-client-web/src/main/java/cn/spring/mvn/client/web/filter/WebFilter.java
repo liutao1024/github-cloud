@@ -28,8 +28,8 @@ public class WebFilter implements Filter{
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		//httpServletRequest的参数做处理
 		//url=http://127.0.0.1:8080/path/home/login.do?user=10001&paswd=123456
-		String queryString = httpServletRequest.getQueryString();
-		System.out.println(queryString);// user=10001&paswd=123456
+//		String queryString = httpServletRequest.getQueryString();
+//		System.out.println(queryString);// user=10001&paswd=123456
 		httpServletRequest.setCharacterEncoding(DEFAULT_CHARSET);
 		httpServletResponse.setCharacterEncoding(DEFAULT_CHARSET);
 		chain.doFilter(new WebHttpServletRequestWrapper(httpServletRequest), httpServletResponse);
