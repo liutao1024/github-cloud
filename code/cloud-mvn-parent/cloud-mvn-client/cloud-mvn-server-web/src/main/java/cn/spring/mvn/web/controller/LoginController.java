@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cn.spring.mvn.comm.tools.MD5Tool;
 import cn.spring.mvn.comm.util.CommUtil;
-import cn.spring.mvn.web.entity.SysUser;
-import cn.spring.mvn.web.entity.service.SysUserService;
+import cn.spring.mvn.system.entity.SysUser;
+import cn.spring.mvn.system.entity.service.SysUserService;
 
 @Controller("LoginController")
 @ResponseBody

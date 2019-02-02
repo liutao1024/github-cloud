@@ -28,16 +28,16 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cn.spring.mvn.comm.tools.MD5Tool;
 import cn.spring.mvn.comm.util.CommUtil;
-import cn.spring.mvn.web.entity.SysAuth;
-import cn.spring.mvn.web.entity.SysRoleAuth;
-import cn.spring.mvn.web.entity.SysRole;
-import cn.spring.mvn.web.entity.SysUser;
-import cn.spring.mvn.web.entity.SysUserRole;
-import cn.spring.mvn.web.entity.service.SysRoleAuthService;
-import cn.spring.mvn.web.entity.service.SysAuthService;
-import cn.spring.mvn.web.entity.service.SysRoleService;
-import cn.spring.mvn.web.entity.service.SysUserRoleService;
-import cn.spring.mvn.web.entity.service.SysUserService;
+import cn.spring.mvn.system.entity.SysAuth;
+import cn.spring.mvn.system.entity.SysRoleAuth;
+import cn.spring.mvn.system.entity.SysRole;
+import cn.spring.mvn.system.entity.SysUser;
+import cn.spring.mvn.system.entity.SysUserRole;
+import cn.spring.mvn.system.entity.service.SysRoleAuthService;
+import cn.spring.mvn.system.entity.service.SysAuthService;
+import cn.spring.mvn.system.entity.service.SysRoleService;
+import cn.spring.mvn.system.entity.service.SysUserRoleService;
+import cn.spring.mvn.system.entity.service.SysUserService;
 /**
  * @author LiuTao @date 2018年5月1日 上午11:59:41
  * @ClassName: SystemController 

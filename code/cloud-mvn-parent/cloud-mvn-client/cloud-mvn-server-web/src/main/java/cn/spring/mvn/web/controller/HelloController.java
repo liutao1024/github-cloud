@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.spring.mvn.web.entity.SysUser;
-import cn.spring.mvn.web.entity.service.SysUserService;
+import cn.spring.mvn.system.entity.SysUser;
+import cn.spring.mvn.system.entity.service.SysUserService;
 
 @Controller("HelloController")
 @RequestMapping("/user")

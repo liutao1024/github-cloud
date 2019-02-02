@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.spring.mvn.web.entity.SysAuth;
-import cn.spring.mvn.web.entity.SysDict;
-import cn.spring.mvn.web.entity.SysRole;
-import cn.spring.mvn.web.entity.service.SysAuthService;
-import cn.spring.mvn.web.entity.service.SysDictService;
-import cn.spring.mvn.web.entity.service.SysRoleService;
+import cn.spring.mvn.system.entity.SysAuth;
+import cn.spring.mvn.system.entity.SysDict;
+import cn.spring.mvn.system.entity.SysRole;
+import cn.spring.mvn.system.entity.service.SysAuthService;
+import cn.spring.mvn.system.entity.service.SysDictService;
+import cn.spring.mvn.system.entity.service.SysRoleService;
 /**
  * @author LiuTao @date 2018年5月30日 下午8:49:35
  * @ClassName: CommController 

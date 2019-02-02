@@ -8,19 +8,7 @@
 		<artifactId>cloud-mvn-server</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<!-- <groupId>cloud</groupId> -->
 	<artifactId>cloud-mvn-server-core</artifactId>
-	<!-- <version>0.0.1-SNAPSHOT</version> -->
 	<name>cloud-mvn-server-core</name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>cloud</groupId>
-			<artifactId>cloud-mvn-server-aystem</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
 </project>

@@ -11,6 +11,4 @@
 	<artifactId>cloud-mvn-server-loan</artifactId>
 	<name>cloud-mvn-server-loan</name>
 	<url>http://maven.apache.org</url>
-	<dependencies>
-	</dependencies>
 </project>

@@ -2,8 +2,8 @@ package cn.spring.mvn.web.zport.impl;
 
 import cn.spring.mvn.comm.util.CommUtil;
 import cn.spring.mvn.comm.util.SpringContextUtil;
-import cn.spring.mvn.web.entity.SysUser;
-import cn.spring.mvn.web.entity.service.SysUserService;
+import cn.spring.mvn.system.entity.SysUser;
+import cn.spring.mvn.system.entity.service.SysUserService;
 import cn.spring.mvn.web.zport.ResetsInput;
 import cn.spring.mvn.web.zport.ResetsOutput;
 import cn.spring.mvn.web.zport.UserinInput;

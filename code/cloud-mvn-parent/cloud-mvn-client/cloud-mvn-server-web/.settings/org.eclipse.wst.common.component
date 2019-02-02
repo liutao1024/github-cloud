@@ -4,10 +4,16 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="cloud-mvn-server-aystem-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-aystem/cloud-mvn-server-aystem">
+        <dependent-module archiveName="cloud-mvn-server-core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-core/cloud-mvn-server-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="cloud-mvn-server-core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-core/cloud-mvn-server-core">
+        <dependent-module archiveName="cloud-mvn-socket-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-socket/cloud-mvn-socket">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cloud-mvn-system-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-system/cloud-mvn-system">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cloud-mvn-task-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-task/cloud-mvn-task">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="cloud-mvn-server-deposit-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-deposit/cloud-mvn-server-deposit">
@@ -17,12 +23,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="cloud-mvn-server-loan-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-loan/cloud-mvn-server-loan">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="cloud-mvn-server-socket-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-socket/cloud-mvn-server-socket">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="cloud-mvn-server-task-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-task/cloud-mvn-server-task">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="cloud-mvn-basic-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-basic/cloud-mvn-basic">

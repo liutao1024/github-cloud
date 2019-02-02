@@ -15,11 +15,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>cloud</groupId>
-			<artifactId>cloud-mvn-server-aystem</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>cloud</groupId>
 			<artifactId>cloud-mvn-server-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
@@ -38,7 +33,7 @@
 			<artifactId>cloud-mvn-server-loan</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>cloud</groupId>
 			<artifactId>cloud-mvn-server-socket</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -47,7 +42,7 @@
 			<groupId>cloud</groupId>
 			<artifactId>cloud-mvn-server-task</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 	<build>
 		<finalName>cloud-mvn-server-web</finalName>

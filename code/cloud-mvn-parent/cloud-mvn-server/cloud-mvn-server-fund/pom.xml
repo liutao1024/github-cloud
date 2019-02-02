@@ -11,6 +11,4 @@
 	<artifactId>cloud-mvn-server-fund</artifactId>
 	<name>cloud-mvn-server-fund</name>
 	<url>http://maven.apache.org</url>
-	<dependencies>
-	</dependencies>
 </project>

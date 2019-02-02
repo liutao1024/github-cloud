@@ -28,26 +28,26 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.spring.mvn.system.entity.SystemBatchTaskDispathControl;
-import cn.spring.mvn.system.entity.service.SystemBatchTaskDispathControlService;
 import cn.spring.mvn.basic.tools.BasicReflection;
 import cn.spring.mvn.comm.tools.FileTool;
 import cn.spring.mvn.comm.tools.MD5Tool;
 import cn.spring.mvn.comm.util.CommUtil;
 import cn.spring.mvn.comm.util.SpringContextUtil;
 import cn.spring.mvn.socket.server.old.SocketHandlerImpl;
-import cn.spring.mvn.task.TaskManager;
-import cn.spring.mvn.task.job.TaskJobGroup;
-import cn.spring.mvn.web.entity.SysAuth;
-import cn.spring.mvn.web.entity.SysDict;
-import cn.spring.mvn.web.entity.SysRole;
-import cn.spring.mvn.web.entity.SysRoleAuth;
-import cn.spring.mvn.web.entity.SysUser;
-import cn.spring.mvn.web.entity.service.SysAuthService;
-import cn.spring.mvn.web.entity.service.SysRoleAuthService;
-import cn.spring.mvn.web.entity.service.SysRoleService;
-import cn.spring.mvn.web.entity.service.SysUserRoleService;
-import cn.spring.mvn.web.entity.service.SysUserService;
+import cn.spring.mvn.system.entity.SysBatchTaskTimer;
+import cn.spring.mvn.system.entity.service.SysBatchTaskTimerService;
+//import cn.spring.mvn.task.TaskManager;
+//import cn.spring.mvn.task.job.TaskJobGroup;
+import cn.spring.mvn.system.entity.SysAuth;
+import cn.spring.mvn.system.entity.SysDict;
+import cn.spring.mvn.system.entity.SysRole;
+import cn.spring.mvn.system.entity.SysRoleAuth;
+import cn.spring.mvn.system.entity.SysUser;
+import cn.spring.mvn.system.entity.service.SysAuthService;
+import cn.spring.mvn.system.entity.service.SysRoleAuthService;
+import cn.spring.mvn.system.entity.service.SysRoleService;
+import cn.spring.mvn.system.entity.service.SysUserRoleService;
+import cn.spring.mvn.system.entity.service.SysUserService;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -67,7 +67,7 @@ public class SpringMVCHeibrntTest {
 	@Autowired 
 	private SysAuthService sysAuthServiceImpl;
 	@Autowired
-	private SystemBatchTaskDispathControlService systemBatchTaskDispathControlImpl;
+	private SysBatchTaskTimerService systemBatchTaskDispathControlImpl;
 	/**
 	 * @Test
 	 */
@@ -163,9 +163,9 @@ public class SpringMVCHeibrntTest {
 	
 	@Test
 	public void TestQuartz(){
-		String jobName = "娴嬭瘯";
-		long time = 2000;
-		TaskManager.addJobByTime(TaskJobGroup.class, jobName, "triggerGroupName", "jobGroupName", time);
+//		String jobName = "娴嬭瘯";
+//		long time = 2000;
+//		TaskManager.addJobByTime(TaskJobGroup.class, jobName, "triggerGroupName", "jobGroupName", time);
 	}
 	
 	@Test
@@ -173,10 +173,10 @@ public class SpringMVCHeibrntTest {
 		String TRIGGER_GROUP_NUMBER = "10001";
 		String JOB_EXECUTE_FLAG = "Y";
 		String hqlStr_Flage_Y = "from SystemBatchTaskDispathControl where TRIGGER_GROUP_NUMBER = '" + TRIGGER_GROUP_NUMBER + "' and JOB_EXECUTE_FLAG = '"+ JOB_EXECUTE_FLAG +"'" ;
-		List<SystemBatchTaskDispathControl> systemBatchTaskDispathControlList = 
+		List<SysBatchTaskTimer> systemBatchTaskDispathControlList = 
 				systemBatchTaskDispathControlImpl.findAllByHql(hqlStr_Flage_Y);
 		System.out.println(systemBatchTaskDispathControlList.size());
-		for (SystemBatchTaskDispathControl systemBatchTaskDispathControl : systemBatchTaskDispathControlList) {
+		for (SysBatchTaskTimer systemBatchTaskDispathControl : systemBatchTaskDispathControlList) {
 			String jobGroupClazzName = "cn.spring.mvc.global.comm.batch.task.impl." + systemBatchTaskDispathControl.getJobClass();
 			String jobGroupMethodName = systemBatchTaskDispathControl.getJobMethod();
 			System.out.println("jobGroupClassName:"+jobGroupClazzName);

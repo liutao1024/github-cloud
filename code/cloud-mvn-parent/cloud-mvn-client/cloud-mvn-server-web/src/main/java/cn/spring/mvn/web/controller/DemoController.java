@@ -24,8 +24,8 @@ import cn.spring.mvn.core.loan.entity.dao.StudentDao;
 import cn.spring.mvn.core.loan.entity.service.CoreLoanEntityService;
 import cn.spring.mvn.core.loan.entity.service.StudentService;
 import cn.spring.mvn.socket.server.SocketOperatorImpl;
-import cn.spring.mvn.system.entity.SystemTransactionInformation;
-import cn.spring.mvn.system.entity.service.SystemTransactionInformationService;
+import cn.spring.mvn.system.entity.SysTransactionInformation;
+import cn.spring.mvn.system.entity.service.SysTransactionInformationService;
 //import cn.spring.mvn.basic.ibatis.IBatisTResult;
 /**
  * @author LiuTao @date 2018年11月9日 下午8:03:53
@@ -36,7 +36,7 @@ import cn.spring.mvn.system.entity.service.SystemTransactionInformationService;
 @RequestMapping(value="/test")
 public class DemoController {
 	@Autowired
-	private SystemTransactionInformationService s;
+	private SysTransactionInformationService s;
 	@Autowired
 	private AccountService a;
 	@Autowired
@@ -311,10 +311,10 @@ public class DemoController {
 	 */
 	@RequestMapping("/test001")
 	public void Test001(HttpServletRequest request, HttpServletResponse response){
-		SystemTransactionInformation sti = new SystemTransactionInformation();
-		List<SystemTransactionInformation> list = s.findAll(sti);
-		for (SystemTransactionInformation systemTransactionInformation : list) {
-			System.out.println(systemTransactionInformation.getSerialNumber());
+		SysTransactionInformation sti = new SysTransactionInformation();
+		List<SysTransactionInformation> list = s.findAll(sti);
+		for (SysTransactionInformation sysTransactionInformation : list) {
+			System.out.println(sysTransactionInformation.getSerialNumber());
 		}
 	}
 	/**

@@ -13,6 +13,8 @@ import java.util.Map;
 
 
 
+
+
 import org.springframework.data.domain.Sort;
 
 import cn.spring.mvn.basic.util.BasicUtil;
@@ -28,6 +30,7 @@ public class CommUtil extends BasicUtil{//继承自BasicUtil
 	public final static String SORT="ASC";
 
 	public final static String DOT = ".";
+	public final static String ACROSS = "-";
 	public final static String JOB = ".job.";
 	public final static String JOBIMPL = ".job.impl.";
 	public final static String ZPORT = ".zport.";
@@ -280,5 +283,28 @@ public class CommUtil extends BasicUtil{//继承自BasicUtil
 	 */
 	public static <T> List<T> getSortBySort(List<T> list, Sort sort){
 		return null;
-	} 
+	}
+	/**
+	 * @author LiuTao @date 2019年2月1日 下午4:21:09 
+	 * @Title: isEnum 
+	 * @param clazz
+	 * @param object
+	 * @return
+	 */
+	public static boolean isInEnum(Class<?> clazz, Object object){
+		return  clazz.isEnum();
+	}
+	/**
+	 * @author LiuTao @date 2019年2月1日 下午4:22:31 
+	 * @param <T>
+	 * @Title: toEnum 
+	 * @param clazz
+	 * @param object
+	 * @return
+	 */
+//	public static <T> Class<T> toEnum(Class<?> clazz, Object object){
+////		clazz.valueOf(clazz, object);
+////		return  clazz.isEnum();
+//		return (Class<T>) clazz.cast(object);
+//	}
 }

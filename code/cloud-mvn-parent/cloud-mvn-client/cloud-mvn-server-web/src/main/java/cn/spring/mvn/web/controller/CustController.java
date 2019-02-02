@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import cn.spring.mvn.comm.util.CommUtil;
 import cn.spring.mvn.core.entity.Customer;
 import cn.spring.mvn.core.entity.service.CustomerService;
-import cn.spring.mvn.web.entity.SysUser;
+import cn.spring.mvn.system.entity.SysUser;
 /**
  * @author LiuTao @date 2018年6月9日 下午10:21:54
  * @ClassName: CustController 

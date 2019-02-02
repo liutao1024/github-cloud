@@ -4,11 +4,14 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * 关于异常的工具类. 参考了guava的Throwables.
+ * @author LiuTao @date 2019年2月1日 下午3:37:48
+ * @ClassName: Exceptions 
+ * @Description: 关于异常的工具类. 参考了guava的Throwables.
  */
 public class Exceptions {
 	
 	/**
+	 * @Title: unchecked 
 	 * 将CheckedException转换为UncheckedException.
 	 */
 	public static RuntimeException unchecked(Throwable ex) {

@@ -1,0 +1,19 @@
+批量控制表1
+(批次号,批次名称,批次周期,批次描述,批量任务组状态)某个批次号为定时任务的批次,其余批次号有特定的意义
+定时任务表2
+(批次号,任务顺序号,任务名称,路径,模块,类,方法,任务次数,任务周期,任务描述,任务执行标志)此处的周期只针对上表定时任务批次的定时任务有效
+定时任务执行结果表3
+(批次号,批次名称,任务顺序号,任务名称,执行时间,执行用时,执行结果)
+task起其一个任务:
+	在初始化时分两种情况:
+	1.执行批量组(根据 表1中批次号+批次周期 顺序执行,每个批次中根据 表2中任务顺序号+执行次数 顺序执行定时任务表中的任务),
+	2.执行定时任务(根据时间以及次数执行即可)
+	
+考虑一下把task和socke搬出来	
+由taskJob作为一个跳板(继承)来执行其中的定时任务 完成 
+SysTransactionInformationServiceImpl.java
+SysTransactionServiceImpl.java
+SysParamServiceImpl.java
+SysDictServiceImpl.java
+SysSequenceServiceImpl.java
+涉及到的sql需要修改

@@ -1,8 +1,9 @@
 package cn.spring.mvn.basic.exception;
 
 /**
- * 自定义异常,继承不检查异常类,实现优雅异常
- *
+ * @author LiuTao @date 2019年2月1日 下午3:38:48
+ * @ClassName: SumpException 
+ * @Description: 自定义异常,继承不检查异常类,实现优雅异常
  */
 public final class SumpException extends RuntimeException {
 

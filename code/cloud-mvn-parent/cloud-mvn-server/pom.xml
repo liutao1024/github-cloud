@@ -23,24 +23,22 @@
 			<artifactId>jedis</artifactId>
 			<version>${redis.jedis.version}</version>
 		</dependency>
+		<!-- socket和task中都均继承了system,不需要再继承basic和comm -->
 		<dependency>
 			<groupId>cloud</groupId>
-			<artifactId>cloud-mvn-basic</artifactId>
+			<artifactId>cloud-mvn-socket</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>cloud</groupId>
-			<artifactId>cloud-mvn-comm</artifactId>
+			<artifactId>cloud-mvn-task</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<modules>
 		<module>cloud-mvn-server-core</module>
-		<module>cloud-mvn-server-task</module>
-		<module>cloud-mvn-server-aystem</module>
-		<module>cloud-mvn-server-socket</module>
-    <module>cloud-mvn-server-deposit</module>
-    <module>cloud-mvn-server-fund</module>
-    <module>cloud-mvn-server-loan</module>
+	    <module>cloud-mvn-server-deposit</module>
+	    <module>cloud-mvn-server-fund</module>
+	    <module>cloud-mvn-server-loan</module>
   </modules>
 </project>

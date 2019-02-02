@@ -10,7 +10,13 @@
         <dependent-module archiveName="cloud-mvn-server-core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-core/cloud-mvn-server-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="cloud-mvn-server-aystem-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-aystem/cloud-mvn-server-aystem">
+        <dependent-module archiveName="cloud-mvn-socket-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-socket/cloud-mvn-socket">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cloud-mvn-system-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-system/cloud-mvn-system">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cloud-mvn-task-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-task/cloud-mvn-task">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="cloud-mvn-basic-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-basic/cloud-mvn-basic">
