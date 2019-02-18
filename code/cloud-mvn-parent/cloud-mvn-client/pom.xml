@@ -86,8 +86,8 @@
 		<finalName>cloud-mvn-client</finalName>
 	</build>
 	<modules>
+		<!-- <module>cloud-mvn-client-socket</module> -->
 		<module>cloud-mvn-client-web</module>
 		<module>cloud-mvn-server-web</module>
-    <module>cloud-mvn-client-socket</module>
   </modules>
 </project>

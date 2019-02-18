@@ -1,4 +1,4 @@
-package cn.spring.mvn.client.utils;
+package cn.spring.mvn.socket.utils;
 
 import java.io.BufferedReader;
 import java.io.File;

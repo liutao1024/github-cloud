@@ -26,23 +26,24 @@ public class DemoController {
 	@Autowired
 	ApSysTransRepository apSysTransRepository;
 
-	
 	/**
 	 * 测试session和cookie
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	@RequestMapping("cookie")
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 		response.setCharacterEncoding("UTF=8");
-        response.setContentType("text/html;charset=UTF-8");
-        //使用request对象的getSession()获取session，如果session不存在则创建一个
+		response.setContentType("text/html;charset=UTF-8");
+		// 使用request对象的getSession()获取session，如果session不存在则创建一个
 		HttpSession session = request.getSession();
 		session.setAttribute("data", "测试session");
 		String sid = session.getId();
-		if(session.isNew()){
-			 response.getWriter().print("session创建成功,session的id是："+sid);
-		}else {
-			response.getWriter().print("服务器已经存在该session了,session的id是："+sid);
+		if (session.isNew()) {
+			response.getWriter().print("session创建成功,session的id是：" + sid);
+		} else {
+			response.getWriter().print("服务器已经存在该session了,session的id是：" + sid);
 		}
 		System.out.println(sid);
 		Cookie[] cookies = request.getCookies();
@@ -51,11 +52,11 @@ public class DemoController {
 			System.out.println(cookie.getPath());
 		}
 		Enumeration<String> strS = session.getAttributeNames();
-		if(strS.hasMoreElements()){
+		if (strS.hasMoreElements()) {
 			System.out.println(strS.nextElement());
 		}
 	}
-	
+
 	@RequestMapping("/")
 	@ResponseBody
 	public String index() {
@@ -75,29 +76,31 @@ public class DemoController {
 	public String info() {
 		return "info";
 	}
-	
-	 @RequestMapping("/findall")
-	    @ResponseBody
-	    public Map<String, Object> getUser(){
-	        Map<String, Object> map = new HashMap<String, Object>();
-	        map.put("state", "success");
-	        map.put("data", userServiceImpl.findAll());
-	        return map;
-	    }
-	    @RequestMapping("/findbyid")
-	    @ResponseBody
-	    public Map<String, Object> findById(Integer id){
-	        Map<String, Object> map = new HashMap<String, Object>();
-	        map.put("state", "success");
-	        map.put("data", userServiceImpl.findById(id));
-	        return map;
-	    }
-	    @RequestMapping("/add")
-	    @ResponseBody
-	    public Map<String, Object> save(String name){
-	        Map<String, Object> map = new HashMap<String, Object>();
-	        map.put("state", "success");
-	        map.put("data", userServiceImpl.save(name));
-	        return map;
-	    }
+
+	@RequestMapping("/findall")
+	@ResponseBody
+	public Map<String, Object> getUser() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("state", "success");
+		map.put("data", userServiceImpl.findAll());
+		return map;
+	}
+
+	@RequestMapping("/findbyid")
+	@ResponseBody
+	public Map<String, Object> findById(Integer id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("state", "success");
+		map.put("data", userServiceImpl.findById(id));
+		return map;
+	}
+
+	@RequestMapping("/add")
+	@ResponseBody
+	public Map<String, Object> save(String name) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("state", "success");
+		map.put("data", userServiceImpl.save(name));
+		return map;
+	}
 }

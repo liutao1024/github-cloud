@@ -9,7 +9,7 @@ import cn.spring.mvn.client.web.model.User;
 import cn.spring.mvn.client.web.model.repository.UserRepository;
 import cn.spring.mvn.client.web.model.service.UserService;
 
-@Service
+@Service("UserService")
 public class UserServiceImpl implements UserService{
 	@Autowired
 	UserRepository userRepository;

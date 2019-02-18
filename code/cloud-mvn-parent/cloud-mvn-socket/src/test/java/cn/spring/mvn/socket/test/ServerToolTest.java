@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.alibaba.fastjson.JSONObject;
 
-import cn.spring.mvn.socket.client.SocketClient;
 import cn.spring.mvn.socket.server.old.SocketHandlerImpl;
 import cn.spring.mvn.socket.tools.SocketTool;
 

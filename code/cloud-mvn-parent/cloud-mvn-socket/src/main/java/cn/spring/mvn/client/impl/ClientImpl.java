@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import cn.spring.mvn.basic.exception.SumpException;
+import cn.spring.mvn.socket.utils.FileUtil;
 import cn.spring.mvn.client.Client;
 import cn.spring.mvn.client.Connector;
 import cn.spring.mvn.client.Constants;
@@ -26,7 +27,6 @@ import cn.spring.mvn.client.model.repository.ApSysEncapRepository;
 import cn.spring.mvn.client.model.repository.ApSysMsgRepository;
 import cn.spring.mvn.client.model.repository.ApSysServsRepository;
 import cn.spring.mvn.client.model.repository.ApSysTransRepository;
-import cn.spring.mvn.client.utils.FileUtil;
 import cn.spring.mvn.comm.tools.DateTool;
 import cn.spring.mvn.comm.tools.MD5Tool;
 import cn.spring.mvn.comm.util.CommUtil;

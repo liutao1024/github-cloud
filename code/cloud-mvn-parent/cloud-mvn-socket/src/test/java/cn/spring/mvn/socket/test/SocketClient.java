@@ -1,4 +1,4 @@
-package cn.spring.mvn.socket.client;
+package cn.spring.mvn.socket.test;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
