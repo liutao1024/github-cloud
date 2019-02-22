@@ -14,9 +14,10 @@ import org.springframework.stereotype.Service;
 import cn.spring.mvn.basic.exception.SumpException;
 import cn.spring.mvn.client.model.ApSysColumn;
 import cn.spring.mvn.client.model.repository.ApSysColumnRepository;
-
 /**
- * 定长报文解析
+ * @author LiuTao @date 2019年2月18日 下午4:55:40
+ * @ClassName: ParseFix 
+ * @Description: 定长报文解析
  */
 @Service("ParseFix")
 public class ParseFix implements Parse {

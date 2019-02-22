@@ -1,4 +1,4 @@
-package cn.spring.mvn.client.model.primarykey;
+package cn.spring.mvn.client.model.pk;
 
 import java.io.Serializable;
 

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-import cn.spring.mvn.client.model.primarykey.ApSysColumnPK;
+import cn.spring.mvn.client.model.pk.ApSysColumnPK;
 
 /**
  * tableName : ap_sys_column

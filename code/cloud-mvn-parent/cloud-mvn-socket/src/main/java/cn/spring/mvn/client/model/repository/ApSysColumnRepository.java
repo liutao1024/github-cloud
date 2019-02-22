@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import cn.spring.mvn.basic.repository.Repository;
 import cn.spring.mvn.client.model.ApSysColumn;
-import cn.spring.mvn.client.model.primarykey.ApSysColumnPK;
+import cn.spring.mvn.client.model.pk.ApSysColumnPK;
 
 @Service("ApSysColumnRepository")
 public interface ApSysColumnRepository extends Repository<ApSysColumn, ApSysColumnPK> {

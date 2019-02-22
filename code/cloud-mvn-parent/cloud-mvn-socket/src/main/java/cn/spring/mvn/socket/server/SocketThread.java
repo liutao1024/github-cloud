@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import cn.spring.mvn.system.util.SystemConfig;
+
 /**
  * @author LiuTao @date 2018年9月3日 下午3:25:42
  * @ClassName: SocketThread 
@@ -15,8 +17,10 @@ public class SocketThread extends Thread {
 	public SocketThread(ServerSocket serverScoket) {
 		try {
 			if (null == serverSocket) {
-				this.serverSocket = new ServerSocket(8088);
-				System.out.println("socket start");
+				SystemConfig systemConfig = new SystemConfig();
+				int port = systemConfig.getValueByKeyAndClazz("socket.port", Integer.class);
+				this.serverSocket = new ServerSocket(port);
+				System.out.println("=====socket start=====");
 			}
 		} catch (Exception e) {
 			System.out.println("SocketThread创建socket服务出错");
