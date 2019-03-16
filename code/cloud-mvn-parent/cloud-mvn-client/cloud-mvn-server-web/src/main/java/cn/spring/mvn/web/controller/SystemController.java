@@ -126,7 +126,7 @@ public class SystemController {
 		}
 		// 查询所有菜单
 		SysAuth sysAuth = new SysAuth();
-		sysAuth.setRegist_cd(sysUser.getRegistCd());//机构好号
+		sysAuth.setRegist_cd(sysUser.getRegistCd());//机构号
 		sysAuth.setAuth_type(AUTHTYPE);// 2 为菜单权限
 		sysAuth.setRank(1);//从第一级开始取
 		List<SysAuth> sysAuthList = new ArrayList<SysAuth>();

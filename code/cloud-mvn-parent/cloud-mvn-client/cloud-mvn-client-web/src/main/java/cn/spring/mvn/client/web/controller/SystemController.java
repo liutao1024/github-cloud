@@ -1,10 +1,30 @@
 package cn.spring.mvn.client.web.controller;
 
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-//import java.util.HashSet;
+
+import cn.spring.mvn.client.Client;
+import cn.spring.mvn.client.web.model.BSBUser;
+import cn.spring.mvn.comm.util.CommUtil;
 /**
  * @author LiuTao @date 2018年5月1日 上午11:59:41
  * @ClassName: SystemController 
@@ -13,182 +33,144 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller("SystemController")
 @RequestMapping(value = "auth")
 @ResponseBody
-@SessionAttributes("SysUser")
+@SessionAttributes("BsbUser")
 public class SystemController {
-//	private static final Logger LOGGER = LoggerFactory.getLogger(SystemController.class);
-//	private static final String PASSWD = MD5Util.md5EncryptString("123456");
-//	private static String AUTHTYPE = "2";//菜单权限类型
-//	private String[] strArray = {};//user用    有权限AuthCd数组
-//	@Autowired
-//	private SysUserRoleService sysUserRoleServiceImpl;
-//	@Autowired
-//	private SysRoleAuthService sysRoleAuthServiceImpl;
-//	@Autowired
-//	private SysAuthService sysAuthServiceImpl;
-//	@Autowired
-//	private SysUserService sysUserServiceImpl;
-//	@Autowired
-//	private SysRoleService sysRoleServiceImpl;
-//	//5.检查柜员信息
-//	/**
-//	 * @author LiuTao @date 2018年5月1日 下午1:35:12 
-//	 * @Title: sysUserInfo 
-//	 * @Description: TODO(前台获取session信息) 
-//	 * @param user
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/sysUserInfo", method=RequestMethod.GET)
-//	public Map<String, Object> sysUserInfo(@ModelAttribute("SysUser") SysUser sysUser) {
-//		Map<String, Object> resMap = new HashMap<String, Object>();
-//		String userid = sysUser.getUserid();
-//		if (CommUtil.isNull(userid)) {
-//			resMap.put("ret", "error");
-//			resMap.put("msg", "您未登录,请登录");
-//			return resMap;
-//		}else {
-//			resMap.put("user", sysUser);
-//			resMap.put("ret", "success");
-//			resMap.put("msg", "成功");
-//		}
-//		return resMap;
-//	}
-//	//6.获取柜员菜单
-//	/**
-//	 * @author LiuTao @date 2018年5月7日 下午6:00:36 
-//	 * @Title: menuController 
-//	 * @Description: TODO(获取sysUser菜单权限) 
-//	 * @param user
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/menu")
-//	public Map<String, Object> menuController(@ModelAttribute("SysUser") SysUser sysUser) {
-//		SysUserRole sysUserRole = new SysUserRole();
-//		sysUserRole.setRegist_cd(sysUser.getRegistCd());
-//		sysUserRole.setAuth_type(AUTHTYPE);// 菜单权限为2
-//		sysUserRole.setUser_cd(sysUser.getUserid());
-//		/**得到柜员的角色      
-//		 * 一个柜员可能对应多个角色
-//		 */
-//		List<SysUserRole> sysUserRoleList = sysUserRoleServiceImpl.queryEntitiesByEntityParamMap(sysUserRole);
-//		List<SysRoleAuth> sysRoleAuthList = new ArrayList<SysRoleAuth>();
-//		SysRoleAuth sysRoleAuth = new SysRoleAuth();
-//		for (SysUserRole theSysUserRole : sysUserRoleList) {
-//			/**通过角色来查询 角色权限
-//			 * 一个角色可能会有多个 权限
-//			 */
-//			sysRoleAuth.setRegist_cd(theSysUserRole.getRegist_cd());
-//			sysRoleAuth.setAuth_type(theSysUserRole.getAuth_type());
-//			sysRoleAuth.setRole_cd(theSysUserRole.getRole_cd());
-//			sysRoleAuthList.addAll(sysRoleAuthServiceImpl.selectAllEntities(sysRoleAuth));
-//		}
-//		//权限去重复
-//		HashSet<SysRoleAuth> hashSet = new HashSet<SysRoleAuth>(sysRoleAuthList);
-//		sysRoleAuthList.clear();
-//		sysRoleAuthList.addAll(hashSet);
-//		int k = 0;
-//		strArray = new String[sysRoleAuthList.size()];
-//		for (SysRoleAuth theSysAuthRole : sysRoleAuthList) {
-//			strArray[k] = theSysAuthRole.getAuth_cd();//菜单编号
-//			k++;
-//		}
-//		// 查询所有菜单
-//		SysAuth sysAuth = new SysAuth();
-//		sysAuth.setRegist_cd(sysUser.getRegistCd());//机构好号
-//		sysAuth.setAuth_type(AUTHTYPE);// 2 为菜单权限
-//		sysAuth.setRank(1);//从第一级开始取
-//		List<SysAuth> sysAuthList = new ArrayList<SysAuth>();
-//		sysAuthList.addAll(sysAuthServiceImpl.selectAllEntities(sysAuth));		
-//		Map<String, Object> sysAuthMap = new HashMap<String, Object>();
-//		sysAuthMap.put("menu", reGetMenu(sysAuth, sysAuthList, sysAuth.getRank(), true));
-//		LOGGER.info("---------菜单" + sysAuthMap.toString());
-//		return sysAuthMap;//返回的菜单内容
-//	}
-//	//7.柜员退出
-//	/**
-//	 * @author LiuTao @date 2018年5月1日 上午11:52:54 
-//	 * @Title: logout
-//	 * @Description: TODO(Describe) 
-//	 * @param request
-//	 * @param model
-//	 * @param user
-//	 */
-//	@RequestMapping(value = "/logout")
-//	public void logout(HttpServletRequest request,Model model, @ModelAttribute("SysUser") SysUser sysUser) {
-//		String registCd = sysUser.getRegistCd();
-//		String userid = sysUser.getUserid();
+	private static final Logger LOGGER = LoggerFactory.getLogger(SystemController.class);
+	@Autowired
+	private Client client;
+	
+	//5.检查柜员信息
+	/**
+	 * @author LiuTao @date 2018年5月1日 下午1:35:12 
+	 * @Title: sysUserInfo 
+	 * @Description: TODO(前台获取session信息) 
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/userInfo", method=RequestMethod.GET)
+	public Map<String, Object> sysUserInfo(@ModelAttribute("BsbUser") BSBUser bsbUser) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		String userid = bsbUser.getUserid();
+		if (CommUtil.isNull(userid)) {
+			resMap.put("ret", "error");
+			resMap.put("msg", "您未登录,请登录");
+			return resMap;
+		}else {
+			resMap.put("user", bsbUser);
+			resMap.put("ret", "success");
+			resMap.put("msg", "成功");
+		}
+		return resMap;
+	}
+	//6.获取柜员菜单
+	/**
+	 * @author LiuTao @date 2018年5月7日 下午6:00:36 
+	 * @Title: menuController 
+	 * @Description: TODO(获取sysUser菜单权限) 
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/menu")
+	public Map<String, Object> menuController(@ModelAttribute("BsbUser") BSBUser bsbUser) {
+		Map<String, Object> reqMap = new HashMap<String, Object>();//
+		Map<String, Object> rspMap = new HashMap<String, Object>();//
+		reqMap.put("cropno", bsbUser.getCorpno());
+		reqMap.put("userid", bsbUser.getUserid());
+		rspMap = client.callClient("gtmenu", reqMap);
+//		Object obj = rspMap.get("meumap");
+//		String jsonStr = obj.toString();
+//		JSONArray json = JSONArray.f
+//		List<SysAuth> sysAuthMapList = JSONArray.parseArray(jsonStr, SysAuth.class);
+//		Map<String, Object> sysAuthMap = (Map<String, Object>) rspMap.get("meumap");
+		LOGGER.info("---------菜单" /*+ sysAuthMap.toString()*/);
+		return rspMap;//返回的菜单内容
+	}
+	//7.柜员退出
+	/**
+	 * @author LiuTao @date 2018年5月1日 上午11:52:54 
+	 * @Title: logout
+	 * @Description: TODO(Describe) 
+	 * @param request
+	 * @param model
+	 * @param user
+	 */
+	@RequestMapping(value = "/logout")
+	public void logout(HttpServletRequest request,Model model, @ModelAttribute("BsbUser") BSBUser bsbUser) {
+//		String registCd = bsbUser.getCorpno();
+//		String userid = bsbUser.getUserid();
 //		SysUser logoutSysUser = sysUserServiceImpl.selectOneByPrimeKey(registCd, userid);
 //		logoutSysUser.setUserst("0");
 //		sysUserServiceImpl.update(logoutSysUser);
-//		HttpSession session = request.getSession(false);  
-//		Enumeration<String> em = session.getAttributeNames();
-//		while (em.hasMoreElements()) {
-//			request.getSession().removeAttribute(em.nextElement().toString());
-//		}
-//		 session.removeAttribute("SysUser");
-//		 session.invalidate();//session无效处理
-//		 model.asMap().clear();//清除model中的对象
-//	}
-//	/**
-//	 * @author LiuTao @date 2018年5月7日 下午7:56:41 
-//	 * @Title: toDoList 
-//	 * @Description: TODO(查询待办事件) 
-//	 * @param reqmap 查询条件输入
-//	 * @param user
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/to-do-list")
-//	public Map<String, Object> toDoList(@RequestParam Map<String, Object> reqmap, @ModelAttribute("SysUser") SysUser sysUser) {
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		List <String> rolecdList  = new ArrayList<String>();
-//		
-//		map.putAll(reqmap);
-//		if (reqmap.get("q_subjtp") != null && reqmap.get("q_subjtp") != "") {
-//			map.put("subjtp", reqmap.get("q_subjtp"));
-//		}
-//		if (reqmap.get("q_emrgfg") != null && reqmap.get("q_emrgfg") != "") {
-//			map.put("emrgfg", reqmap.get("q_emrgfg"));
-//		}
-//		List<Map<String,String>> roleList = new ArrayList<Map<String,String>>();
-//		for(String s : rolecdList){
-//			Map<String,String> roleMap = new HashMap<String,String>();
-//			roleMap.put("recvrl", s);
-//			roleList.add(roleMap);
-//		}
-//	    map.put("roleList", roleList);
-//		map.put("userid", sysUser.getUserid()); // 设置操作柜员
+		HttpSession session = request.getSession(false);  
+		Enumeration<String> em = session.getAttributeNames();
+		while (em.hasMoreElements()) {
+			request.getSession().removeAttribute(em.nextElement().toString());
+		}
+		 session.removeAttribute("BsbUser");
+		 session.invalidate();//session无效处理
+		 model.asMap().clear();//清除model中的对象
+	}
+	/**
+	 * @author LiuTao @date 2018年5月7日 下午7:56:41 
+	 * @Title: toDoList 
+	 * @Description: TODO(查询待办事件) 
+	 * @param reqmap 查询条件输入
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/to-do-list")
+	public Map<String, Object> toDoList(@RequestParam Map<String, Object> reqmap, @ModelAttribute("BsbUser") BSBUser bsbUser) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List <String> rolecdList  = new ArrayList<String>();
+		
+		map.putAll(reqmap);
+		if (reqmap.get("q_subjtp") != null && reqmap.get("q_subjtp") != "") {
+			map.put("subjtp", reqmap.get("q_subjtp"));
+		}
+		if (reqmap.get("q_emrgfg") != null && reqmap.get("q_emrgfg") != "") {
+			map.put("emrgfg", reqmap.get("q_emrgfg"));
+		}
+		List<Map<String,String>> roleList = new ArrayList<Map<String,String>>();
+		for(String s : rolecdList){
+			Map<String,String> roleMap = new HashMap<String,String>();
+			roleMap.put("recvrl", s);
+			roleList.add(roleMap);
+		}
+	    map.put("roleList", roleList);
+		map.put("userid", bsbUser.getUserid()); // 设置操作柜员
 //		int length = Integer.parseInt(StringUtils.isNotEmpty((String) reqmap.get("length")) ? (String) reqmap.get("length") : "10", 10);
 //		int start = Integer.parseInt(StringUtils.isNotEmpty((String) reqmap.get("start")) ? (String) reqmap.get("start") : "1", 10);
 //		map.put("pageno", start / length + 1);// 当前页数
 //		map.put("pagesize", length); // 每页记录数
-//		Map<String, Object> resmap = new HashMap<String, Object>();
-////		resmap = client.callClient("qrsubj", map);//需要查询待办事件表暂无
-//		resmap.put("retCode", "0000");
-//		if (resmap.get("retCode").toString().equals("0000")) {//空.toString报错了
-//			resmap.put("ret", "success");
-//			resmap.put("msg", "待办事项发送成功");
-//		} else {
-//			resmap.put("msg", resmap.get("retMsg").toString());
-//		}
-//		resmap.put("infos",resmap.get("infos") == null ? new ArrayList<Object>() : resmap.get("infos"));
-//		resmap.put("iTotalDisplayRecords", resmap.get("counts") == null ? "0" : resmap.get("counts"));
-//		resmap.put("iTotalRecords", resmap.get("counts") == null ? "0" : resmap.get("counts"));
-//		Map<String, Object> dmap = new HashMap<String, Object>();//
-////		dmap = client.callClient("qdclam",map );
-//		dmap.put("wcouts", 0);
-//		resmap.put("wcouts",dmap.get("wcouts"));
-//		return resmap;
-//	}
-//	/**
-//	 * @author LiuTao @date 2018年5月29日 下午10:32:02 
-//	 * @Title: updatePassWord 
-//	 * @Description: TODO(Describe) 
-//	 * @param requestMap
-//	 * @param sysUser
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/updatePassWord")
-//	public Map<String, Object> updatePassWord(@RequestBody Map<String, Object> requestMap, @ModelAttribute("SysUser") SysUser sysUser){
-//		Map<String, Object> resMap = new HashMap<String, Object>();
+		Map<String, Object> resmap = new HashMap<String, Object>();
+//		resmap = client.callClient("qrsubj", map);//需要查询待办事件表暂无
+		resmap.put("retCode", "0000");
+		if (resmap.get("retCode").toString().equals("0000")) {//空.toString报错了
+			resmap.put("ret", "success");
+			resmap.put("msg", "待办事项发送成功");
+		} else {
+			resmap.put("msg", resmap.get("retMsg").toString());
+		}
+		resmap.put("infos",resmap.get("infos") == null ? new ArrayList<Object>() : resmap.get("infos"));
+		resmap.put("iTotalDisplayRecords", resmap.get("counts") == null ? "0" : resmap.get("counts"));
+		resmap.put("iTotalRecords", resmap.get("counts") == null ? "0" : resmap.get("counts"));
+		Map<String, Object> dmap = new HashMap<String, Object>();//
+//		dmap = client.callClient("qdclam",map );
+		dmap.put("wcouts", 0);
+		resmap.put("wcouts",dmap.get("wcouts"));
+		return resmap;
+	}
+	/**
+	 * @author LiuTao @date 2018年5月29日 下午10:32:02 
+	 * @Title: updatePassWord 
+	 * @Description: TODO(Describe) 
+	 * @param requestMap
+	 * @param sysUser
+	 * @return
+	 */
+	@RequestMapping(value = "/updatePassWord")
+	public Map<String, Object> updatePassWord(@RequestBody Map<String, Object> requestMap, @ModelAttribute("BsbUser") BSBUser bsbUser){
+		Map<String, Object> resMap = new HashMap<String, Object>();
 //		SysUser theSysUser = sysUserServiceImpl.selectOneByPrimeKey(sysUser.getRegistCd(), sysUser.getUserid());
 //		String oldPasswd = requestMap.get("passwd").toString();
 //		String newPasswd = requestMap.get("nwpswd").toString();
@@ -204,20 +186,20 @@ public class SystemController {
 //		}else {
 //			resMap.put("msg", "密码修改失败,原密码不正确");
 //		}
-//		return resMap;
-//	}
-//	/**---------------------------------------SysUser------------------------------------------------*/
-//	/**
-//	 * @author LiuTao @date 2018年6月5日 下午3:48:10 
-//	 * @Title: addSysUser 
-//	 * @Description: 新增柜员
-//	 * @param sysUserNew
-//	 * @param sysUser
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/addSysUser")
-//	public Map<String, Object> addSysUser(@RequestBody SysUser sysUserNew, @ModelAttribute("SysUser") SysUser sysUser){
-//		Map<String, Object> rstMap = new HashMap<String, Object>();
+		return resMap;
+	}
+	/**---------------------------------------SysUser------------------------------------------------*/
+	/**
+	 * @author LiuTao @date 2018年6月5日 下午3:48:10 
+	 * @Title: addSysUser 
+	 * @Description: 新增柜员
+	 * @param sysUserNew
+	 * @param sysUser
+	 * @return
+	 */
+	@RequestMapping(value = "/addSysUser")
+	public Map<String, Object> addSysUser(@RequestBody BSBUser sysUserNew, @ModelAttribute("BsbUser") BSBUser bsbUser){
+		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		sysUserNew.setRegistCd(sysUser.getRegistCd());
 //		sysUserNew.setPasswd(PASSWD);
 //		sysUserNew.setStatus("1");
@@ -228,19 +210,19 @@ public class SystemController {
 //		} catch (Throwable e) {
 //			rstMap.put("msg", e.getMessage());
 //		}
-//		return rstMap;
-//	}
-//	/**
-//	 * @author LiuTao @date 2018年8月21日 下午12:40:08 
-//	 * @Title: showAllSysUser 
-//	 * @Description: TODO(Describe) 
-//	 * @param resMap
-//	 * @param sysUser
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/showAllSysUser")
-//	public Map<String, Object> showAllSysUser(@RequestParam Map<String, Object> resMap, @ModelAttribute("SysUser") SysUser sysUser){
-//		Map<String, Object> rstMap = new HashMap<String, Object>();
+		return rstMap;
+	}
+	/**
+	 * @author LiuTao @date 2018年8月21日 下午12:40:08 
+	 * @Title: showAllSysUser 
+	 * @Description: TODO(Describe) 
+	 * @param resMap
+	 * @param sysUser
+	 * @return
+	 */
+	@RequestMapping(value = "/showAllSysUser")
+	public Map<String, Object> showAllSysUser(@RequestParam Map<String, Object> resMap, @ModelAttribute("BsbUser") BSBUser bsbUser){
+		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		String hqlStr = "from SysUser where regist_cd = '"+ sysUser.getRegistCd()+"'";
 //		String appendStr = "";
 //		if (resMap.get("q_userid") != null && resMap.get("q_userid") != "") {
@@ -256,19 +238,19 @@ public class SystemController {
 //		rstMap.put("data", sysUserList);
 //		rstMap.put("iTotalDisplayRecords", sysUserListCount.size());
 //		rstMap.put("iTotalRecords", sysUserList.size());	
-//		return rstMap;
-//	}
-//	/**
-//	 * @author LiuTao @date 2018年6月6日 上午11:52:40 
-//	 * @Title: deleteSysUser 
-//	 * @Description: 注销柜员 
-//	 * @param user
-//	 * @param cuser
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/deleteSysUser", method = { RequestMethod.DELETE })
-//	public Map<String, Object> deleteSysUser(@RequestBody SysUser user, @ModelAttribute("SysUser") SysUser cuser) {
-//		Map<String, Object> rstMap = new HashMap<String, Object>();
+		return rstMap;
+	}
+	/**
+	 * @author LiuTao @date 2018年6月6日 上午11:52:40 
+	 * @Title: deleteSysUser 
+	 * @Description: 注销柜员 
+	 * @param user
+	 * @param cuser
+	 * @return
+	 */
+	@RequestMapping(value = "/deleteSysUser", method = { RequestMethod.DELETE })
+	public Map<String, Object> deleteSysUser(@RequestBody BSBUser user, @ModelAttribute("BsbUser") BSBUser bsbUser) {
+		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		SysUser offSysUser = sysUserServiceImpl.selectOneByPrimeKey(cuser.getRegistCd(), user.getUserid());
 //		offSysUser.setStatus("0");
 //		try {
@@ -278,19 +260,19 @@ public class SystemController {
 //		} catch (Exception e) {
 //			rstMap.put("msg", e.getMessage());
 //		}
-//		return rstMap;
-//	}
-//	/**
-//	 * @author LiuTao @date 2018年6月5日 下午4:22:51 
-//	 * @Title: updateSysUser 
-//	 * @Description: 更新柜员信息
-//	 * @param sysUserUp
-//	 * @param sysUser
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/updateSysUser")
-//	public Map<String, Object> updateSysUser(@RequestBody SysUser sysUserUp, @ModelAttribute("SysUser") SysUser sysUser){
-//		Map<String, Object> rstMap = new HashMap<String, Object>();
+		return rstMap;
+	}
+	/**
+	 * @author LiuTao @date 2018年6月5日 下午4:22:51 
+	 * @Title: updateSysUser 
+	 * @Description: 更新柜员信息
+	 * @param sysUserUp
+	 * @param sysUser
+	 * @return
+	 */
+	@RequestMapping(value = "/updateSysUser")
+	public Map<String, Object> updateSysUser(@RequestBody BSBUser bsbUserUp, @ModelAttribute("BsbUser") BSBUser bsbUser){
+		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		SysUser newUser = sysUserServiceImpl.selectOneByPrimeKey(sysUser.getRegistCd(), sysUserUp.getUserid());
 //		newUser.setUserna(sysUserUp.getUserna());
 //		newUser.setBrchno(sysUserUp.getBrchno());
@@ -304,19 +286,19 @@ public class SystemController {
 //		} catch (Exception e) {
 //			rstMap.put("msg", e.getMessage());
 //		}
-//		return rstMap;
-//	}
-//	/**
-//	 * @author LiuTao @date 2018年6月6日 上午11:20:38 
-//	 * @Title: updateSysUserPassWord 
-//	 * @Description: 重置柜员密码 
-//	 * @param ajaxSysUser
-//	 * @param sessionSysUser
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/updateSysUserPassWord")
-//	public Map<String,Object> updateSysUserPassWord(@RequestBody SysUser ajaxSysUser, @ModelAttribute("SysUser") SysUser sessionSysUser){
-//		Map<String, Object> rstMap = new HashMap<String, Object>();
+		return rstMap;
+	}
+	/**
+	 * @author LiuTao @date 2018年6月6日 上午11:20:38 
+	 * @Title: updateSysUserPassWord 
+	 * @Description: 重置柜员密码 
+	 * @param ajaxSysUser
+	 * @param sessionSysUser
+	 * @return
+	 */
+	@RequestMapping(value = "/updateSysUserPassWord")
+	public Map<String,Object> updateSysUserPassWord(@RequestBody BSBUser ajaxSysUser, @ModelAttribute("BsbUser") BSBUser sessionBsbUser){
+		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		SysUser updateSysUser = sysUserServiceImpl.selectOneByPrimeKey(sessionSysUser.getRegistCd(), ajaxSysUser.getUserid());
 //		updateSysUser.setPasswd(PASSWD);
 //		try {
@@ -326,19 +308,19 @@ public class SystemController {
 //		} catch (Exception e) {
 //			rstMap.put("msg", e.getMessage());
 //		}
-//		return rstMap;
-//	}
-//	/**
-//	 * @author LiuTao @date 2018年5月30日 下午9:31:28 
-//	 * @Title: showAllSysUserRole 
-//	 * @Description: TODO(Describe) 
-//	 * @param reqMap
-//	 * @param sysUser
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/showAllSysUserRole")
-//	public Map<String, Object> showAllSysUserRole(@RequestParam Map<String, Object> reqMap, @ModelAttribute("SysUser") SysUser sysUser){
-//		Map<String, Object> rstMap = new HashMap<String, Object>();
+		return rstMap;
+	}
+	/**
+	 * @author LiuTao @date 2018年5月30日 下午9:31:28 
+	 * @Title: showAllSysUserRole 
+	 * @Description: TODO(Describe) 
+	 * @param reqMap
+	 * @param sysUser
+	 * @return
+	 */
+	@RequestMapping(value = "/showAllSysUserRole")
+	public Map<String, Object> showAllSysUserRole(@RequestParam Map<String, Object> reqMap, @ModelAttribute("BsbUser") BSBUser bsbUser){
+		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		SysUserRole sysUserRole = new SysUserRole();
 //		sysUserRole.setRegist_cd(sysUser.getRegistCd());
 //		sysUserRole.setUser_cd(reqMap.get("user_cd").toString());
@@ -350,15 +332,15 @@ public class SystemController {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-//		return rstMap;
-//	}
-//	/**
-//	 * @author LiuTao @date 2018年6月6日 下午2:49:16 
-//	 * @Title: deleteSysUserRole 
-//	 * @Description: 删除柜员角色
-//	 * @param SysRoleUser
-//	 * @return
-//	 */
+		return rstMap;
+	}
+	/**
+	 * @author LiuTao @date 2018年6月6日 下午2:49:16 
+	 * @Title: deleteSysUserRole 
+	 * @Description: 删除柜员角色
+	 * @param SysRoleUser
+	 * @return
+	 */
 //	@RequestMapping(value = "/deleteSysUserRole", method = {RequestMethod.DELETE })
 //	@Transactional(propagation = Propagation.REQUIRED)
 //	public Map<String, String> deleteSysUserRole(@RequestBody SysUserRole sysUserRole) {
@@ -374,17 +356,17 @@ public class SystemController {
 //		return rstMap;
 //
 //	}
-//	/**
-//	 * @author LiuTao @date 2018年6月6日 下午3:50:57 
-//	 * @Title: addUserRole 
-//	 * @Description: TODO(Describe) 
-//	 * @param sysUserRole
-//	 * @param sysUser
-//	 * @return
-//	 */
+	/**
+	 * @author LiuTao @date 2018年6月6日 下午3:50:57 
+	 * @Title: addUserRole 
+	 * @Description: TODO(Describe) 
+	 * @param sysUserRole
+	 * @param sysUser
+	 * @return
+	 */
 //	@RequestMapping(value = "/addSysUserRole")
 //	@Transactional(propagation = Propagation.REQUIRED)
-//	public Map<String, String> addSysUserRole(@RequestBody SysUserRole sysUserRole, @ModelAttribute("SysUser") SysUser sysUser) {
+//	public Map<String, String> addSysUserRole(@RequestBody SysUserRole sysUserRole, @ModelAttribute("BsbUser") BSBUser bsbUser) {
 //		/**
 //		 * 保存roleUser
 //		 */
@@ -420,7 +402,7 @@ public class SystemController {
 //	 * @return
 //	 */
 //	@RequestMapping(value="/showAllSysRole")
-//	public Map<String, Object> showAllSysRole(@RequestParam Map<String,Object> reqMap, @ModelAttribute("SysUser") SysUser sysUser){
+//	public Map<String, Object> showAllSysRole(@RequestParam Map<String,Object> reqMap, @ModelAttribute("BsbUser") BSBUser bsbUser){
 //	    Map<String, Object> rstMap = new HashMap<String, Object>();
 //		SysRole sysRole = new SysRole();
 ////		sysRole.setRegist_cd(sysUser.getRegistCd());
@@ -604,7 +586,7 @@ public class SystemController {
 //	 * @return
 //	 */
 //	@RequestMapping(value="/allSysAuth")
-//	public Map<String, Object> allSysAuth(@ModelAttribute("SysUser") SysUser sysUser){
+//	public Map<String, Object> allSysAuth(@ModelAttribute("BsbUser") BSBUser bsbUser){
 //		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		SysAuth sysAuth = new SysAuth();
 //		sysAuth.setAuth_type(AUTHTYPE);
@@ -623,7 +605,7 @@ public class SystemController {
 //	 * @return
 //	 */
 //	@RequestMapping(value="/updateSysAuth")
-//	public Map<String, Object> updateSysAuth(@RequestBody SysAuth sysAuth, @ModelAttribute("SysUser") SysUser sysUser){
+//	public Map<String, Object> updateSysAuth(@RequestBody SysAuth sysAuth, @ModelAttribute("BsbUser") BSBUser bsbUser){
 //		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		sysAuth.setRegist_cd(sysUser.getRegistCd());
 //		try {
@@ -645,7 +627,7 @@ public class SystemController {
 //	 * @return
 //	 */
 //	@RequestMapping(value="/addSysAuth")
-//	public Map<String, Object> addSysAuth(@RequestBody SysAuth sysAuth, @ModelAttribute("SysUser") SysUser sysUser){
+//	public Map<String, Object> addSysAuth(@RequestBody SysAuth sysAuth, @ModelAttribute("BsbUser") BSBUser bsbUser){
 //		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		sysAuth.setRegist_cd(sysUser.getRegistCd());
 //		try {
@@ -667,7 +649,7 @@ public class SystemController {
 //	 * @return
 //	 */
 //	@RequestMapping(value="/deleteSysAuth")
-//	public Map<String, Object> deleteSysAuth(@RequestBody SysAuth sysAuth, @ModelAttribute("SysUser") SysUser sysUser){
+//	public Map<String, Object> deleteSysAuth(@RequestBody SysAuth sysAuth, @ModelAttribute("BsbUser") BSBUser bsbUser){
 //		Map<String, Object> rstMap = new HashMap<String, Object>();
 //		try {
 //			sysAuth.setRegist_cd(sysUser.getRegistCd());

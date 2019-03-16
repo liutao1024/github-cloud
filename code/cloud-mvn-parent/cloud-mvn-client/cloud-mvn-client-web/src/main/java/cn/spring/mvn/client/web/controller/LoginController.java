@@ -80,7 +80,7 @@ public class LoginController {
 			bsbUser.setBrchno(rspMap.get("brchno").toString());
 			rspMap.put("ret", "success");
 			rspMap.put("msg", "登陆成功");
-			model.addAttribute("SysUser", bsbUser);//写入session
+			model.addAttribute("BsbUser", bsbUser);//写入session
 		} else {			
 			rspMap.put("msg", rspMap.get("retMsg").toString());
 		}

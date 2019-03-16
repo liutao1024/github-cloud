@@ -131,11 +131,11 @@
 										<div class="form-body">
 											<div class="alert alert-danger display-hide">
 												<button class="close" data-close="alert"></button>
-												输入有误，请检查下面表单！返回信息 ：<span class="msg"></span>
+												输入有误,请检查下面表单！返回信息 :<span class="msg"></span>
 											</div>
 											<div class="alert alert-success display-hide">
 												<button class="close" data-close="alert"></button>
-												提交表单正确！后台信息 ： <span class="msg"></span>
+												提交表单正确！后台信息 : <span class="msg"></span>
 											</div>
 											<div class="form-group">
 												<label class="col-md-3 control-label">旧密码</label>
@@ -268,8 +268,8 @@
 		<script src="${ctx}/pages/jsp/login/index.js" type="text/javascript"></script>
 		<script>
 			jQuery(document).ready(function() {
-				//Index.init(); //init menu
-				//Demo.init(); // init demo features
+				Index.init(); //init menu
+				Demo.init(); // init demo features
 			});
 		</script>
 	</body>
