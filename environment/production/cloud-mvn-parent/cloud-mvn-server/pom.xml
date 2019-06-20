@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cloud</groupId>
+		<artifactId>cloud-mvn-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>cloud-mvn-server</artifactId>
+	<packaging>pom</packaging>
+	<name>cloud-mvn-server</name>
+	<description>cloud-mvn-server-side</description>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>${spring.data.redis.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${redis.jedis.version}</version>
+		</dependency>
+		<!-- socket和task中都均继承了system,不需要再继承basic和comm -->
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-socket</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-task</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<modules>
+		<module>cloud-mvn-server-core</module>
+	    <module>cloud-mvn-server-deposit</module>
+	    <module>cloud-mvn-server-fund</module>
+	    <module>cloud-mvn-server-loan</module>
+  </modules>
+</project>

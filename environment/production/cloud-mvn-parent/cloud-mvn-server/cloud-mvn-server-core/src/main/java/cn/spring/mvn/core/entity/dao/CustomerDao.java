@@ -1,0 +1,16 @@
+package cn.spring.mvn.core.entity.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import cn.spring.mvn.basic.ibatis.IBatisDao;
+import cn.spring.mvn.core.entity.Customer;
+
+public interface CustomerDao extends IBatisDao<Customer> {
+	public int insertEntity(Customer entity);
+	public int deleteEntity(Customer entity);
+	public int updateEntity(Customer entity);
+	public Customer selectOneEntity(Customer entity);
+	public List<Customer> selectAll();
+	public List<Customer> selectListByParamMap(Map<String, Object> paramMap);
+}
