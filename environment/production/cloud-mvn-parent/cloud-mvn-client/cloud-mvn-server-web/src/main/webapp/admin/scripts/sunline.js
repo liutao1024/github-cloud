@@ -57,11 +57,11 @@ var Sunline = function() {
 			_contentType = "application/vnd.ms-excel";
 		}
 
-		console.log("发送请求URL========" + url);
-		console.log("发送请求数据========" + $.toJSON(data));
-		console.log("发送请求类型========" + type);
-		console.log("发送请求数据类型========" + dataType);
-		console.log("发送请求同步类型========" + async+(async?"异步":"同步"));
+		console.log("发送请求URL=========" + url);
+		console.log("发送请求数据=========" + $.toJSON(data));
+		console.log("发送请求类型=========" + type);
+		console.log("发送请求数据类型======" + dataType);
+		console.log("发送请求同步类型======" + async ? "异步" : "同步");
 		var ajaxFlag = "ajax通讯开始";
 		
 		jQuery.ajax({

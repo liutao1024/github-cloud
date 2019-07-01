@@ -51,26 +51,27 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	 * 			获取数据库连接 (Session),应该就是spring-hibernate.xml中设置的sessionFactory
 	 * @return
 	 */
-	public Session getCurrentSession() {
-		return this.sessionFactory.getCurrentSession();
+	public Session getSession() {
+		return this.sessionFactory.openSession();
+//		return this.sessionFactory.getCurrentSession();
 	}
 
 	@Override
 	public T save(T entity) throws Exception{
 		if (entity != null) {
-			return (T) getCurrentSession().save(entity);
+			return (T) getSession().save(entity);
 		}
 		return null;
 	}
 	@Override
 	public void saveOrUpdate(T entity) {
 		if (entity != null){
-			getCurrentSession().saveOrUpdate(entity);
+			getSession().saveOrUpdate(entity);
 		}
 	}
 	@Override
 	public T saveEntity(T entity) throws Exception {
-		return (T) getCurrentSession().save(entity);
+		return (T) getSession().save(entity);
 	}
 	@Override
 	public List<T> saveEntities(List<T> entities) throws Exception {
@@ -83,11 +84,11 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	@Override
 	public void update(T entity) {
 		if (entity != null)
-			getCurrentSession().update(entity);
+			getSession().update(entity);
 	}
 	@Override
 	public void updateEntity(T entity) {
-		getCurrentSession().update(entity);
+		getSession().update(entity);
 	}
 	@Override
 	public void updateEntities(List<T> entities) {
@@ -98,29 +99,29 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	@Override
 	public void delete(T entity) {
 		if (entity != null)
-			getCurrentSession().delete(entity);
+			getSession().delete(entity);
 	}
 	@Override
 	public void deleteEntity(T entity) {
-		getCurrentSession().delete(entity);
+		getSession().delete(entity);
 	}
 	@Override
 	public void deleteEntities(List<T> entities) {
 		for(T entity : entities){
-			getCurrentSession().delete(entity);
+			getSession().delete(entity);
 		}
 	}
 	@Override
 	public T get(Class<T> theClass, Serializable id) {
-		return (T) getCurrentSession().get(theClass, id);
+		return (T) getSession().get(theClass, id);
 	}
 	@Override
 	public T load(Class<T> theClass, Serializable id) {
-		return (T) getCurrentSession().load(theClass, id);
+		return (T) getSession().load(theClass, id);
 	}
 	@Override
 	public T findOneByHql(String hqlStr) {
-		Query query = getCurrentSession().createQuery(hqlStr);
+		Query query = getSession().createQuery(hqlStr);
 		List localList = query.list();
 		if ((localList != null) && (localList.size() > 0)) {
 			return (T) localList.get(0);
@@ -129,7 +130,7 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	}
 	@Override
 	public T findOneByHqlParamMap(String hqlStr, Map<String, Object> paramMap) {
-		Query query = getCurrentSession().createQuery(hqlStr);
+		Query query = getSession().createQuery(hqlStr);
 		makeQuerySqlStr(query, paramMap);
 		List localList = query.list();
 		if ((localList != null) && (localList.size() > 0)) {
@@ -139,29 +140,29 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	}
 	@Override
 	public List<T> findAllByHql(String hqlStr) {
-		Query query = getCurrentSession().createQuery(hqlStr);
+		Query query = getSession().createQuery(hqlStr);
 		return query.list();
 	}
 	@Override
 	public List<T> findAllByHqlPageSize(String hqlStr, int page, int size) {
-		Query query = getCurrentSession().createQuery(hqlStr);
+		Query query = getSession().createQuery(hqlStr);
 		return query.setFirstResult(page).setMaxResults(size).list();
 	}
 	@Override
 	public List<T> findAllByHqlParamMap(String hqlStr, Map<String, Object> params) {
-		Query query = getCurrentSession().createQuery(hqlStr);
+		Query query = getSession().createQuery(hqlStr);
 		makeQuerySqlStr(query, params);
 		return query.list();
 	}
 	@Override
 	public List<T> findAllByHqlParamMapPageSize(String hqlStr, Map<String, Object> params, int page, int size) {
-		Query query = getCurrentSession().createQuery(hqlStr);
+		Query query = getSession().createQuery(hqlStr);
 		makeQuerySqlStr(query, params);
 		return query.setFirstResult(page).setMaxResults(size).list();
 	}
 	@Override
 	public T findOneBySql(String sqlStr) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sqlStr);
 		List localList = sqlQuery.list();
 		if ((localList != null) && (localList.size() > 0)) {
 			return (T) localList.get(0);
@@ -170,7 +171,7 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	}
 	@Override
 	public T findOneBySqlParamMap(String sqlStr, Map<String, Object> paramMap) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sqlStr);
 		makeQuerySqlStr(sqlQuery, paramMap);
 		List localList = sqlQuery.list();
 		if ((localList != null) && (localList.size() > 0)) {
@@ -180,29 +181,29 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	}
 	@Override
 	public List<Map> findAllBySql(String sqlStr) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sqlStr);
 		return sqlQuery.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
 	}
 	@Override
 	public List<Map> findAllBySqlPageSize(String sqlStr, int page, int size) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sqlStr);
 		return sqlQuery.setFirstResult(page).setMaxResults(size).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
 	}
 	@Override
 	public List<Map> findAllBySqlParamMap(String sqlStr, Map<String, Object> paramMap) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sqlStr);
 		makeSqlQuerySqlStr(sqlQuery, paramMap);
 		return sqlQuery.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
 	}
 	@Override
 	public List<Map> findAllBySqlParamMapPageSize(String sqlStr, Map<String, Object> paramMap,int page, int size) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sqlStr);
 		makeSqlQuerySqlStr(sqlQuery, paramMap);
 		return sqlQuery.setFirstResult(page).setMaxResults(size).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
 	}
 	@Override
 	public List<Map> findAllBySqlParamMapColumnsCharCase(String sqlStr, Map<String, Object> paramMap, List<String> columns, int charCase) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sqlStr);
 		makeSqlQuerySqlStr(sqlQuery, paramMap);
 		if ((columns != null) || (charCase != 0)) {
 			return sqlQuery.setResultTransformer(new BasicUtilResultTransFormer(columns, charCase)).list();
@@ -211,7 +212,7 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	}
 	@Override
 	public List<Map> findAllBySqlParamMapColumnsCharCasePageSize(String sql, Map<String, Object> params, List<String> columns, int charCase, int page, int size) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sql);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sql);
 		if ((params != null) && (!params.isEmpty())) {
 			for (String str : params.keySet()) {
 				sqlQuery.setParameter(str, params.get(str));
@@ -224,12 +225,12 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	}
 	@Override
 	public int executeBySql(String sqlStr) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sqlStr);
 		return sqlQuery.executeUpdate();
 	}
 	@Override
 	public int executeBySqlParamMap(String sqlStr, Map<String, Object> paramMap) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sqlStr);
 		if ((paramMap != null) && (!paramMap.isEmpty())) {
 			for (String str : paramMap.keySet()) {
 				Object localObject = paramMap.get(str);
@@ -245,12 +246,12 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	}
 	@Override
 	public int executeByHql(String hqlStr) {
-		Query localQuery = getCurrentSession().createQuery(hqlStr);
+		Query localQuery = getSession().createQuery(hqlStr);
 		return localQuery.executeUpdate();
 	}
 	@Override
 	public int executeByHqlParamMap(String hqlStr, Map<String, Object> paramMap) {
-		Query query = getCurrentSession().createQuery(hqlStr);
+		Query query = getSession().createQuery(hqlStr);
 		makeQuerySqlStr(query, paramMap);
 		return query.executeUpdate();
 	}
@@ -262,18 +263,18 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	
 	@Override
 	public long countByHql(String hqlStr) {
-		Query localQuery = getCurrentSession().createQuery(hqlStr);
+		Query localQuery = getSession().createQuery(hqlStr);
 		return (long) localQuery.uniqueResult();
 	}
 	@Override
 	public long countByHqlParamMap(String hqlStr, Map<String, Object> paramMap) {
-		Query query = getCurrentSession().createQuery(hqlStr);
+		Query query = getSession().createQuery(hqlStr);
 		makeQuerySqlStr(query, paramMap);
 		return (long) query.uniqueResult();
 	}
 	@Override
 	public BigInteger countBySql(String sql) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sql);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sql);
 		BigInteger localBigInteger = null;
 		Object localObject = sqlQuery.uniqueResult();
 		if ((localObject instanceof BigDecimal))
@@ -284,7 +285,7 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	}
 	@Override
 	public BigInteger countBySqlParamMap(String sql, Map<String, Object> paramMap) {
-		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sql);
+		SQLQuery sqlQuery = getSession().createSQLQuery(sql);
 		makeSqlQuerySqlStr(sqlQuery, paramMap);
 		BigInteger localBigInteger = null;
 		Object localObject = sqlQuery.uniqueResult();
@@ -296,38 +297,38 @@ public class HibernateDaoImpl<T> implements HibernateDao<T> {
 	}
 	@Override
 	public void commit() {
-		getCurrentSession().getTransaction().commit();
-		getCurrentSession().beginTransaction();
+		getSession().getTransaction().commit();
+		getSession().beginTransaction();
 	}
 	@Override
 	public void rollback() {
-		getCurrentSession().getTransaction().rollback();
-		getCurrentSession().beginTransaction();
+		getSession().getTransaction().rollback();
+		getSession().beginTransaction();
 	}
 	@Override
 	public void doWork(Work work) {
-		getCurrentSession().doWork(work);
+		getSession().doWork(work);
 	}
 	@Override
 	public <R> R doReturningWork(ReturningWork<R> returningWork) {
-		return getCurrentSession().doReturningWork(returningWork);
+		return getSession().doReturningWork(returningWork);
 	}
 	@Override
 	public void flush() {
-		getCurrentSession().flush();
+		getSession().flush();
 	}
 	@Override
 	public void evict(T entity) {
-		getCurrentSession().evict(entity);
+		getSession().evict(entity);
 	}
 	@Override
 	public void merge(T entity) {
 		if (entity != null)
-			getCurrentSession().merge(entity);
+			getSession().merge(entity);
 	}
 	@Override
 	public void clearSession() {
-		getCurrentSession().clear();
+		getSession().clear();
 	}
 	
 

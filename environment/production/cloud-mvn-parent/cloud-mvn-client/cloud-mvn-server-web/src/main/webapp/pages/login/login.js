@@ -69,10 +69,10 @@ var Login = function() {
 								data.passwd = document.getElementById("password").value;
 								data.userid = document.getElementById("username").value;
 								data.registCd = document.getElementById("registCd").value;
-								data.pswdfg = "1";//是否校验密码  全部都校验
-								$.cookie("registCd",document.getElementById("registCd").value);
+//								data.pswdfg = "1";//是否校验密码  全部都校验
+								$.cookie("registCd", document.getElementById("registCd").value);
 								Sunline.ajaxRouter(
-									"/home/path/loginCheck",
+									"home/path/loginCheck",
 									data,
 									"POST",
 									function(redata) {
@@ -102,7 +102,7 @@ var Login = function() {
 					data.userid = document.getElementById("username").value;
 					data.passwd = document.getElementById("password").value;
 					Sunline.ajaxRouter(
-							"/home/path/reset", 
+							"home/path/reset", 
 							data,
 							"POST", 
 							function(redata) {
