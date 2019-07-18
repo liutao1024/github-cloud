@@ -74,7 +74,7 @@ public class SystemConfig {
      * @throws IOException 
      */
     public Object getValueByKey(String key) throws IOException{
-    	InputStream inputStream = getClass().getResourceAsStream("/system.properties");//取不到这个文件爱你
+    	InputStream inputStream = getClass().getResourceAsStream("/system.properties");//取不到这个文件
     	Properties properties = new Properties();
     	properties.load(inputStream);
     	return properties.get(key);
