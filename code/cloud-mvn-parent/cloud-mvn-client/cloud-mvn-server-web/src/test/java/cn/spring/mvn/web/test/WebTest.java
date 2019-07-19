@@ -29,7 +29,6 @@ public class WebTest {
 		SavusrInput input = new SavusrInput();
 		input.setOpetyp("A");
 		input.setUserid("10001");
-<<<<<<< HEAD
 		input.setRegistCd("001");
 		SysUser sysUser = new SysUser();
 		String str = new String("1213");
@@ -37,19 +36,10 @@ public class WebTest {
 		try {
 			CommUtil.copyProperties(input, sysUser);
 			CommUtil.copyProperties(str, sb);
-=======
-		SysUser sysUser = new SysUser();
-		try {
-			CommUtil.copyProperties(input, sysUser);
->>>>>>> b05e5f57289843ea3764cc94e2c32b15896e3e75
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(sysUser);
-<<<<<<< HEAD
-		System.out.println(sb.toString());
-=======
->>>>>>> b05e5f57289843ea3764cc94e2c32b15896e3e75
 	}
 }

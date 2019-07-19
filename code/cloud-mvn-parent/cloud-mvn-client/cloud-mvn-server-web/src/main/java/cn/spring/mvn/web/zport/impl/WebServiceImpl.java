@@ -4,12 +4,9 @@ package cn.spring.mvn.web.zport.impl;
 //import org.slf4j.LoggerFactory;
 
 //import cn.spring.mvn.comm.tools.MD5Tool;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
-=======
->>>>>>> b05e5f57289843ea3764cc94e2c32b15896e3e75
 import cn.spring.mvn.comm.util.CommUtil;
 import cn.spring.mvn.comm.util.SpringContextUtil;
 import cn.spring.mvn.system.entity.SysUser;
@@ -132,11 +129,8 @@ public class WebServiceImpl extends SpringContextUtil {
 	 */
 	public static void addOrDeleteCheckChange(SavusrInput input, SavusrOutput output) throws Exception{
 		String operationType = input.getOpetyp();
-<<<<<<< HEAD
 		int count = 0;
 		List<SysUser> infos = new ArrayList<SysUser>();
-=======
->>>>>>> b05e5f57289843ea3764cc94e2c32b15896e3e75
 		SysUser entity = new SysUser();
 		CommUtil.copyProperties(input, entity);
 		//根据operationType进行增删查改的选择
@@ -154,16 +148,11 @@ public class WebServiceImpl extends SpringContextUtil {
 			sysUserServiceImpl.update(entity);
 			break;
 		default:
-<<<<<<< HEAD
 			throw new Exception("操作类型:[" + operationType + "]非法的");
 		}
 		output.setCount(count);
 		output.setInfos(infos);
 		
-=======
-			throw new Exception("操作类型:"+operationType+"非法的");
-		}
->>>>>>> b05e5f57289843ea3764cc94e2c32b15896e3e75
 	}
 	
 }
