@@ -135,13 +135,13 @@ var Index = function() {
 								var menuscript = '<li class="menu-dropdown classic-menu-dropdown ">'
 										+ '<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" ';
 								// 处理菜单链接
-								if (Sunline.isNull(val.auth_url)) {
+								if (Sunline.isNull(val.authUrl)) {
 									menuscript = menuscript + 'href="javascript:;">';
 								} else {
-									menuscript = menuscript + 'href="' + val.auth_url + '">';
+									menuscript = menuscript + 'href="' + val.authUrl + '">';
 								}
 								// 处理菜单名称
-								menuscript = menuscript + val.menu_name;
+								menuscript = menuscript + val.menuName;
 								menuscript = menuscript + ' <i class="fa fa-angle-down"></i>';
 								menuscript = menuscript + '</a>';
 								// 处理子菜单
@@ -165,17 +165,16 @@ var Index = function() {
 	 */
 	var handleMenuUrl = function(menu) {
 		var menuscript = '';
-		if (Sunline.isNull(menu.auth_url)) {
+		if (Sunline.isNull(menu.authUrl)) {
 			menuscript = menuscript + '<a href="javascript:;">';
 		} else {
-			menuscript = menuscript + '<a href="#" data-target="' + menu.auth_url + '"';
+			menuscript = menuscript + '<a href="#" data-target="' + menu.authUrl + '"';
 			// 处理跳转外部系统
-			if (Sunline.isNull(menu.target_fag)) {
+			if (Sunline.isNull(menu.targetFlag)) {
 				menuscript = menuscript + ' target-flag="N" ';
 			} else {
-				menuscript = menuscript + ' target-flag="' + menu.target_fag + '" ';
+				menuscript = menuscript + ' target-flag="' + menu.targetFlag + '" ';
 			}
-
 			menuscript = menuscript + '>';
 		}
 		if (!Sunline.isNull(menu.iconfg)) {
@@ -183,7 +182,7 @@ var Index = function() {
 		} else {
 			menuscript = menuscript + ' <i class=""></i>';
 		}
-		menuscript = menuscript + menu.menu_name + '</a>';
+		menuscript = menuscript + menu.menuName + '</a>';
 		return menuscript;
 	};
 

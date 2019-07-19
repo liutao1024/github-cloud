@@ -71,7 +71,7 @@ public class BasicReflection {
 			Class<?> clazz = getClassByReflectClassName(clazzName);
 			Object obj = clazz.newInstance();
 			Method method = clazz.getMethod(methodName, clazzes);
-			method.setAccessible(true);//对于类中的private方法也可以通过这只后可以访问
+			method.setAccessible(true);//对于类中的private方法,调用此方法后可以访问
 			method.invoke(obj, objects);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
