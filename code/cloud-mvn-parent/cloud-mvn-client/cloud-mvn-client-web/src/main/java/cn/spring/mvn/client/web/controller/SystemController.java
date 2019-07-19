@@ -3,6 +3,7 @@ package cn.spring.mvn.client.web.controller;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cn.spring.mvn.client.Client;
 import cn.spring.mvn.client.web.model.BSBUser;
+import cn.spring.mvn.client.web.model.RoleAuth;
+import cn.spring.mvn.client.web.model.SifSysAuth;
+import cn.spring.mvn.client.web.model.SifSysRoleAuth;
+import cn.spring.mvn.client.web.model.SifSysRoleUser;
+import cn.spring.mvn.client.web.model.service.SifSysAuthService;
+import cn.spring.mvn.client.web.model.service.SifSysRoleAuthService;
+import cn.spring.mvn.client.web.model.service.SifSysRoleUserService;
 import cn.spring.mvn.comm.util.CommUtil;
 /**
  * @author LiuTao @date 2018年5月1日 上午11:59:41
@@ -35,10 +43,17 @@ import cn.spring.mvn.comm.util.CommUtil;
 @ResponseBody
 @SessionAttributes("BsbUser")
 public class SystemController {
+	private static String AUTHTYPE = "2";//菜单权限类型
+	private String[] strArray = {};//user用    有权限AuthCd数组
 	private static final Logger LOGGER = LoggerFactory.getLogger(SystemController.class);
 	@Autowired
 	private Client client;
-	
+	@Autowired
+	private SifSysAuthService sifSysAuthServiceImpl;
+	@Autowired
+	private SifSysRoleUserService sifSysRoleUserServiceImpl;
+	@Autowired
+	private SifSysRoleAuthService sifSysRoleAuthServiceImpl;
 	//5.检查柜员信息
 	/**
 	 * @author LiuTao @date 2018年5月1日 下午1:35:12 
@@ -72,18 +87,46 @@ public class SystemController {
 	 */
 	@RequestMapping(value = "/menu")
 	public Map<String, Object> menuController(@ModelAttribute("BsbUser") BSBUser bsbUser) {
-		Map<String, Object> reqMap = new HashMap<String, Object>();//
-		Map<String, Object> rspMap = new HashMap<String, Object>();//
-		reqMap.put("cropno", bsbUser.getCorpno());
-		reqMap.put("userid", bsbUser.getUserid());
-		rspMap = client.callClient("gtmenu", reqMap);
-//		Object obj = rspMap.get("meumap");
-//		String jsonStr = obj.toString();
-//		JSONArray json = JSONArray.f
-//		List<SysAuth> sysAuthMapList = JSONArray.parseArray(jsonStr, SysAuth.class);
-//		Map<String, Object> sysAuthMap = (Map<String, Object>) rspMap.get("meumap");
-		LOGGER.info("---------菜单" /*+ sysAuthMap.toString()*/);
-		return rspMap;//返回的菜单内容
+		SifSysRoleUser sifSysRoleUser = new SifSysRoleUser();
+		sifSysRoleUser.setRegisterCd(bsbUser.getCorpno());
+		sifSysRoleUser.setAuthType(AUTHTYPE);// 菜单权限为2
+		sifSysRoleUser.setUserCd(bsbUser.getUserid());
+		/**得到柜员的角色      
+		 * 一个柜员可能对应多个角色
+		 */
+		List<SifSysRoleUser> sifSysRoleUserList = sifSysRoleUserServiceImpl.queryEntitiesByTemplate(sifSysRoleUser);
+		List<SifSysRoleAuth> sifSysRoleAuthList = new ArrayList<SifSysRoleAuth>();
+		for (SifSysRoleUser theSifSysRoleUser : sifSysRoleUserList) {
+			/**通过角色来查询 角色权限
+			 * 一个角色可能会有多个 权限
+			 */
+			RoleAuth roleAuth = new RoleAuth();
+			roleAuth.setRegisterCd(theSifSysRoleUser.getRegisterCd());
+			roleAuth.setAuthType(theSifSysRoleUser.getAuthType());
+			roleAuth.setRoleCd(theSifSysRoleUser.getRoleCd());
+			sifSysRoleAuthList.addAll(sifSysRoleAuthServiceImpl.queryEntitiesByTemplate(roleAuth));
+		}
+		//权限去重复
+		HashSet<SifSysRoleAuth> hashSet = new HashSet<SifSysRoleAuth>(sifSysRoleAuthList);
+		sifSysRoleAuthList.clear();
+		sifSysRoleAuthList.addAll(hashSet);
+		int k = 0;
+		strArray = new String[sifSysRoleAuthList.size()];
+		for (SifSysRoleAuth theSifSysRoleAuth : sifSysRoleAuthList) {
+			strArray[k] = theSifSysRoleAuth.getAuthCd();//菜单编号
+			k++;
+		}
+		// 查询所有菜单
+		SifSysAuth sifSysAuth = new SifSysAuth();
+		sifSysAuth.setRegisterCd(bsbUser.getCorpno());//机构号
+		sifSysAuth.setAuthType(AUTHTYPE);// 2 为菜单权限
+		sifSysAuth.setRank(1);//从第一级开始取
+		List<SifSysAuth> sifSysAuthList = new ArrayList<SifSysAuth>();
+		sifSysAuthList.addAll(sifSysAuthServiceImpl.queryEntitiesByTemplate(sifSysAuth));		
+		Map<String, Object> sifSysAuthMap = new HashMap<String, Object>();
+		sifSysAuthMap.put("menu", reGetMenu(sifSysAuth, sifSysAuthList, sifSysAuth.getRank(), true));
+		LOGGER.info("---------菜单" + sifSysAuthMap.toString());
+		return sifSysAuthMap;//返回的菜单内容
 	}
 	//7.柜员退出
 	/**
@@ -96,19 +139,21 @@ public class SystemController {
 	 */
 	@RequestMapping(value = "/logout")
 	public void logout(HttpServletRequest request,Model model, @ModelAttribute("BsbUser") BSBUser bsbUser) {
-//		String registCd = bsbUser.getCorpno();
-//		String userid = bsbUser.getUserid();
-//		SysUser logoutSysUser = sysUserServiceImpl.selectOneByPrimeKey(registCd, userid);
-//		logoutSysUser.setUserst("0");
-//		sysUserServiceImpl.update(logoutSysUser);
-		HttpSession session = request.getSession(false);  
-		Enumeration<String> em = session.getAttributeNames();
-		while (em.hasMoreElements()) {
-			request.getSession().removeAttribute(em.nextElement().toString());
+		Map<String, Object> reqMap = new HashMap<String, Object>();
+		Map<String, Object> rspMap = new HashMap<String, Object>();
+		reqMap.put("branch", bsbUser.getCorpno());
+		reqMap.put("userid", bsbUser.getUserid());
+		rspMap = client.callClient("logout", reqMap);
+		if(rspMap.get("retCode").toString().equals("0000")){//返回成功
+			HttpSession session = request.getSession(false);  
+			Enumeration<String> enumeration = session.getAttributeNames();
+			while (enumeration.hasMoreElements()) {
+				request.getSession().removeAttribute(enumeration.nextElement().toString());
+			}
+			session.removeAttribute("BsbUser");
+			session.invalidate();//session无效处理
+			model.asMap().clear();//清除model中的对象
 		}
-		 session.removeAttribute("BsbUser");
-		 session.invalidate();//session无效处理
-		 model.asMap().clear();//清除model中的对象
 	}
 	/**
 	 * @author LiuTao @date 2018年5月7日 下午7:56:41 
@@ -675,59 +720,59 @@ public class SystemController {
 //	
 //	/**---------------------------------------分隔符------------------------------------------------*/
 //	
-//	/**
-//	 * @author LiuTao @date 2018年5月7日 下午7:46:26 
-//	 * @Title: reGetMenu 
-//	 * @Description: TODO(根据sysAuth查询子项) 
-//	 * @param entity 权限模板
-//	 * @param parentMenu 父级菜单权限
-//	 * @param rank 层级
-//	 * @param flag 是否控制权限 true控制权限 false不控制
-//	 * @return
-//	 */
-//	private List<SysAuth> reGetMenu(SysAuth entity, List<SysAuth> parentMenu, int rank, Boolean flag) {
-//		// 取1级菜单		
-//		List<SysAuth> removeList = new ArrayList<SysAuth>();// list 遍历元素时不允许删除元素,创建一个List用于储存删除的元素,遍历后集中集中删除
-//		/**
-//		 * 循环遍历这一级菜单,分别获取下一级级菜单
-//		 */
-//		for (SysAuth sysAuth : parentMenu) {// 循环处理父菜单
-//			/**
-//			 * 判断user是否拥有权限
-//			 * 无父级菜单权限,子菜单权限无效
-//			 */
-//			if (strInArray(sysAuth.getAuth_cd(), strArray) && flag) { 
-//				removeList.add(sysAuth);// 放入删除List中
-//				continue;
-//			}
-//			entity.setRank(rank + 1);// 取下一级菜单级菜单
-//			entity.setParent_auth_cd(sysAuth.getAuth_cd());// 设置父级cored
-//			List<SysAuth> childMenu = new ArrayList<SysAuth>();
-//			
-//			childMenu.addAll(sysAuthServiceImpl.selectAllEntities(entity));
-//			if (childMenu.size() > 0) {
-//				sysAuth.setChildren(reGetMenu(entity, childMenu, entity.getRank(), flag));// 递归处理
-//				sysAuth.setHaschild("Y");
-//			}
-//		}
-//		parentMenu.removeAll(removeList);
-//		return parentMenu;
-//	}
-//	/**
-//	 * @author LiuTao @date 2018年5月7日 下午7:45:42 
-//	 * @Title: strInArray 
-//	 * @Description: TODO(判断字符串数组是否包含字符串) 
-//	 * @param str
-//	 * @param strs
-//	 * @return
-//	 */
-//	public boolean strInArray(String str, String[] strs) {
-//		for (int i = 0; i < strs.length; i++) {
-//			if (str.equals(strs[i])) {
-//				return false;
-//			}
-//		}
-//		return true;
-//	}
+	/**
+	 * @author LiuTao @date 2018年5月7日 下午7:46:26 
+	 * @Title: reGetMenu 
+	 * @Description: TODO(根据sysAuth查询子项) 
+	 * @param entity 权限模板
+	 * @param parentMenu 父级菜单权限
+	 * @param rank 层级
+	 * @param flag 是否控制权限 true控制权限 false不控制
+	 * @return
+	 */
+	private List<SifSysAuth> reGetMenu(SifSysAuth entity, List<SifSysAuth> parentMenu, int rank, Boolean flag) {
+		// 取1级菜单		
+		List<SifSysAuth> removeList = new ArrayList<SifSysAuth>();// list 遍历元素时不允许删除元素,创建一个List用于储存删除的元素,遍历后集中集中删除
+		/**
+		 * 循环遍历这一级菜单,分别获取下一级级菜单
+		 */
+		for (SifSysAuth sifSysAuth : parentMenu) {// 循环处理父菜单
+			/**
+			 * 判断user是否拥有权限
+			 * 无父级菜单权限,子菜单权限无效
+			 */
+			if (strInArray(sifSysAuth.getAuthCd(), strArray) && flag) { 
+				removeList.add(sifSysAuth);// 放入删除List中
+				continue;
+			}
+			entity.setRank(rank + 1);// 取下一级菜单级菜单
+			entity.setParentAuthCd(sifSysAuth.getAuthCd());// 设置父级cored
+			List<SifSysAuth> childMenu = new ArrayList<SifSysAuth>();
+			
+			childMenu.addAll(sifSysAuthServiceImpl.queryEntitiesByTemplate(entity));
+			if (childMenu.size() > 0) {
+				sifSysAuth.setChildren(reGetMenu(entity, childMenu, entity.getRank(), flag));// 递归处理
+				sifSysAuth.setHaschild("Y");
+			}
+		}
+		parentMenu.removeAll(removeList);
+		return parentMenu;
+	}
+	/**
+	 * @author LiuTao @date 2018年5月7日 下午7:45:42 
+	 * @Title: strInArray 
+	 * @Description: TODO(判断字符串数组是否包含字符串) 
+	 * @param str
+	 * @param strs
+	 * @return
+	 */
+	public boolean strInArray(String str, String[] strs) {
+		for (int i = 0; i < strs.length; i++) {
+			if (str.equals(strs[i])) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
 

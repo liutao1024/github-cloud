@@ -12,12 +12,11 @@ import cn.spring.mvn.client.model.ApSysServs;
 public interface Connector {
 
 	/**
-	 * @author LiuTao @date 2018年10月16日 上午9:24:20 
+	 * @author LiuTao @date 2019年7月18日 下午2:43:56 
 	 * @Title: communication 
-	 * @Description: 通讯
-	 * @param send
-	 * @param rspMsgCd
-	 * @param serv
+	 * @Description: 通讯 
+	 * @param sendMsg
+	 * @param apSysServs
 	 * @return
 	 */
 	String communication(byte[] sendMsg, ApSysServs apSysServs);

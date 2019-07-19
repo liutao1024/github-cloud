@@ -1,14 +1,14 @@
 package cn.spring.mvn.web.zport;
 
-public class GtmenuInput {
-	private String cropno;
+public class LogoutInput {
+	private String branch;
 	private String userid;
 	
-	public String getCropno() {
-		return cropno;
+	public String getBranch() {
+		return branch;
 	}
-	public void setCropno(String cropno) {
-		this.cropno = cropno;
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
 	public String getUserid() {
 		return userid;

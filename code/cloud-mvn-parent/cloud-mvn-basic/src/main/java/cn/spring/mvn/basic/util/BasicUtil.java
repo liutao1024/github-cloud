@@ -1,5 +1,8 @@
 package cn.spring.mvn.basic.util;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -414,6 +417,35 @@ public class BasicUtil{
         return fileList;
     } 
     /**
+     * @author LiuTao @date 2019年7月19日 下午4:49:04 
+     * @Title: copProperties 
+     * @Description: TODO(Describe) 
+     * @param source
+     * @param destin
+     * @throws Exception
+     */
+    public static void copyProperties(Object source, Object destin) throws Exception{
+    	// 获取属性
+		BeanInfo sourceBean = Introspector.getBeanInfo(source.getClass(), java.lang.Object.class);
+		PropertyDescriptor[] sourceProperty = sourceBean.getPropertyDescriptors();
+		BeanInfo destinBean = Introspector.getBeanInfo(destin.getClass(), java.lang.Object.class);
+		PropertyDescriptor[] destinProperty = destinBean.getPropertyDescriptors();
+		try {
+			for (int i = 0; i < sourceProperty.length; i++) {
+				for (int j = 0; j < destinProperty.length; j++) {
+					if (sourceProperty[i].getName().equals(destinProperty[j].getName())) {
+						// 调用source的getter方法和destin的setter方法
+						destinProperty[j].getWriteMethod().invoke(destin,
+								sourceProperty[i].getReadMethod().invoke(source));
+						break;
+					}
+				}
+			}
+		} catch (Exception exception) {
+			throw new Exception("属性复制失败:" + exception.getMessage());
+		}
+    }
+    /**
      * @author LiuTao @date 2018年11月14日 下午3:48:41 
      * @Title: main 
      * @Description: TODOTEST
@@ -424,5 +456,4 @@ public class BasicUtil{
 		Object o = convertValueTypeForDB(date, Date.class);
 		LOGGER.info(o);
 	}
-    
 }
