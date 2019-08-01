@@ -35,7 +35,7 @@ public class SocketOperator extends Thread {
 			 * 3.对请求报文进行解析处理后,将处理结果通过Socket创建输出流 
 			 * 4.回复客户端"OK"
 			 */
-			LOGGER.info("========客户端地址: " + socket.getInetAddress().getHostAddress());
+			LOGGER.info("========客户端地址: " + socket.getInetAddress().getHostAddress());//这儿永远显示的是127.0.0.1,因为socket就是启在,本地的应该从流里面取地址才行
 //			System.out.println("[INFO]========客户端地址: " + socket.getInetAddress().getHostAddress());
 			InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream(), charSetStr);//解决中文字符乱码问题
 			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
