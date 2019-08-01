@@ -7,6 +7,7 @@ package org.spring.mvn.core.test;
 public class BinarySearchTree {
 	public static void main(String[] args) {
 //		int[] arrays = {3,2,1,4,5};
+		
 	}
 	
 	/**
