@@ -24,18 +24,6 @@
 			<version>${servlet.api.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-redis</artifactId>
-			<version>${spring.data.redis.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>${redis.jedis.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>cloud</groupId>
 			<artifactId>cloud-mvn-system</artifactId>

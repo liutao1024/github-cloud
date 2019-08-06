@@ -1,14 +1,18 @@
-package cn.spring.mvn.socket.test;
+package cn.spring.mvn.redis;
 
 //import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 //import org.springframework.data.redis.core.RedisTemplate;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ListOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -49,4 +53,22 @@ public class RedisTest {
 		listOperations.leftPush("listOperations", "listOperations");
 		
 	}
+	/**
+	 * 日志工具
+	 */
+	Log log = LogFactory.getLog(getClass());
+	@Autowired
+	private RedisTemplate<String, Object> redisTemplate;
+	
+	@Test
+	public void testSys() throws Exception {
+		log.info("开始");
+		MsService service = new MsService();
+		for (int i = 0; i < 10; i++) {
+			ThreadBuy threadBuy = new ThreadBuy(service, redisTemplate, "MSKEY");
+			threadBuy.start();
+			log.info("*******************结束");
+		}
+	}
+	
 }
