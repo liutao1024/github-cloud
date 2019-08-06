@@ -16,6 +16,9 @@
         <dependent-module archiveName="cloud-mvn-comm-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-comm/cloud-mvn-comm">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="cloud-mvn-redis-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-redis/cloud-mvn-redis">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="cloud-mvn-client-web"/>
         <property name="java-output-path" value="/cloud-mvn-client-web/target/classes"/>
     </wb-module>

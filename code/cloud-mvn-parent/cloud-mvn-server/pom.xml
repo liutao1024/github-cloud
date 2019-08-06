@@ -34,6 +34,11 @@
 			<artifactId>cloud-mvn-task</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-redis</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<modules>
 		<module>cloud-mvn-server-core</module>
