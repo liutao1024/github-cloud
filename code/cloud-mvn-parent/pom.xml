@@ -176,6 +176,18 @@
 			<artifactId>jedis</artifactId>
 			<version>${redis.jedis.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
+		<dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-core</artifactId>
+		    <version>1.4.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+		<dependency>
+		    <groupId>org.apache.zookeeper</groupId>
+		    <artifactId>zookeeper</artifactId>
+		    <version>3.5.5</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -202,13 +214,14 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>cloud-mvn-comm</module>
 		<module>cloud-mvn-basic</module>
 		<module>cloud-mvn-client</module>
+		<module>cloud-mvn-comm</module>
+	    <module>cloud-mvn-redis</module>
 		<module>cloud-mvn-server</module>
 	    <module>cloud-mvn-system</module>
 	    <module>cloud-mvn-socket</module>
 	    <module>cloud-mvn-task</module>
-	    <module>cloud-mvn-redis</module>
+	    <module>cloud-mvn-zookeeper</module>
   </modules>
 </project>
