@@ -16,7 +16,7 @@ public class Zookeeper implements Watcher{
 	/**
 	 * 超时时间
 	 */
-	private static final int SESSION_TIME_OUT = 2000;
+	private static final int SESSION_TIME_OUT = 200;
 	private CountDownLatch countDownLatch = new CountDownLatch(1);
 	@Override
 	public void process(WatchedEvent event) {
@@ -29,11 +29,11 @@ public class Zookeeper implements Watcher{
 	 * @author LiuTao @date 2019年8月9日 上午11:37:15 
 	 * @Title: connectZookeeper 
 	 * @Description: 连接Zookeeper
-	 * @param host
+	 * @param connectString
 	 * @throws Exception
 	 */
-	public void connectZookeeper(String host) throws Exception{
-		zookeeper = new ZooKeeper(host, SESSION_TIME_OUT, this);
+	public void connectZookeeper(String connectString) throws Exception{
+		zookeeper = new ZooKeeper(connectString, SESSION_TIME_OUT, this);
 		countDownLatch.await();
 		System.out.println("zookeeper connection success");
 	}
