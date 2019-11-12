@@ -1,6 +1,6 @@
-package cn.spring.mvn.core.ledger.entity;
+package cn.spring.mvn.core.credit.entity;
 
-public class CoreLoanEntity {
+public class CoreCreditEntity {
 	private String prodno;
 	private String prodtp;
 	private String prodna;
@@ -57,7 +57,7 @@ public class CoreLoanEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CoreLoanEntity other = (CoreLoanEntity) obj;
+		CoreCreditEntity other = (CoreCreditEntity) obj;
 		if (descri == null) {
 			if (other.descri != null)
 				return false;

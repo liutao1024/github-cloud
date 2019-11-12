@@ -4,7 +4,7 @@ package cn.spring.mvn.core.ledger;
  * Hello world!
  *
  */
-public class CoreLoanApp {
+public class CoreLedgerApp {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 	}

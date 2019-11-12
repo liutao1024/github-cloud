@@ -4,7 +4,7 @@ package cn.spring.mvn.core.credit;
  * Hello world!
  *
  */
-public class CoreLedgerApp {
+public class CoreCreditApp {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 	}

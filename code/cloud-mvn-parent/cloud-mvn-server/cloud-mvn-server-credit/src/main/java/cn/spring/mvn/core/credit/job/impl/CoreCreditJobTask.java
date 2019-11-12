@@ -1,5 +1,5 @@
 package cn.spring.mvn.core.credit.job.impl;
 
-public class CoreLoanJobTask {
+public class CoreCreditJobTask {
 
 }

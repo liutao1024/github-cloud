@@ -1,5 +1,5 @@
 package cn.spring.mvn.core.ledger.job.impl;
 
-public class CoreLoanJobTask {
+public class CoreLedgerJobTask {
 
 }

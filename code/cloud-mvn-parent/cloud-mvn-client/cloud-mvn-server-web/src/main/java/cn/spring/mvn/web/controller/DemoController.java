@@ -17,7 +17,7 @@ import tk.mybatis.mapper.entity.Example;
 import cn.spring.mvn.basic.ibatis.IBatisTParam;
 import cn.spring.mvn.core.credit.entity.Student;
 import cn.spring.mvn.core.credit.entity.dao.StudentDao;
-import cn.spring.mvn.core.credit.entity.service.CoreLoanEntityService;
+import cn.spring.mvn.core.credit.entity.service.CoreCreditEntityService;
 import cn.spring.mvn.core.credit.entity.service.StudentService;
 import cn.spring.mvn.core.deposit.entity.service.CoreDepositEntityService;
 import cn.spring.mvn.core.entity.service.AccountService;
@@ -46,7 +46,7 @@ public class DemoController {
 	@Autowired
 	private CoreFundEntityService f;
 	@Autowired
-	private CoreLoanEntityService l;
+	private CoreCreditEntityService l;
 	@Autowired
 	private StudentService st;
 	@Autowired
