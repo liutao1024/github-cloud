@@ -1,0 +1,4 @@
+				对cloud-mvn-server整个模块的说明:
+cloud-mvn-server模块作为一个重要的总领模块进行对继承他的模块有一个归导作用,
+	其下包含有core/ledger/deposit/loan/fund/credit
+1.core中包含整个账户体系,电子帐号,客户号,产品信息,利率信息

@@ -42,8 +42,10 @@
 	</dependencies>
 	<modules>
 		<module>cloud-mvn-server-core</module>
+		<module>cloud-mvn-server-credit</module>
 	    <module>cloud-mvn-server-deposit</module>
 	    <module>cloud-mvn-server-fund</module>
+	    <module>cloud-mvn-server-ledger</module>
 	    <module>cloud-mvn-server-loan</module>
   </modules>
 </project>

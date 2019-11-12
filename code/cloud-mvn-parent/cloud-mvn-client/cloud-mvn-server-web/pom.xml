@@ -20,6 +20,11 @@
 		</dependency>
 		<dependency>
 			<groupId>cloud</groupId>
+			<artifactId>cloud-mvn-server-credit</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cloud</groupId>
 			<artifactId>cloud-mvn-server-deposit</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
@@ -30,19 +35,14 @@
 		</dependency>
 		<dependency>
 			<groupId>cloud</groupId>
-			<artifactId>cloud-mvn-server-loan</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<!-- <dependency>
-			<groupId>cloud</groupId>
-			<artifactId>cloud-mvn-server-socket</artifactId>
+			<artifactId>cloud-mvn-server-ledger</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>cloud</groupId>
-			<artifactId>cloud-mvn-server-task</artifactId>
+			<artifactId>cloud-mvn-server-loan</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency> -->
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>cloud-mvn-server-web</finalName>

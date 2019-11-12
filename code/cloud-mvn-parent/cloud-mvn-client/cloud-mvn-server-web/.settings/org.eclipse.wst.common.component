@@ -16,10 +16,16 @@
         <dependent-module archiveName="cloud-mvn-task-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-task/cloud-mvn-task">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="cloud-mvn-server-credit-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-credit/cloud-mvn-server-credit">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="cloud-mvn-server-deposit-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-deposit/cloud-mvn-server-deposit">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="cloud-mvn-server-fund-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-fund/cloud-mvn-server-fund">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cloud-mvn-server-ledger-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-ledger/cloud-mvn-server-ledger">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="cloud-mvn-server-loan-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-server-loan/cloud-mvn-server-loan">
