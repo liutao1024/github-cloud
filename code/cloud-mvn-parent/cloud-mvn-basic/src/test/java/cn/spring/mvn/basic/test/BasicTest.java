@@ -1,8 +1,15 @@
 package cn.spring.mvn.basic.test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
@@ -37,9 +44,56 @@ public class BasicTest {
 //		System.out.println("--------------------------------------------------------------------");
 //		SelectionSort(selectArr);
 //		StackY();
-		JieXISuanShuBiaoDaSi();
+//		JieXISuanShuBiaoDaSi();
+		try {
+			LinkX();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
+	/**
+	 * @author LiuTao @date 2020年1月13日 上午9:29:09 
+	 * @throws ParseException 
+	 * @Title: LinkX 
+	 * @Description: 链表
+	 */
+	public static void LinkX() throws ParseException{
+		Long l = System.currentTimeMillis();
+		System.out.println(l);
+		Date date = new Date(1471883254888095768L);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMDDHHmmss");
+		System.out.println(sdf.format(date));
+		System.out.println(sdf.parse("10000-12-31 23:59:59"));
+		Long year = 99999L;
+		Long mouth = 12L;
+		Long day = 31L;
+		Long hour = 23L;
+		Long minut = 59L;
+		Long second = 59L;
+		Date d = sdf.parse(year+""+mouth+""+day+""+hour+""+minut+""+second);
+		
+		Long timeString = year*365*24*60*60*1000 +mouth*30*24*60*60*1000+day*24*60*60*1000+hour*60*60*1000+minut*60*1000+second*1000;
+		System.out.println(timeString);
+//		System.out.println(Calendar );
+		System.out.println(d.getTime());
+		LinkedList<Integer> linkedList;
+		ArrayList<Integer> arrayList;
+		List<Integer> list = new ArrayList<Integer>();
+		List<Integer> listTemp = new ArrayList<Integer>();
+		list.add(14);
+		list.add(24);
+		list.add(34);
+		list.add(34);
+		list.add(44);
+		listTemp.add(14);
+		listTemp.add(44);
+		System.out.println(list.toString());
+//		list.f
+		list.remove(3);
+		System.out.println(list.toString());
+	}
 	/**
 	 * @author LiuTao @date 2020年1月10日 下午3:49:19 
 	 * @Title: JieXISuanShuBiaoDaSi 
@@ -548,6 +602,23 @@ class postfix {
         }
         System.out.print("\n");
         System.out.println(result(infix));
+    }
+    
+    public static void xiPaiSuanFa(){
+//    	for (var i = this.rowCount * this.colCount - 1; i >= 0 ; i--){
+//    		  var iX = parseInt(i / this.colCount);
+//    		  var iY = i % this.colCount;
+//
+//    		  var randNumber = this.rangeRandom(0, i + 1);
+//
+//    		  var randX = parseInt(randNumber / this.colCount);
+//    		  var randY = randNumber % this.colCount;
+//
+//    		 //交换两个位置
+//    		  var temp = tmpMineMap[iX][iY];
+//    		  tmpMineMap[iX][iY] = tmpMineMap[randX][randY];
+//    		  tmpMineMap[randX][randY] = temp;
+//    		}
     }
 }
 
