@@ -2,7 +2,7 @@ package Remote.TestService;
 
 import Remote.ConfigConstant;
 import Remote.Utils.PropsUtils;
-import org.junit.Test;
+//import org.junit.Test;
 
 import java.util.Properties;
 
@@ -12,7 +12,7 @@ import java.util.Properties;
  */
 public class TestConfig {
 
-    @Test
+//    @Test
     public void test1() {
         Properties properties = PropsUtils.loadProps(ConfigConstant.CONFIG_FILE);
         PropsUtils.getString(properties, ConfigConstant.INVOKER_TYPE);

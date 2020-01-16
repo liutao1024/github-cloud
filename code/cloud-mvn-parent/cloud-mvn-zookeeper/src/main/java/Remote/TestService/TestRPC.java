@@ -1,6 +1,6 @@
 package Remote.TestService;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import Remote.client.RemoteInvoker;
 
@@ -9,7 +9,7 @@ import Remote.client.RemoteInvoker;
  * @date 2018/8/4 9:51
  */
 public class TestRPC {
-    @Test
+//    @Test
     public void testRPC() {
 
         RemoteInvoker remoteInvoker = new RemoteInvoker((short) 1, hello.class, "Random");

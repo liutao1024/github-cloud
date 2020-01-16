@@ -44,14 +44,65 @@ public class BasicTest {
 //		SelectionSort(selectArr);
 //		StackY();
 //		JieXISuanShuBiaoDaSi();
-		try {
-			LinkX();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			LinkX();
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println(triangle(10));
+//		System.out.println(factorial(3));
+		
+		hanoi(12, 'A', 'B', 'C');
 	}
 	
+	/**
+	 * @author LiuTao @date 2020年1月16日 下午2:09:45 
+	 * @Title: Recursion 
+	 * @Description: 三角数字
+	 */
+	public static int triangle(int n){
+		if(n == 1)
+			return n;
+		else
+			return n + triangle(n-1);
+	}
+	/**
+	 * @author LiuTao @date 2020年1月16日 下午2:22:02 
+	 * @Title: factorial 
+	 * @Description: 阶乘 
+	 * @return
+	 */
+	public static int factorial(int n){
+		if(n == 0)
+			return 1;
+		else
+			return n * factorial(n-1);
+	}
+	
+	/**
+	 * @author LiuTao @date 2020年1月16日 下午4:13:41 
+	 * @Title: hanoi 
+	 * @Description: TODO(Describe) 
+	 * @param n 盘子的数目
+     * @param origin 源座
+     * @param assist 辅助座
+     * @param destination 目的座
+	 */
+	public static void hanoi(int n, char origin, char assist, char destination) {
+        if (n == 1) {
+            move(origin, destination);
+        } else {
+            hanoi(n - 1, origin, destination, assist);
+            move(origin, destination);
+            hanoi(n - 1, assist, origin, destination);
+        }
+    }
+	//
+    private static void move(char origin, char destination) {
+        System.out.println("Direction:" + origin + "--->" + destination);
+    }
+	 
 	/**
 	 * @author LiuTao @date 2020年1月13日 上午9:29:09 
 	 * @throws ParseException 
