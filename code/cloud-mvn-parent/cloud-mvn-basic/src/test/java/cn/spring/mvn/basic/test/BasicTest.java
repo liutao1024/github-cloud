@@ -3,7 +3,6 @@ package cn.spring.mvn.basic.test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -78,21 +77,21 @@ public class BasicTest {
 		System.out.println(timeString);
 //		System.out.println(Calendar );
 		System.out.println(d.getTime());
-		LinkedList<Integer> linkedList;
-		ArrayList<Integer> arrayList;
-		List<Integer> list = new ArrayList<Integer>();
+		List<Integer> linkedList = new LinkedList<Integer>();
+		linkedList.add(12);
+		List<Integer> arrayList = new ArrayList<Integer>();
 		List<Integer> listTemp = new ArrayList<Integer>();
-		list.add(14);
-		list.add(24);
-		list.add(34);
-		list.add(34);
-		list.add(44);
+		arrayList.add(14);
+		arrayList.add(24);
+		arrayList.add(34);
+		arrayList.add(34);
+		arrayList.add(44);
 		listTemp.add(14);
 		listTemp.add(44);
-		System.out.println(list.toString());
+		System.out.println(arrayList.toString());
 //		list.f
-		list.remove(3);
-		System.out.println(list.toString());
+		arrayList.remove(3);
+		System.out.println(arrayList.toString());
 	}
 	/**
 	 * @author LiuTao @date 2020年1月10日 下午3:49:19 
