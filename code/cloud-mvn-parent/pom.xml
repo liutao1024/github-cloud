@@ -223,5 +223,6 @@
 	    <module>cloud-mvn-socket</module>
 	    <module>cloud-mvn-task</module>
 	    <module>cloud-mvn-zookeeper</module>
+    	<module>cloud-mvn-zstudy</module>
   </modules>
 </project>
