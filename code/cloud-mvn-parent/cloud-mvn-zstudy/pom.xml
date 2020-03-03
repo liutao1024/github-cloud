@@ -7,7 +7,6 @@
     <artifactId>cloud-mvn-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>cloud-mvn-zstudy</groupId>
   <artifactId>cloud-mvn-zstudy</artifactId>
   <name>cloud-mvn-zstudy</name>
   <url>http://maven.apache.org</url>
