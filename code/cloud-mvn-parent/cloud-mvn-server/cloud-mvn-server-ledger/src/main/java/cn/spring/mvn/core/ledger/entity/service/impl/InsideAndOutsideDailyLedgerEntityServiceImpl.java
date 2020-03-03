@@ -11,7 +11,7 @@ import cn.spring.mvn.core.ledger.entity.dao.InsideAndOutsideDailyLedgerEntityDao
 import cn.spring.mvn.core.ledger.entity.service.InsideAndOutsideDailyLedgerEntityService;
 
 
-@Service("CoreLoanEntityService")
+@Service("InsideAndOutsideDailyLedgerEntityService")
 public class InsideAndOutsideDailyLedgerEntityServiceImpl implements InsideAndOutsideDailyLedgerEntityService{
 	@Resource
 	private InsideAndOutsideDailyLedgerEntityDao dao;

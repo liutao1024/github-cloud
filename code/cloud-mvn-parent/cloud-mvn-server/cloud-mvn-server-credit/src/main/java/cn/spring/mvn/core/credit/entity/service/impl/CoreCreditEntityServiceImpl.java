@@ -11,7 +11,7 @@ import cn.spring.mvn.core.credit.entity.dao.CoreCreditEntityDao;
 import cn.spring.mvn.core.credit.entity.service.CoreCreditEntityService;
 
 
-@Service("CoreLoanEntityService")
+@Service("CoreCreditEntityService")
 public class CoreCreditEntityServiceImpl implements CoreCreditEntityService{
 	@Resource
 	private CoreCreditEntityDao dao;
