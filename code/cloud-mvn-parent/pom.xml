@@ -215,13 +215,13 @@
 	</build>
 	<modules>
 		<module>cloud-mvn-basic</module>
-		<module>cloud-mvn-client</module>
 		<module>cloud-mvn-comm</module>
 	    <module>cloud-mvn-redis</module>
 		<module>cloud-mvn-server</module>
-	    <module>cloud-mvn-system</module>
 	    <module>cloud-mvn-socket</module>
+	    <module>cloud-mvn-system</module>
 	    <module>cloud-mvn-task</module>
+		<module>cloud-mvn-web</module>
 	    <module>cloud-mvn-zookeeper</module>
     	<module>cloud-mvn-zstudy</module>
   </modules>

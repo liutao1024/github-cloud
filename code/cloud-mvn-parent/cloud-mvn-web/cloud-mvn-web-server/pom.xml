@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>cloud</groupId>
-		<artifactId>cloud-mvn-client</artifactId>
+		<artifactId>cloud-mvn-web</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>cloud-mvn-server-web</artifactId>
+	<artifactId>cloud-mvn-web-server</artifactId>
 	<packaging>war</packaging>
-	<name>cloud-mvn-server-web Maven Webapp</name>
+	<name>cloud-mvn-web-server Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>

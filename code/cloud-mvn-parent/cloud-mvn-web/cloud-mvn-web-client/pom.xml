@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>cloud</groupId>
-		<artifactId>cloud-mvn-client</artifactId>
+		<artifactId>cloud-mvn-web</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>cloud-mvn-client-web</artifactId>
+	<artifactId>cloud-mvn-web-client</artifactId>
 	<packaging>war</packaging>
-	<name>cloud-mvn-client-web Maven Webapp</name>
+	<name>cloud-mvn-web-client Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<!-- 数据源 -->
@@ -31,7 +31,7 @@
 		</dependency> -->
 	</dependencies>
 	<build>
-		<finalName>cloud-mvn-client-web</finalName>
+		<finalName>cloud-mvn-web-client</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>

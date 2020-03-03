@@ -6,10 +6,10 @@
 		<artifactId>cloud-mvn-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>cloud-mvn-client</artifactId>
+	<artifactId>cloud-mvn-web</artifactId>
 	<packaging>pom</packaging>
-	<name>cloud-mvn-client</name>
-	<description>cloud-mvn-client-side</description>
+	<name>cloud-mvn-web</name>
+	<description>cloud-mvn-web-side</description>
 	<properties>
 		<jstl.version>1.2</jstl.version>
 		<javax.servlet.api.version>4.0.1</javax.servlet.api.version>
@@ -88,10 +88,10 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>cloud-mvn-client</finalName>
+		<finalName>cloud-mvn-web</finalName>
 	</build>
 	<modules>
-		<module>cloud-mvn-client-web</module>
-		<module>cloud-mvn-server-web</module>
+		<module>cloud-mvn-web-client</module>
+		<module>cloud-mvn-web-server</module>
   </modules>
 </project>
