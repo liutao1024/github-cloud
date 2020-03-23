@@ -98,7 +98,7 @@ public interface SifSysBrchService {
 	List<SifSysBrch> queryRootBrchs(String registerCd);
 	
 	/**
-	 * 根据父级机构编号查找所有子级机构，若父级机构号为空，则查询所有顶级机构
+	 * 根据父级机构编号查找所有子级机构,若父级机构号为空,则查询所有顶级机构
 	 * @Param registerCd 注册机构号
 	 * @Param parentBranchCd 父级机构号 
 	 * @return 查询到的实体对象集合

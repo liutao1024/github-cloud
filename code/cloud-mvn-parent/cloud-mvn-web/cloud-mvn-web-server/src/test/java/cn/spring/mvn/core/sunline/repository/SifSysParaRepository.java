@@ -20,7 +20,7 @@ public interface SifSysParaRepository extends JpaRepository<SifSysPara, String>,
 	public SifSysPara findByRegisterCd(String registerCd);
 	
 	/**
-	 * 根据注册机构号，切换对应系统的日期到下一日期
+	 * 根据注册机构号,切换对应系统的日期到下一日期
 	 * @param registerCd
 	 */
 //	@Modifying

@@ -43,7 +43,7 @@ public class StringUtils {
 		for (int i = 0; i < chars.length; i++) {
 			char c = chars[i];
 			if(c >= 'A' && c <= 'Z') {
-				// 一旦遇到大写单词，保存之前已有字符组成的单词
+				// 一旦遇到大写单词,保存之前已有字符组成的单词
 				if(sbWord.length() > 0) {
 					if(sb.length() > 0) {
 						sb.append("_");

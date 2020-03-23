@@ -17,10 +17,10 @@ public class ClassTest {
 	public void queryArrayType() throws NoSuchFieldException {
 	    Field field = Some.class.getDeclaredField("numbers");
 	    Class<?> type = field.getType();
-	    //一般来说，判断是否是某种类型是可以使用isAssignableFrom
-	    // 判断是否是数组类型比较特殊，要使用isArray()这个函数
+	    //一般来说,判断是否是某种类型是可以使用isAssignableFrom
+	    // 判断是否是数组类型比较特殊,要使用isArray()这个函数
 	    if (type.isArray()){
-	        //获得数组的类型，使用getComponentType()这个方法
+	        //获得数组的类型,使用getComponentType()这个方法
 	        Class<?> componentType = type.getComponentType();
 //	        assertEquals(componentType,Integer.class);
 	    }
@@ -38,8 +38,8 @@ public class ClassTest {
 	        //泛型参数类型
 	        ParameterizedType parameterizedType = (ParameterizedType)type;
 	        Type[] actualTypes = parameterizedType.getActualTypeArguments();
-	        //因为List<String>获得第一个泛型参数,因为只有一个，我们取第一个
-	        //如果我们有多个泛型参数，我们可以根据顺序取不同的泛型参数
+	        //因为List<String>获得第一个泛型参数,因为只有一个,我们取第一个
+	        //如果我们有多个泛型参数,我们可以根据顺序取不同的泛型参数
 //	        assertEquals(actualTypes[0],String.class);
 	        //如果获得List这个原始类型呢？
 //	        assertEquals(parameterizedType.getRawType(),List.class);
@@ -48,7 +48,7 @@ public class ClassTest {
 	    }
 	}
 	public void getSubListType() throws NoSuchFieldException {
-		//思考一下，如果我们有一个嵌套List，我们想拿到嵌套在最里面的类型，那么我们可以这么做呢？
+		//思考一下,如果我们有一个嵌套List,我们想拿到嵌套在最里面的类型,那么我们可以这么做呢？
 		//其实我们可以使用递归的思想去获得最里面的类型
 		Field field = Some.class.getDeclaredField("matrix");
 //		assertEquals(getBaseType(field.getGenericType()),Double.class);

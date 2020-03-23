@@ -226,14 +226,14 @@ public class UserMainController {
 	 */
 	private List<SifSysAuth> reGetMenu(SifSysAuth tmp, int rank,List<SifSysAuth>  fuMenu,Boolean flag) {
 		// 取1级菜单		
-		List<SifSysAuth> delList = new ArrayList<SifSysAuth>();// list 遍历元素时不允许删除元素，创建一个List用于储存删除的元素，遍历后集中集中删除
+		List<SifSysAuth> delList = new ArrayList<SifSysAuth>();// list 遍历元素时不允许删除元素,创建一个List用于储存删除的元素,遍历后集中集中删除
 		/**
-		 * 循环遍历这一级菜单，分别获取下一级级菜单
+		 * 循环遍历这一级菜单,分别获取下一级级菜单
 		 */
 			for (SifSysAuth sifSysAuth : fuMenu) {// 循环处理父菜单
 				/**
 				 * 判断user是否拥有权限
-				 * 无父级菜单权限，子菜单权限无效
+				 * 无父级菜单权限,子菜单权限无效
 				 */
 				if (strInArray(sifSysAuth.getAuthCd(), strs)&&flag) { 
 					delList.add(sifSysAuth);// 放入删除List中

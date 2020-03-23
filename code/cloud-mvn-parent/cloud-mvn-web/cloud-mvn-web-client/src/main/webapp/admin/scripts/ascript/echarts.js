@@ -61,7 +61,7 @@ var guid = function () {
 /**
  * echarts设备环境识别
  *
- * @desc echarts基于Canvas，纯Javascript图表库，提供直观，生动，可交互，可个性化定制的数据统计图表。
+ * @desc echarts基于Canvas,纯Javascript图表库,提供直观,生动,可交互,可个性化定制的数据统计图表。
  * @author firede[firede@firede.us]
  * @desc thanks zepto.
  */
@@ -197,7 +197,7 @@ function detect(ua) {
         browser: browser,
         os: os,
         node: false,
-        // 原生canvas支持，改极端点了
+        // 原生canvas支持,改极端点了
         // canvasSupported : !(browser.ie && parseFloat(browser.version) < 9)
         canvasSupported: !!document.createElement('canvas').getContext,
         svgSupported: typeof SVGRect !== 'undefined',
@@ -370,12 +370,12 @@ function merge(target, source, overwrite) {
                 && !isPrimitive(sourceProp)
                 && !isPrimitive(targetProp)
             ) {
-                // 如果需要递归覆盖，就递归调用merge
+                // 如果需要递归覆盖,就递归调用merge
                 merge(targetProp, sourceProp, overwrite);
             }
             else if (overwrite || !(key in target)) {
-                // 否则只处理overwrite为true，或者在目标对象中没有此属性的情况
-                // NOTE，在 target[key] 不存在的时候也是直接覆盖
+                // 否则只处理overwrite为true,或者在目标对象中没有此属性的情况
+                // NOTE,在 target[key] 不存在的时候也是直接覆盖
                 target[key] = clone(source[key], true);
             }
         }
@@ -1698,7 +1698,7 @@ function defaultGetZrXY(el, e, out) {
 }
 
 /**
- * 如果存在第三方嵌入的一些dom触发的事件，或touch事件，需要转换一下事件坐标.
+ * 如果存在第三方嵌入的一些dom触发的事件,或touch事件,需要转换一下事件坐标.
  * `calculate` is optional, default false.
  */
 function normalizeEvent(el, e, calculate) {
@@ -2042,7 +2042,7 @@ Handler.prototype = {
             // 冒泡到顶级 zrender 对象
             this.trigger(eventName, eventPacket);
             // 分发事件到用户自定义层
-            // 用户有可能在全局 click 事件中 dispose，所以需要判断下 painter 是否存在
+            // 用户有可能在全局 click 事件中 dispose,所以需要判断下 painter 是否存在
             this.painter && this.painter.eachOtherLayer(function (layer) {
                 if (typeof(layer[eventHandler]) == 'function') {
                     layer[eventHandler].call(layer, eventPacket);
@@ -2965,7 +2965,7 @@ var easing = {
 
 /**
  * 动画主控制器
- * @config target 动画对象，可以是数组，如果是数组的话会批量分发onframe等事件
+ * @config target 动画对象,可以是数组,如果是数组的话会批量分发onframe等事件
  * @config life(1000) 动画时长
  * @config delay(0) 动画延迟时间
  * @config loop(true)
@@ -4285,8 +4285,8 @@ var Animator = function(target, loop, getter, setter) {
 Animator.prototype = {
     /**
      * 设置动画关键帧
-     * @param  {number} time 关键帧时间，单位是ms
-     * @param  {Object} props 关键帧的属性值，key-value表示
+     * @param  {number} time 关键帧时间,单位是ms
+     * @param  {Object} props 关键帧的属性值,key-value表示
      * @return {module:zrender/animation/Animator}
      */
     when: function(time /* ms */, props) {
@@ -4365,7 +4365,7 @@ Animator.prototype = {
     /**
      * 开始执行动画
      * @param  {string|Function} [easing]
-     *         动画缓动函数，详见{@link module:zrender/animation/easing}
+     *         动画缓动函数,详见{@link module:zrender/animation/easing}
      * @param  {boolean} forceAnimate
      * @return {module:zrender/animation/Animator}
      */
@@ -4484,9 +4484,9 @@ if (typeof window !== 'undefined') {
 
 /**
  * debug日志选项：catchBrushException为true下有效
- * 0 : 不生成debug数据，发布用
- * 1 : 异常抛出，调试用
- * 2 : 控制台输出，调试用
+ * 0 : 不生成debug数据,发布用
+ * 1 : 异常抛出,调试用
+ * 2 : 控制台输出,调试用
  */
 var debugMode = 0;
 
@@ -4833,7 +4833,7 @@ Element.prototype = {
     name: '',
 
     /**
-     * ZRender 实例对象，会在 element 添加到 zrender 实例中后自动赋值
+     * ZRender 实例对象,会在 element 添加到 zrender 实例中后自动赋值
      * ZRender instance will be assigned when element is associated with zrender
      * @name module:/zrender/Element#__zr
      * @type {module:zrender/ZRender}
@@ -4841,7 +4841,7 @@ Element.prototype = {
     __zr: null,
 
     /**
-     * 图形是否忽略，为true时忽略图形的绘制以及事件触发
+     * 图形是否忽略,为true时忽略图形的绘制以及事件触发
      * If ignore drawing and events of the element object
      * @name module:/zrender/Element#ignore
      * @type {boolean}
@@ -4850,7 +4850,7 @@ Element.prototype = {
     ignore: false,
 
     /**
-     * 用于裁剪的路径(shape)，所有 Group 内的路径在绘制时都会被这个路径裁剪
+     * 用于裁剪的路径(shape),所有 Group 内的路径在绘制时都会被这个路径裁剪
      * 该路径会继承被裁减对象的变换
      * @type {module:zrender/graphic/Path}
      * @see http://www.w3.org/TR/2dcontext/#clipping-region
@@ -5245,7 +5245,7 @@ BoundingRect.create = function (rect) {
 };
 
 /**
- * Group是一个容器，可以插入子节点，Group的变换也会被应用到子节点上
+ * Group是一个容器,可以插入子节点,Group的变换也会被应用到子节点上
  * @module zrender/graphic/Group
  * @example
  *     var Group = require('zrender/container/Group');
@@ -6276,7 +6276,7 @@ Storage.prototype = {
 
     /**
      * 更新图形的绘制队列。
-     * 每次绘制前都会调用，该方法会先深度优先遍历整个树，更新所有Group和Shape的变换并且把所有可见的Shape保存到数组中，
+     * 每次绘制前都会调用,该方法会先深度优先遍历整个树,更新所有Group和Shape的变换并且把所有可见的Shape保存到数组中,
      * 最后根据绘制的优先级（zlevel > z > 插入顺序）排序得到绘制队列
      * @param {boolean} [includeIgnore=false] 是否包含 ignore 的数组
      */
@@ -7050,7 +7050,7 @@ var Layer = function(id, painter, dpr) {
      */
     this.motionBlur = false;
     /**
-     * 在开启动态模糊的时候使用，与上一帧混合的alpha值，值越大尾迹越明显
+     * 在开启动态模糊的时候使用,与上一帧混合的alpha值,值越大尾迹越明显
      * @type {number}
      * @default 0.7
      */
@@ -8692,7 +8692,7 @@ Displayable.prototype = {
     type: 'displayable',
 
     /**
-     * Displayable 是否为脏，Painter 中会根据该标记判断是否需要是否需要重新绘制
+     * Displayable 是否为脏,Painter 中会根据该标记判断是否需要是否需要重新绘制
      * Dirty flag. From which painter will determine if this displayable object needs brush
      * @name module:zrender/graphic/Displayable#__dirty
      * @type {boolean}
@@ -8700,7 +8700,7 @@ Displayable.prototype = {
     __dirty: true,
 
     /**
-     * 图形是否可见，为true时不绘制图形，但是仍能触发鼠标事件
+     * 图形是否可见,为true时不绘制图形,但是仍能触发鼠标事件
      * If ignore drawing of the displayable object. Mouse event will still be triggered
      * @name module:/zrender/graphic/Displayable#invisible
      * @type {boolean}
@@ -8723,7 +8723,7 @@ Displayable.prototype = {
     z2: 0,
 
     /**
-     * z层level，决定绘画在哪层canvas中
+     * z层level,决定绘画在哪层canvas中
      * @name module:/zrender/graphic/Displayable#zlevel
      * @type {number}
      * @default 0
@@ -8843,7 +8843,7 @@ Displayable.prototype = {
     },
 
     /**
-     * 标记图形元素为脏，并且在下一帧重绘
+     * 标记图形元素为脏,并且在下一帧重绘
      * Mark displayable element dirty and refresh next frame
      */
     dirty: function () {
@@ -9546,7 +9546,7 @@ Painter.prototype = {
     },
 
     /**
-     * 获取 zlevel 所在层，如果不存在则会创建一个新的层
+     * 获取 zlevel 所在层,如果不存在则会创建一个新的层
      * @param {number} zlevel
      * @param {boolean} virtual Virtual layer will not be inserted into dom.
      * @return {module:zrender/Layer}
@@ -9800,7 +9800,7 @@ Painter.prototype = {
      * @param {string} [config.clearColor=0] 每次清空画布的颜色
      * @param {string} [config.motionBlur=false] 是否开启动态模糊
      * @param {number} [config.lastFrameAlpha=0.7]
-     *                 在开启动态模糊的时候使用，与上一帧混合的alpha值，值越大尾迹越明显
+     *                 在开启动态模糊的时候使用,与上一帧混合的alpha值,值越大尾迹越明显
      */
     configLayer: function (zlevel, config) {
         if (config) {
@@ -12229,7 +12229,7 @@ function cubicDerivativeAt(p0, p1, p2, p3, t) {
 }
 
 /**
- * 计算三次贝塞尔方程根，使用盛金公式
+ * 计算三次贝塞尔方程根,使用盛金公式
  * @memberOf module:zrender/core/curve
  * @param  {number} p0
  * @param  {number} p1
@@ -12397,8 +12397,8 @@ function cubicSubdivide(p0, p1, p2, p3, t, out) {
 }
 
 /**
- * 投射点到三次贝塞尔曲线上，返回投射距离。
- * 投射点有可能会有一个或者多个，这里只返回其中距离最短的一个。
+ * 投射点到三次贝塞尔曲线上,返回投射距离。
+ * 投射点有可能会有一个或者多个,这里只返回其中距离最短的一个。
  * @param {number} x0
  * @param {number} y0
  * @param {number} x1
@@ -12598,8 +12598,8 @@ function quadraticSubdivide(p0, p1, p2, t, out) {
 }
 
 /**
- * 投射点到二次贝塞尔曲线上，返回投射距离。
- * 投射点有可能会有一个或者多个，这里只返回其中距离最短的一个。
+ * 投射点到二次贝塞尔曲线上,返回投射距离。
+ * 投射点有可能会有一个或者多个,这里只返回其中距离最短的一个。
  * @param {number} x0
  * @param {number} y0
  * @param {number} x1
@@ -12691,7 +12691,7 @@ var end = create();
 var extremity = create();
 
 /**
- * 从顶点数组中计算出最小包围盒，写入`min`和`max`中
+ * 从顶点数组中计算出最小包围盒,写入`min`和`max`中
  * @module zrender/core/bbox
  * @param {Array<Object>} points 顶点数组
  * @param {number} min
@@ -12741,7 +12741,7 @@ function fromLine(x0, y0, x1, y1, min$$1, max$$1) {
 var xDim = [];
 var yDim = [];
 /**
- * 从三阶贝塞尔曲线(p0, p1, p2, p3)中计算出最小包围盒，写入`min`和`max`中
+ * 从三阶贝塞尔曲线(p0, p1, p2, p3)中计算出最小包围盒,写入`min`和`max`中
  * @memberOf module:zrender/core/bbox
  * @param {number} x0
  * @param {number} y0
@@ -12790,7 +12790,7 @@ function fromCubic(
 }
 
 /**
- * 从二阶贝塞尔曲线(p0, p1, p2)中计算出最小包围盒，写入`min`和`max`中
+ * 从二阶贝塞尔曲线(p0, p1, p2)中计算出最小包围盒,写入`min`和`max`中
  * @memberOf module:zrender/core/bbox
  * @param {number} x0
  * @param {number} y0
@@ -12824,7 +12824,7 @@ function fromQuadratic(x0, y0, x1, y1, x2, y2, min$$1, max$$1) {
 }
 
 /**
- * 从圆弧中计算出最小包围盒，写入`min`和`max`中
+ * 从圆弧中计算出最小包围盒,写入`min`和`max`中
  * @method
  * @memberOf module:zrender/core/bbox
  * @param {number} x
@@ -12900,7 +12900,7 @@ function fromArc(
 }
 
 /**
- * Path 代理，可以在`buildPath`中用于替代`ctx`, 会保存每个path操作的命令到pathCommands属性中
+ * Path 代理,可以在`buildPath`中用于替代`ctx`, 会保存每个path操作的命令到pathCommands属性中
  * 可以用于 isInsidePath 判断以及获取boundingRect
  *
  * @module zrender/core/PathProxy
@@ -13038,8 +13038,8 @@ PathProxy.prototype = {
 
         // x0, y0, xi, yi 是记录在 _dashedXXXXTo 方法中使用
         // xi, yi 记录当前点, x0, y0 在 closePath 的时候回到起始点。
-        // 有可能在 beginPath 之后直接调用 lineTo，这时候 x0, y0 需要
-        // 在 lineTo 方法中记录，这里先不考虑这种情况，dashed line 也只在 IE10- 中不支持
+        // 有可能在 beginPath 之后直接调用 lineTo,这时候 x0, y0 需要
+        // 在 lineTo 方法中记录,这里先不考虑这种情况,dashed line 也只在 IE10- 中不支持
         this._x0 = x;
         this._y0 = y;
 
@@ -13167,7 +13167,7 @@ PathProxy.prototype = {
     },
 
     /**
-     * Context 从外部传入，因为有可能是 rebuildPath 完之后再 fill。
+     * Context 从外部传入,因为有可能是 rebuildPath 完之后再 fill。
      * stroke 同样
      * @param {CanvasRenderingContext2D} ctx
      * @return {module:zrender/core/PathProxy}
@@ -14586,7 +14586,7 @@ Path.prototype = {
 };
 
 /**
- * 扩展一个 Path element, 比如星形，圆等。
+ * 扩展一个 Path element, 比如星形,圆等。
  * Extend a path element
  * @param {Object} props
  * @param {string} props.type Path type
@@ -21569,7 +21569,7 @@ OptionManager.prototype = {
         rawOption = clone$3(rawOption, true);
 
         // FIXME
-        // 如果 timeline options 或者 media 中设置了某个属性，而baseOption中没有设置，则进行警告。
+        // 如果 timeline options 或者 media 中设置了某个属性,而baseOption中没有设置,则进行警告。
 
         var oldOptionBackup = this._optionBackup;
         var newParsedOption = parseRawOption.call(
@@ -21673,7 +21673,7 @@ OptionManager.prototype = {
         }
 
         // FIXME
-        // 是否mediaDefault应该强制用户设置，否则可能修改不能回归。
+        // 是否mediaDefault应该强制用户设置,否则可能修改不能回归。
         if (!indices.length && mediaDefault) {
             indices = [-1];
         }
@@ -24517,18 +24517,18 @@ var lang = {
     aria: {
         general: {
             withTitle: '这是一个关于“{title}”的图表。',
-            withoutTitle: '这是一个图表，'
+            withoutTitle: '这是一个图表,'
         },
         series: {
             single: {
                 prefix: '',
-                withName: '图表类型是{seriesType}，表示{seriesName}。',
+                withName: '图表类型是{seriesType},表示{seriesName}。',
                 withoutName: '图表类型是{seriesType}。'
             },
             multiple: {
                 prefix: '它由{seriesCount}个图表系列组成。',
-                withName: '第{seriesId}个系列是一个表示{seriesName}的{seriesType}，',
-                withoutName: '第{seriesId}个系列是一个{seriesType}，',
+                withName: '第{seriesId}个系列是一个表示{seriesName}的{seriesType},',
+                withoutName: '第{seriesId}个系列是一个{seriesType},',
                 separator: {
                     middle: '；',
                     end: '。'
@@ -24537,11 +24537,11 @@ var lang = {
         },
         data: {
             allData: '其数据是——',
-            partialData: '其中，前{displayCnt}项是——',
+            partialData: '其中,前{displayCnt}项是——',
             withName: '{name}的数据是{value}',
             withoutName: '{value}',
             separator: {
-                middle: '，',
+                middle: ',',
                 end: ''
             }
         }
@@ -33941,7 +33941,7 @@ function symbolPathSetColor(color, innerColor) {
             symbolStyle.fill = innerColor || '#fff';
         }
         else {
-            // FIXME 判断图形默认是填充还是描边，使用 onlyStroke ?
+            // FIXME 判断图形默认是填充还是描边,使用 onlyStroke ?
             symbolStyle.fill && (symbolStyle.fill = color);
             symbolStyle.stroke && (symbolStyle.stroke = color);
         }
@@ -40813,7 +40813,7 @@ var BaseBarSeries = SeriesModel.extend({
 
         // 最小高度改为0
         barMinHeight: 0,
-        // 最小角度为0，仅对极坐标系下的柱状图有效
+        // 最小角度为0,仅对极坐标系下的柱状图有效
         barMinAngle: 0,
         // cursor: null,
 
@@ -40825,9 +40825,9 @@ var BaseBarSeries = SeriesModel.extend({
         // barMaxWidth: null,
         // 默认自适应
         // barWidth: null,
-        // 柱间距离，默认为柱形宽度的30%，可设固定值
+        // 柱间距离,默认为柱形宽度的30%,可设固定值
         // barGap: '30%',
-        // 类目间柱形距离，默认为类目间距的20%，可设固定值
+        // 类目间柱形距离,默认为类目间距的20%,可设固定值
         // barCategoryGap: '20%',
         // label: {
         //      show: false
@@ -41669,9 +41669,9 @@ var PieSeries = extendSeriesModel({
 
         // If use strategy to avoid label overlapping
         avoidLabelOverlap: true,
-        // 选择模式，默认关闭，可选single，multiple
+        // 选择模式,默认关闭,可选single,multiple
         // selectedMode: false,
-        // 南丁格尔玫瑰图模式，'radius'（半径） | 'area'（面积）
+        // 南丁格尔玫瑰图模式,'radius'（半径） | 'area'（面积）
         // roseType: null,
 
         percentPrecision: 2,
@@ -41687,9 +41687,9 @@ var PieSeries = extendSeriesModel({
             show: true,
             // 'outer', 'inside', 'center'
             position: 'outer'
-            // formatter: 标签文本格式器，同Tooltip.formatter，不支持异步回调
-            // 默认使用全局文本样式，详见TEXTSTYLE
-            // distance: 当position为inner时有效，为label位置到圆心的距离与圆半径(环状图为内外半径和)的比例系数
+            // formatter: 标签文本格式器,同Tooltip.formatter,不支持异步回调
+            // 默认使用全局文本样式,详见TEXTSTYLE
+            // distance: 当position为inner时有效,为label位置到圆心的距离与圆半径(环状图为内外半径和)的比例系数
         },
         // Enabled when label.normal.position is 'outer'
         labelLine: {
@@ -42343,11 +42343,11 @@ function adjustSingleSide(list, cx, cy, r, dir, viewWidth, viewHeight) {
                     )
                 : Math.abs(list[i].x - cx);
             if (isDownList && deltaX >= lastDeltaX) {
-                // 右下，左下
+                // 右下,左下
                 deltaX = lastDeltaX - 10;
             }
             if (!isDownList && deltaX <= lastDeltaX) {
-                // 右上，左上
+                // 右上,左上
                 deltaX = lastDeltaX + 10;
             }
 
@@ -42817,7 +42817,7 @@ SeriesModel.extend({
         // geoIndex: 0,
 
         // symbol: null,        // 图形类型
-        symbolSize: 10,          // 图形大小，半宽（半径）参数，当图形为方向或菱形则总宽度为symbolSize * 2
+        symbolSize: 10,          // 图形大小,半宽（半径）参数,当图形为方向或菱形则总宽度为symbolSize * 2
         // symbolRotate: null,  // 图形旋转控制
 
         large: false,
@@ -42828,10 +42828,10 @@ SeriesModel.extend({
         // label: {
             // show: false
             // distance: 5,
-            // formatter: 标签文本格式器，同Tooltip.formatter，不支持异步回调
-            // position: 默认自适应，水平布局为'top'，垂直布局为'right'，可选为
+            // formatter: 标签文本格式器,同Tooltip.formatter,不支持异步回调
+            // position: 默认自适应,水平布局为'top',垂直布局为'right',可选为
             //           'inside'|'left'|'right'|'top'|'bottom'
-            // 默认使用全局文本样式，详见TEXTSTYLE
+            // 默认使用全局文本样式,详见TEXTSTYLE
         // },
         itemStyle: {
             opacity: 0.8
@@ -45823,16 +45823,16 @@ var MapSeries = SeriesModel.extend({
         // layoutSize: 100
 
 
-        // 数值合并方式，默认加和，可选为：
+        // 数值合并方式,默认加和,可选为：
         // 'sum' | 'average' | 'max' | 'min'
         // mapValueCalculation: 'sum',
         // 地图数值计算结果小数精度
         // mapValuePrecision: 0,
 
 
-        // 显示图例颜色标识（系列标识的小圆点），图例开启时有效
+        // 显示图例颜色标识（系列标识的小圆点）,图例开启时有效
         showLegendSymbol: true,
-        // 选择模式，默认关闭，可选single，multiple
+        // 选择模式,默认关闭,可选single,multiple
         // selectedMode: false,
         dataRangeHoverLink: true,
         // 是否开启缩放及漫游模式
@@ -50111,7 +50111,7 @@ extendChartView({
         var containerGroup = this._containerGroup;
         if (!containerGroup) {
             // FIXME
-            // 加一层containerGroup是为了clip，但是现在clip功能并没有实现。
+            // 加一层containerGroup是为了clip,但是现在clip功能并没有实现。
             containerGroup = this._containerGroup = new Group$2();
             this._initEvents(containerGroup);
             this.group.add(containerGroup);
@@ -51947,7 +51947,7 @@ var treemapLayout = {
         seriesModel.setLayoutInfo(layoutInfo);
 
         // FIXME
-        // 现在没有clip功能，暂时取ec高宽。
+        // 现在没有clip功能,暂时取ec高宽。
         prunning(
             treeRoot,
             // Transform to base element coordinate system.
@@ -52865,13 +52865,13 @@ Node.prototype = {
 function Edge(n1, n2, dataIndex) {
 
     /**
-     * 节点1，如果是有向图则为源节点
+     * 节点1,如果是有向图则为源节点
      * @type {module:echarts/data/Graph.Node}
      */
     this.node1 = n1;
 
     /**
-     * 节点2，如果是有向图则为目标节点
+     * 节点2,如果是有向图则为目标节点
      * @type {module:echarts/data/Graph.Node}
      */
     this.node2 = n2;
@@ -54006,7 +54006,7 @@ function intersectCurveCircle(curvePoints, center, radius) {
         }
     }
 
-    // Assume the segment is monotone，Find root through Bisection method
+    // Assume the segment is monotone,Find root through Bisection method
     // At most 32 iteration
     for (var i = 0; i < 32; i++) {
         // var prev = t - interval;
@@ -55483,11 +55483,11 @@ var GaugeSeries = SeriesModel.extend({
         min: 0,
         // 最大值
         max: 100,
-        // 分割段数，默认为10
+        // 分割段数,默认为10
         splitNumber: 10,
         // 坐标轴线
         axisLine: {
-            // 默认显示，属性show控制显示与否
+            // 默认显示,属性show控制显示与否
             show: true,
             lineStyle: {       // 属性lineStyle控制线条样式
                 color: [[0.2, '#91c7ae'], [0.8, '#63869e'], [1, '#c23531']],
@@ -55496,7 +55496,7 @@ var GaugeSeries = SeriesModel.extend({
         },
         // 分隔线
         splitLine: {
-            // 默认显示，属性show控制显示与否
+            // 默认显示,属性show控制显示与否
             show: true,
             // 属性length控制线长
             length: 30,
@@ -55509,7 +55509,7 @@ var GaugeSeries = SeriesModel.extend({
         },
         // 坐标轴小标记
         axisTick: {
-            // 属性show控制显示与否，默认不显示
+            // 属性show控制显示与否,默认不显示
             show: true,
             // 每份split细分多少段
             splitNumber: 5,
@@ -55538,9 +55538,9 @@ var GaugeSeries = SeriesModel.extend({
         },
         title: {
             show: true,
-            // x, y，单位px
+            // x, y,单位px
             offsetCenter: [0, '-40%'],
-            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+            // 其余属性默认使用全局文本样式,详见TEXTSTYLE
             color: '#333',
             fontSize: 15
         },
@@ -55552,10 +55552,10 @@ var GaugeSeries = SeriesModel.extend({
             width: 100,
             height: null, // self-adaption
             padding: [5, 10],
-            // x, y，单位px
+            // x, y,单位px
             offsetCenter: [0, '40%'],
             // formatter: null,
-            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+            // 其余属性默认使用全局文本样式,详见TEXTSTYLE
             color: 'auto',
             fontSize: 30
         }
@@ -56153,7 +56153,7 @@ var FunnelSeries = extendSeriesModel({
         label: {
             show: true,
             position: 'outer'
-            // formatter: 标签文本格式器，同Tooltip.formatter，不支持异步回调
+            // formatter: 标签文本格式器,同Tooltip.formatter,不支持异步回调
         },
         labelLine: {
             show: true,
@@ -62471,7 +62471,7 @@ SeriesModel.extend({
         // geoIndex: 0,
 
         // symbol: null,        // 图形类型
-        symbolSize: 10          // 图形大小，半宽（半径）参数，当图形为方向或菱形则总宽度为symbolSize * 2
+        symbolSize: 10          // 图形大小,半宽（半径）参数,当图形为方向或菱形则总宽度为symbolSize * 2
         // symbolRotate: null,  // 图形旋转控制
 
         // large: false,
@@ -63122,7 +63122,7 @@ var LinesSeries = SeriesModel.extend({
             show: false,
             position: 'end'
             // distance: 5,
-            // formatter: 标签文本格式器，同Tooltip.formatter，不支持异步回调
+            // formatter: 标签文本格式器,同Tooltip.formatter,不支持异步回调
         },
 
         lineStyle: {
@@ -71878,7 +71878,7 @@ var LegendModel = extendComponentModel({
         z: 4,
         show: true,
 
-        // 布局方式，默认为水平布局，可选为：
+        // 布局方式,默认为水平布局,可选为：
         // 'horizontal' | 'vertical'
         orient: 'horizontal',
 
@@ -71897,13 +71897,13 @@ var LegendModel = extendComponentModel({
         // 图例边框颜色
         borderColor: '#ccc',
         borderRadius: 0,
-        // 图例边框线宽，单位px，默认为0（无边框）
+        // 图例边框线宽,单位px,默认为0（无边框）
         borderWidth: 0,
-        // 图例内边距，单位px，默认各方向内边距为5，
-        // 接受数组分别设定上右下左边距，同css
+        // 图例内边距,单位px,默认各方向内边距为5,
+        // 接受数组分别设定上右下左边距,同css
         padding: 5,
-        // 各个item之间的间隔，单位px，默认为10，
-        // 横向布局时为水平间隔，纵向布局时为纵向间隔
+        // 各个item之间的间隔,单位px,默认为10,
+        // 横向布局时为水平间隔,纵向布局时为纵向间隔
         itemGap: 10,
         // 图例图形宽度
         itemWidth: 25,
@@ -71918,11 +71918,11 @@ var LegendModel = extendComponentModel({
             color: '#333'
         },
         // formatter: '',
-        // 选择模式，默认开启图例开关
+        // 选择模式,默认开启图例开关
         selectedMode: true,
-        // 配置默认选中状态，可配合LEGEND.SELECTED事件做动态数据载入
+        // 配置默认选中状态,可配合LEGEND.SELECTED事件做动态数据载入
         // selected: null,
-        // 图例内容（详见legend.data，数组中每一项代表一个item
+        // 图例内容（详见legend.data,数组中每一项代表一个item
         // data: [],
 
         // Tooltip 相关配置
@@ -73165,42 +73165,42 @@ extendComponentModel({
 
         showDelay: 0,
 
-        // 隐藏延迟，单位ms
+        // 隐藏延迟,单位ms
         hideDelay: 100,
 
-        // 动画变换时间，单位s
+        // 动画变换时间,单位s
         transitionDuration: 0.4,
 
         enterable: false,
 
-        // 提示背景颜色，默认为透明度为0.7的黑色
+        // 提示背景颜色,默认为透明度为0.7的黑色
         backgroundColor: 'rgba(50,50,50,0.7)',
 
         // 提示边框颜色
         borderColor: '#333',
 
-        // 提示边框圆角，单位px，默认为4
+        // 提示边框圆角,单位px,默认为4
         borderRadius: 4,
 
-        // 提示边框线宽，单位px，默认为0（无边框）
+        // 提示边框线宽,单位px,默认为0（无边框）
         borderWidth: 0,
 
-        // 提示内边距，单位px，默认各方向内边距为5，
-        // 接受数组分别设定上右下左边距，同css
+        // 提示内边距,单位px,默认各方向内边距为5,
+        // 接受数组分别设定上右下左边距,同css
         padding: 5,
 
         // Extra css text
         extraCssText: '',
 
-        // 坐标轴指示器，坐标轴触发有效
+        // 坐标轴指示器,坐标轴触发有效
         axisPointer: {
             // 默认为直线
             // 可选为：'line' | 'shadow' | 'cross'
             type: 'line',
 
-            // type 为 line 的时候有效，指定 tooltip line 所在的轴，可选
+            // type 为 line 的时候有效,指定 tooltip line 所在的轴,可选
             // 可选 'x' | 'y' | 'angle' | 'radius' | 'auto'
-            // 默认 'auto'，会选择类型为 category 的轴，对于双数值轴，笛卡尔坐标系会默认选择 x 轴
+            // 默认 'auto',会选择类型为 category 的轴,对于双数值轴,笛卡尔坐标系会默认选择 x 轴
             // 极坐标系会默认选择 angle 轴
             axis: 'auto',
 
@@ -79452,10 +79452,10 @@ extendComponentModel({
         subtarget: 'blank',
 
         // 'center' ¦ 'left' ¦ 'right'
-        // ¦ {number}（x坐标，单位px）
+        // ¦ {number}（x坐标,单位px）
         left: 0,
         // 'top' ¦ 'bottom' ¦ 'center'
-        // ¦ {number}（y坐标，单位px）
+        // ¦ {number}（y坐标,单位px）
         top: 0,
 
         // 水平对齐
@@ -79473,14 +79473,14 @@ extendComponentModel({
         // 标题边框颜色
         borderColor: '#ccc',
 
-        // 标题边框线宽，单位px，默认为0（无边框）
+        // 标题边框线宽,单位px,默认为0（无边框）
         borderWidth: 0,
 
-        // 标题内边距，单位px，默认各方向内边距为5，
-        // 接受数组分别设定上右下左边距，同css
+        // 标题内边距,单位px,默认各方向内边距为5,
+        // 接受数组分别设定上右下左边距,同css
         padding: 5,
 
-        // 主副标题纵向间隔，单位px，默认为10，
+        // 主副标题纵向间隔,单位px,默认为10,
         itemGap: 10,
         textStyle: {
             fontSize: 18,
@@ -80603,8 +80603,8 @@ var DataZoomModel = extendComponentModel({
 
         if (autoAxisIndex) {
             // FIXME
-            // 这里是兼容ec2的写法（没指定xAxisIndex和yAxisIndex时把scatter和双数值轴折柱纳入dataZoom控制），
-            // 但是实际是否需要Grid.js#getScaleByOption来判断（考虑time，log等axis type）？
+            // 这里是兼容ec2的写法（没指定xAxisIndex和yAxisIndex时把scatter和双数值轴折柱纳入dataZoom控制）,
+            // 但是实际是否需要Grid.js#getScaleByOption来判断（考虑time,log等axis type）？
 
             // If both dataZoom.xAxisIndex and dataZoom.yAxisIndex is not specified,
             // dataZoom component auto adopts series that reference to
@@ -81663,7 +81663,7 @@ var SliderZoomView = DataZoomView.extend({
         var labelTexts = ['', ''];
 
         // FIXME
-        // date型，支持formatter，autoformatter（ec2 date.getAutoFormatter）
+        // date型,支持formatter,autoformatter（ec2 date.getAutoFormatter）
         if (dataZoomModel.get('showDetail')) {
             var axisProxy = dataZoomModel.findRepresentativeAxisProxy();
 
@@ -81850,7 +81850,7 @@ var SliderZoomView = DataZoomView.extend({
 
 function getOtherDim(thisDim) {
     // FIXME
-    // 这个逻辑和getOtherAxis里一致，但是写在这里是否不好
+    // 这个逻辑和getOtherAxis里一致,但是写在这里是否不好
     var map$$1 = {x: 'y', y: 'x', radius: 'angle', angle: 'radius'};
     return map$$1[thisDim];
 }
@@ -82923,15 +82923,15 @@ var VisualMapModel = extendComponentModel({
         borderColor: '#ccc',       // 值域边框颜色
         contentColor: '#5793f3',
         inactiveColor: '#aaa',
-        borderWidth: 0,            // 值域边框线宽，单位px，默认为0（无边框）
-        padding: 5,                // 值域内边距，单位px，默认各方向内边距为5，
-                                    // 接受数组分别设定上右下左边距，同css
+        borderWidth: 0,            // 值域边框线宽,单位px,默认为0（无边框）
+        padding: 5,                // 值域内边距,单位px,默认各方向内边距为5,
+                                    // 接受数组分别设定上右下左边距,同css
         textGap: 10,               //
-        precision: 0,              // 小数精度，默认为0，无小数点
-        color: null,               //颜色（deprecated，兼容ec2，顺序同pieces，不同于inRange/outOfRange）
+        precision: 0,              // 小数精度,默认为0,无小数点
+        color: null,               //颜色（deprecated,兼容ec2,顺序同pieces,不同于inRange/outOfRange）
 
         formatter: null,
-        text: null,                // 文本，如['高', '低']，兼容ec2，text[0]对应高值，text[1]对应低值
+        text: null,                // 文本,如['高', '低'],兼容ec2,text[0]对应高值,text[1]对应低值
         textStyle: {
             color: '#333'          // 值域文字颜色
         }
@@ -85208,7 +85208,7 @@ var resetMethods = {
     categories: function () {
         var thisOption = this.option;
         each$1(thisOption.categories, function (cate) {
-            // FIXME category模式也使用pieceList，但在visualMapping中不是使用pieceList。
+            // FIXME category模式也使用pieceList,但在visualMapping中不是使用pieceList。
             // 是否改一致。
             this._pieceList.push({
                 text: this.formatValueText(cate, true),
@@ -86165,7 +86165,7 @@ MarkerView.extend({
             var itemModel = mpData.getItemModel(idx);
             var symbolSize = itemModel.getShallow('symbolSize');
             if (typeof symbolSize === 'function') {
-                // FIXME 这里不兼容 ECharts 2.x，2.x 貌似参数是整个数据？
+                // FIXME 这里不兼容 ECharts 2.x,2.x 貌似参数是整个数据？
                 symbolSize = symbolSize(
                     mpModel.getRawValue(idx), mpModel.getDataParams(idx)
                 );
@@ -87357,7 +87357,7 @@ var TimelineModel = ComponentModel.extend({
         z: 4,                       // 二级层叠
         show: true,
 
-        axisType: 'time',  // 模式是时间类型，支持 value, category
+        axisType: 'time',  // 模式是时间类型,支持 value, category
 
         realtime: true,
 
@@ -87373,7 +87373,7 @@ var TimelineModel = ComponentModel.extend({
         autoPlay: false,
         rewind: false,                     // 反向播放
         loop: true,
-        playInterval: 2000,                // 播放时间间隔，单位ms
+        playInterval: 2000,                // 播放时间间隔,单位ms
 
         currentIndex: 0,
 
@@ -87549,7 +87549,7 @@ var SliderTimelineModel = TimelineModel.extend({
 
         backgroundColor: 'rgba(0,0,0,0)',   // 时间轴背景颜色
         borderColor: '#ccc',               // 时间轴边框颜色
-        borderWidth: 0,                    // 时间轴边框线宽，单位px，默认为0（无边框）
+        borderWidth: 0,                    // 时间轴边框线宽,单位px,默认为0（无边框）
 
         orient: 'horizontal',              // 'vertical'
         inverse: false,
@@ -87575,7 +87575,7 @@ var SliderTimelineModel = TimelineModel.extend({
             interval: 'auto',
             rotate: 0,
             // formatter: null,
-            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+            // 其余属性默认使用全局文本样式,详见TEXTSTYLE
             color: '#304654'
         },
         itemStyle: {
@@ -87615,7 +87615,7 @@ var SliderTimelineModel = TimelineModel.extend({
         emphasis: {
             label: {
                 show: true,
-                // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                // 其余属性默认使用全局文本样式,详见TEXTSTYLE
                 color: '#c23531'
             },
 
@@ -90674,7 +90674,7 @@ if (!env$1.canvasSupported) {
      * IMAGE
      **************************************************/
     var isImage = function (img) {
-        // FIXME img instanceof Image 如果 img 是一个字符串的时候，IE8 下会报错
+        // FIXME img instanceof Image 如果 img 是一个字符串的时候,IE8 下会报错
         return (typeof img === 'object') && img.tagName && img.tagName.toUpperCase() === 'IMG';
         // return img instanceof Image;
     };

@@ -31,7 +31,7 @@ public class Exceptions {
 	}
 
 	/**
-	 * 获取组合本异常信息与底层异常信息的异常描述, 适用于本异常为统一包装异常类，底层异常才是根本原因的情况。
+	 * 获取组合本异常信息与底层异常信息的异常描述, 适用于本异常为统一包装异常类,底层异常才是根本原因的情况。
 	 */
 	public static String getErrorMessageWithNestedException(Throwable ex) {
 		Throwable nestedException = ex.getCause();

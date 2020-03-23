@@ -19,7 +19,7 @@ import Remote.Utils.PropsUtils;
 public class RegisterCenterInvoker implements IRegisterCenterInvoker {
 
     private static final Properties CONFIG_PROPS = PropsUtils.loadProps("RPC.properties");
-    //服务提供者列表：key ：服务提供者接口，value:服务提供者服务方法列表
+    //服务提供者列表：key ：服务提供者接口,value:服务提供者服务方法列表
     @SuppressWarnings("unused")
 	private static final Map<String, List<ProviderService>> providerServiceMap
             = new ConcurrentHashMap<String, List<ProviderService>>();
@@ -192,7 +192,7 @@ public class RegisterCenterInvoker implements IRegisterCenterInvoker {
             if (currentProviders == null) {
                 currentProviders = new ArrayList<ProviderService>();
             }
-            //需要全部遍历，因为一台机器可能提供多个服务
+            //需要全部遍历,因为一台机器可能提供多个服务
             for (ProviderService providerService : providerServices) {
                 if (ipList.contains(providerService.getIp())) {
                     currentProviders.add(providerService);
@@ -202,7 +202,7 @@ public class RegisterCenterInvoker implements IRegisterCenterInvoker {
         }
 
         //hashMap 函数此时每个对用的serviceName已经对用当前的新服务提供者列表
-        //服务名相同，当前currentProviders会覆盖原键对应得值
+        //服务名相同,当前currentProviders会覆盖原键对应得值
         serviceMetaDataMapConsume.putAll(currentServiceMetaDataMap);
        /* Set<String> keys = serviceMetaDataMapConsume.keySet();
 

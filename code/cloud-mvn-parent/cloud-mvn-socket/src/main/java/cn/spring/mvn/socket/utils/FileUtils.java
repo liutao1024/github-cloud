@@ -36,7 +36,7 @@ public class FileUtils {
 
 	/**
 	 * 批量重命名
-	 * @param formatter 重命名格式，xxx %s xxx，其中%s为原有名称
+	 * @param formatter 重命名格式,xxx %s xxx,其中%s为原有名称
      */
 	public static void batchRename(String dirPath, String formatter) {
 		for (File file : getAllFiles(dirPath)) {
@@ -116,7 +116,7 @@ public class FileUtils {
 			fo = new FileOutputStream(tarFile);
 			in = fi.getChannel();// 得到对应的文件通道
 			out = fo.getChannel();// 得到对应的文件通道
-			// 连接两个通道，并且从in通道读取，然后写入out通道
+			// 连接两个通道,并且从in通道读取,然后写入out通道
 			in.transferTo(0, in.size(), out);
 		} catch (IOException e) {
 			e.printStackTrace();

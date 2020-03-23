@@ -22,7 +22,7 @@ public class SifSysAuth implements Serializable{
 	 */
 	private static final long serialVersionUID = -8649650515962190250L;
 
-	//实现Comparable接口，从而可以进行按照sortNo排序
+	//实现Comparable接口,从而可以进行按照sortNo排序
 
 	@Id
 	@Column(name = "register_cd")

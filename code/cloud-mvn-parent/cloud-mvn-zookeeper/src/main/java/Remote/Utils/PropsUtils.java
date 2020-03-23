@@ -93,7 +93,7 @@ public class PropsUtils {
      }
 
     /**
-     * 获取boolean型属性值，默认为false
+     * 获取boolean型属性值,默认为false
      * @param properties
      * @param key
      * @return

@@ -13,7 +13,7 @@ import Remote.Utils.PropsUtils;
 @SuppressWarnings("unused")
 public class RegisterCenterProvider implements IRegisterCenterProvider {
 
-    //服务提供者列表：key ：服务提供者接口，value:服务提供者服务方法列表
+    //服务提供者列表：key ：服务提供者接口,value:服务提供者服务方法列表
 	private static final Map<String, List<ProviderService>> providerServiceMap
             = new ConcurrentHashMap<String, List<ProviderService>>();
     public static final Map<String, List<ProviderService>> serviceMetaDataMapConsume

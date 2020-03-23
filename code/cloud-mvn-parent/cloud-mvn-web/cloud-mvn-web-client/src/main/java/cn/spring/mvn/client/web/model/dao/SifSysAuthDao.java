@@ -66,7 +66,7 @@ public interface SifSysAuthDao {
 	
 	public Specification<SifSysAuth> getSpecification(final SifSysAuth tmp);
 	/**
-	 * 根据模版查询实体，无排序
+	 * 根据模版查询实体,无排序
 	 * @param tmp 模版对象
 	 * @return 查询到的实体对象集合
 	 */

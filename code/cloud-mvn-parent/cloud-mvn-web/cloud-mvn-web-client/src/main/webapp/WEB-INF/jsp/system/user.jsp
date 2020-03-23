@@ -4,7 +4,7 @@
 <div class="col-md-12">
 	<!-- <div class="note note-danger note-bordered">
 		<p>
-			 INFO:这是一个前端demo，数据取自json文件
+			 INFO:这是一个前端demo,数据取自json文件
 		</p>
 	</div> -->
 	<!-- Begin: life time stats -->
@@ -76,7 +76,7 @@
 							<div class="form-body">
 								<div class="alert alert-danger display-hide">
 									<button class="close" data-close="alert"></button>
-									输入有误，请检查下面表单！返回信息 ：<span class="msg"></span>
+									输入有误,请检查下面表单！返回信息 ：<span class="msg"></span>
 								</div>
 								<div class="alert alert-success display-hide">
 									<button class="close" data-close="alert"></button>

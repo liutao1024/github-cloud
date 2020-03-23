@@ -106,13 +106,13 @@ public class SifSysRoleServiceImpl implements SifSysRoleService {
 
 	@Override
 	public List<SifSysUser> querySysUsersByPrimaryKey(SifSysRolePk id) {
-		//1.检查系统角色的Id是否有效，即是否存在记录
+		//1.检查系统角色的Id是否有效,即是否存在记录
 		if(!sifSysRoleDao.exists(id)){
-			//不存在，则无需继续查询
+			//不存在,则无需继续查询
 			return Collections.emptyList();
 		}
 		
-		//2.查询“系统角色操作员配置”表，获取操作员编号列表
+		//2.查询“系统角色操作员配置”表,获取操作员编号列表
 		SifSysRoleUser tmp = new SifSysRoleUser();
 		tmp.setRegisterCd(id.getRegisterCd());
 		tmp.setAuthType(id.getAuthType());

@@ -50,7 +50,7 @@ public class RPCInvokerHoler {
         short module = request.getModule();
         InfoRequest infoRequest = hessianSerializer.deserialize(request.getData(), InfoRequest.class);
         //providerService 中有接口信息 接口 方法 为此 可以通过接口信息 进行收取
-        //但在 收取时，服务方需要将所有 这样类进行注册 然后从中获取
+        //但在 收取时,服务方需要将所有 这样类进行注册 然后从中获取
         ProviderService providerService = infoRequest.getProviderService();
         Object[] args = infoRequest.getArgs();
         //服务名

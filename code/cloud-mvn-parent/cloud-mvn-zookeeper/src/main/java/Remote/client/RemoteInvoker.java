@@ -67,7 +67,7 @@ public class RemoteInvoker implements InvocationHandler {
 
         ProviderService providerService = getProviderService();
         if (providerService == null) {
-            throw new RuntimeException("非法异常，选择的策略不合理或没有该服务");
+            throw new RuntimeException("非法异常,选择的策略不合理或没有该服务");
         }
 
         Request request = getRequest(providerService, method);
@@ -218,7 +218,7 @@ public class RemoteInvoker implements InvocationHandler {
         }
 */
         private RemotingTransporter bulidLoginReq() {
-            //握手验证，model和byte并没有用到
+            //握手验证,model和byte并没有用到
             RemotingTransporter remotingTransporter = RemotingTransporter.createRequestTransporter((short) 1, 3);
             remotingTransporter.setTransporterType(LINProtocol.LOGIN_REQUEST);
             return remotingTransporter;

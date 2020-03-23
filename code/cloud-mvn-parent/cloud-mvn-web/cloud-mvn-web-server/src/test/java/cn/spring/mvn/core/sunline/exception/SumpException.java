@@ -1,7 +1,7 @@
 package cn.spring.mvn.core.sunline.exception;
 
 /**
- * 自定义异常，继承不检查异常类，实现优雅异常
+ * 自定义异常,继承不检查异常类,实现优雅异常
  * @author Cuijia
  *
  */

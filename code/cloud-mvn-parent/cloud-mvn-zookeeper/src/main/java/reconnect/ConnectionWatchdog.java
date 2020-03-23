@@ -42,7 +42,7 @@ public abstract class ConnectionWatchdog extends ChannelInboundHandlerAdapter im
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("链路关闭");
         if (reconnect) {
-            System.out.println("链路关闭，将进行重连");
+            System.out.println("链路关闭,将进行重连");
             System.out.println(attempts);
             if (attempts < 12) {
                 attempts++;

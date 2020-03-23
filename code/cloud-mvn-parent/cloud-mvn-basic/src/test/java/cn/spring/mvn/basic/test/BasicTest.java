@@ -564,9 +564,9 @@ class postfix {
                     postfixStack.push(current);
                 }
                 /**
-                 * 如果括号已经全部处理，而且当前字符不是括号，
-                 * 后缀运算符栈顶不是括号，并且栈顶运算符优先度小于当前运算符优先度，
-                 * 将当前遍历运算符后边的数字放入后缀数组中，再将当前运算符放入后缀数组中。
+                 * 如果括号已经全部处理,而且当前字符不是括号,
+                 * 后缀运算符栈顶不是括号,并且栈顶运算符优先度小于当前运算符优先度,
+                 * 将当前遍历运算符后边的数字放入后缀数组中,再将当前运算符放入后缀数组中。
                  */
                 else if (bracket == 0 && !isBracket(current) &&
                         !isBracket(postfixStack.peek()) &&
@@ -577,7 +577,7 @@ class postfix {
                 }
                 /**
                  * 同理 栈顶运算符优先度大于等于当前运算符优先度,
-                 * 将栈顶运算符放入后缀数组中，再将当前遍历的运算符放入栈中
+                 * 将栈顶运算符放入后缀数组中,再将当前遍历的运算符放入栈中
                  */
                 else if (bracket == 0 && !isBracket(current) &&
                         !isBracket(postfixStack.peek()) &&
@@ -586,9 +586,9 @@ class postfix {
                     postfixStack.push(current);
                 }
                 else {
-                    if (current.equals("(")) bracket++; // 若遇到左括号，bracket加1
+                    if (current.equals("(")) bracket++; // 若遇到左括号,bracket加1
                     postfixStack.push(current);
-                    if (postfixStack.peek().equals(")")){ //遇到右括号，bracket减1，同时将栈中括号间的运算符出栈
+                    if (postfixStack.peek().equals(")")){ //遇到右括号,bracket减1,同时将栈中括号间的运算符出栈
                         bracket--;
                         postfixStack.pop();
                         while (!postfixStack.peek().equals("(")){
@@ -607,11 +607,11 @@ class postfix {
         Stack<Double> computeStack = new Stack<Double>();
         for (int i = 0; i < postfix.length && postfix[i] != null; i++) {
             String current = postfix[i];
-            //当前字符为数字，则入栈
+            //当前字符为数字,则入栈
             if (current.charAt(0) >= '0' && current.charAt(0) <= '9'){
                 computeStack.push(todouble(current));
             }
-            //当前字符为运算符，从栈顶取出两个数字运算出结果，并放入栈中
+            //当前字符为运算符,从栈顶取出两个数字运算出结果,并放入栈中
             else {
                 switch (current){
                     case "+": result = computeStack.pop() + computeStack.pop();

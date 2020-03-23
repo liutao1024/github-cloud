@@ -1195,7 +1195,7 @@ $.format = $.validator.format;
 })(jQuery);
 
 ;(function($) {
-	//精度判断，即小数点后面有几位
+	//精度判断,即小数点后面有几位
 	$.validator.addMethod(
 		"precision", 
 		function(value, element, param) {
@@ -1220,7 +1220,7 @@ $.format = $.validator.format;
 		}, 
 		$.validator.format("小数位数不能超过{0}")
 	);
-	//介于两个值中间，包含边界值
+	//介于两个值中间,包含边界值
 	$.validator.addMethod(
 		"between", 
 		function(value, element, param) {
@@ -1347,7 +1347,7 @@ $.format = $.validator.format;
 		}, 
 		$.validator.format("长度最多是{0}")
 	);
-	// 固定长度，中文字三个字节
+	// 固定长度,中文字三个字节
 	$.validator.addMethod(
 		"ufixedlength", 
 		function(value, element, param) {
@@ -1381,7 +1381,7 @@ $.format = $.validator.format;
 				  return false;
 			  }
 			  //alert(d1.getFullYear() +"-"+ parseFloat(value.substr(0, 4)) +";"+d1.getMonth() +"-"+ parseFloat(value.substr(4, 2)) +";"+ d1.getDate() +"-"+ parseFloat(value.substr(6, 2)));
-			  //即使mm、dd部分不合法，比如超出范围，仍然可以正常构造对象，javascript会直接进位处理，因此需要额外比对处理前和处理后的日期是否一致
+			  //即使mm、dd部分不合法,比如超出范围,仍然可以正常构造对象,javascript会直接进位处理,因此需要额外比对处理前和处理后的日期是否一致
 			  if (d1.getFullYear() != parseFloat(value.substr(0, 4)) || (d1.getMonth()+1) != parseFloat(value.substr(4, 2)) || d1.getDate() != parseFloat(value.substr(6, 2))) {
 				  return false;
 			  }
@@ -1414,7 +1414,7 @@ $.format = $.validator.format;
 		}, 
 		$.validator.format("身份证号码不合法")
 	);
-	//金额验证（最多两位小数），大于0
+	//金额验证（最多两位小数）,大于0
 	$.validator.addMethod(
 		"money_gt0", 
 		function(value, element, param) {
@@ -1422,7 +1422,7 @@ $.format = $.validator.format;
 		}, 
 		$.validator.format("请输入大于0的金额")
 	);
-	//金额验证（最多两位小数），大于等于0
+	//金额验证（最多两位小数）,大于等于0
 	$.validator.addMethod(
 		"money_gteq0", 
 		function(value, element, param) {
@@ -1430,7 +1430,7 @@ $.format = $.validator.format;
 		}, 
 		$.validator.format("请输入大于等于0的金额（最多两位小数）")
 	);
-	//金额验证（最多两位小数），正负0
+	//金额验证（最多两位小数）,正负0
 	$.validator.addMethod(
 		"money", 
 		function(value, element, param) {

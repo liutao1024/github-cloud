@@ -278,7 +278,7 @@ var Custinfo = function(){
 	        	},
 	        	function(redata){
 	        		console.info(redata);
-	        		bootbox.alert("交易异常，请检查网络设置或重新登录"); 
+	        		bootbox.alert("交易异常,请检查网络设置或重新登录"); 
 	        	},
 	        	"json",
 	        	false); 

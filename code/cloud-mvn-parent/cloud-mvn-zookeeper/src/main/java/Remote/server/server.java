@@ -113,7 +113,7 @@ public class server {
 
         private Map<String, Boolean> nodeCheck = new ConcurrentHashMap<String, Boolean>();
 
-        //允许通过的ip名单，可通过配置文件配置
+        //允许通过的ip名单,可通过配置文件配置
         private String[] whiteList = {"127.0.0.1", "192.168.1.104"};
 
         @Override
@@ -124,13 +124,13 @@ public class server {
                 String nodeIndex = ctx.channel().remoteAddress().toString();
                 RemotingTransporter login = null;
                 if (nodeCheck.containsKey(nodeIndex)) {
-                    //该ip已经登录，拒绝
+                    //该ip已经登录,拒绝
                     login = buildResponde(transporter.getOpaque(), -1);
                 } else {
                     InetSocketAddress address = (InetSocketAddress) ctx.channel().remoteAddress();
                     String ip = address.getAddress().getHostAddress();
                     boolean isOk = false;
-                    //当whiteList长度很大时，考虑使用hashMap存储
+                    //当whiteList长度很大时,考虑使用hashMap存储
                     for (String WIP : whiteList) {
                         if (WIP.equals(ip)) {
                             isOk = true;
@@ -138,7 +138,7 @@ public class server {
                         }
                     }
                     login = isOk ? buildResponde(transporter.getOpaque(), (byte) 0) : buildResponde(transporter.getOpaque(), (byte) -1);
-                    System.out.println("登录成功，位于server 131行");
+                    System.out.println("登录成功,位于server 131行");
                     ctx.writeAndFlush(login);
                 }
 
@@ -156,7 +156,7 @@ public class server {
         }
 
         /**
-         * 异常关闭需要移除，以便后续登录
+         * 异常关闭需要移除,以便后续登录
          *
          * @param ctx
          * @param cause

@@ -138,7 +138,7 @@ public class SifSysAuthServiceImpl implements SifSysAuthService {
 		SifSysAuthPk id = new SifSysAuthPk(entity.getRegisterCd(), entity.getAuthType(), entity.getAuthCd());
 		
 		if(!sifSysAuthDao.exists(id)){
-			//不存在，返回空列表
+			//不存在,返回空列表
 			return Collections.emptyList();
 		}
 		

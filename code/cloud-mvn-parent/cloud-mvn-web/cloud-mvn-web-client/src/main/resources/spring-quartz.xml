@@ -41,7 +41,7 @@
   	-->
 
   	
-  	<!-- D.Quartz的调度工厂，调度工厂只能有一个，多个调度任务在list中添加 -->  
+  	<!-- D.Quartz的调度工厂,调度工厂只能有一个,多个调度任务在list中添加 -->  
   	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
     	<property name="triggers">  
       		<list>  

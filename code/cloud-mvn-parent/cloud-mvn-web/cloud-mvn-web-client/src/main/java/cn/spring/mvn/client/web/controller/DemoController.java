@@ -36,7 +36,7 @@ public class DemoController {
 			throws IOException {
 		response.setCharacterEncoding("UTF=8");
 		response.setContentType("text/html;charset=UTF-8");
-		// 使用request对象的getSession()获取session，如果session不存在则创建一个
+		// 使用request对象的getSession()获取session,如果session不存在则创建一个
 		HttpSession session = request.getSession();
 		session.setAttribute("data", "测试session");
 		String sid = session.getId();
