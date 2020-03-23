@@ -17,7 +17,7 @@ public class CoreCreditEntityServiceImpl implements CoreCreditEntityService{
 	private CoreCreditEntityDao dao;
 	@Override
 	public List<CoreCreditEntity> selectCoreLoanEntityList() {
-		return dao.selectCoreLoanEntityList();
+		return dao.selectCoreCreditEntityList();
 	}
 
 }

@@ -17,7 +17,7 @@ public class InsideAndOutsideDailyLedgerEntityServiceImpl implements InsideAndOu
 	private InsideAndOutsideDailyLedgerEntityDao dao;
 	@Override
 	public List<InsideAndOutsideDailyLedgerEntity> selectCoreLoanEntityList() {
-		return dao.selectCoreLoanEntityList();
+		return dao.selectInsideAndOutsideDailyLedgerEntityList();
 	}
 
 }

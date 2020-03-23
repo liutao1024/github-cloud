@@ -6,7 +6,7 @@ import javax.servlet.ServletContextListener;
 /**
  * @author LiuTao @date 2018年9月3日 下午3:25:13
  * @ClassName: SocketServiceListener 
- * @Description: TODO(将socket service随tomcat启动)
+ * @Description: 将socket service随tomcat启动
  */
 public class SocketServerListener implements ServletContextListener {
 	// socket server 线程

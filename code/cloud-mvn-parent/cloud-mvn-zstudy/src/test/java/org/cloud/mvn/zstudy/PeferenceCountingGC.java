@@ -29,6 +29,14 @@ public class PeferenceCountingGC {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		testGC();
+//		testGC();
+		HashCode();
+	}
+	
+	public static void HashCode(){
+		String str1 = "通话";
+		String str2 = "重地";
+		System.out.println(String.format("Str1: %d  | Str2: %d", str1.hashCode(), str2.hashCode()));
+		System.out.println(str1.equals(str2));
 	}
 }
