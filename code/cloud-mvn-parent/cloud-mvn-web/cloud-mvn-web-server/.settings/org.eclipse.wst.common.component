@@ -40,7 +40,7 @@
         <dependent-module archiveName="cloud-mvn-redis-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cloud-mvn-redis/cloud-mvn-redis">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <property name="context-root" value="cloud-mvn-server-web"/>
+        <property name="context-root" value="cloud-mvn-web-server"/>
         <property name="java-output-path" value="/cloud-mvn-web-server/target/classes"/>
     </wb-module>
 </project-modules>

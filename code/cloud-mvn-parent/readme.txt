@@ -3,3 +3,4 @@
 
 202020303
 启动socket监听出问题,run方法中报错
+------搜索cloud-mvn-server-web全部替换成cloud-mvn-web-server解决主要是.setting文件夹里面的文件内容
