@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.spring.mvn.note.web.entity.dao.AssociationDao">
+	<!-- 根据用户ID提取cn_user信息及其相关cn_notebook信息 -->
+
+	<select id="findUser" parameterType="string" resultMap="userMap">
+		select * from cn_user where cn_user_id = #{userId}
+	</select>
+
+	<resultMap id="userMap" type="cn.spring.mvn.note.web.entity.User">
+		<!-- User中的cn_user_id,cn_user_name默认按名称匹配加载 -->
+		<!-- 定义关联属性books如何加载 -->
+		<collection property="books" javaType="java.util.List"
+			ofType="cn.spring.mvn.note.web.entity.NoteBook" select="findBooks" column="cn_user_id">
+		</collection>
+	</resultMap>
+
+	<select id="findBooks" parameterType="string"
+		resultType="cn.spring.mvn.note.web.entity.NoteBook">
+		select * from cn_notebook where cn_user_id = #{userId}
+	</select>
+
+	<!-- 一次查询将user及其notebook都抓取出来 -->
+	<select id="findAllUsers" resultMap="userMap1">
+		select * from cn_user user left outer join cn_notebook book on(user.cn_user_id = book.cn_user_id)
+	</select>
+
+	<resultMap id="userMap1" type="cn.spring.mvn.note.web.entity.User">
+		<id property="cn_user_id" column="cn_user_id" />
+		<result property="cn_user_name" column="cn_user_name" />
+		<result property="cn_user_password" column="cn_user_password" />
+		<result property="cn_user_token" column="cn_user_token" />
+		<result property="cn_user_desc" column="cn_user_desc" />
+		<collection property="books" javaType="java.util.List" ofType="cn.spring.mvn.note.web.entity.NoteBook">
+			<id property="cn_notebook_id" column="cn_notebook_id" />
+			<result property="cn_user_id" column="cn_user_id" />
+			<result property="cn_notebook_type_id" column="cn_notebook_type_id" />
+			<result property="cn_notebook_name" column="cn_notebook_name" />
+			<result property="cn_notebook_desc" column="cn_notebook_desc" />
+			<result property="cn_notebook_createtime" column="cn_notebook_createtime" />
+		</collection>
+	</resultMap>
+
+	<select id="findAllBooks" resultMap="bookMap">
+		select * from cn_notebook book join cn_user user on(book.cn_user_id = user.cn_user_id)
+	</select>
+
+	<resultMap id="bookMap" type="cn.spring.mvn.note.web.entity.NoteBook">
+		<id property="cn_notebook_id" column="cn_notebook_id" />
+		<result property="cn_user_id" column="cn_user_id" />
+		<result property="cn_notebook_type_id" column="cn_notebook_type_id" />
+		<result property="cn_notebook_name" column="cn_notebook_name" />
+		<result property="cn_notebook_desc" column="cn_notebook_desc" />
+		<result property="cn_notebook_createtime" column="cn_notebook_createtime" />
+		<!-- 指定关联属性加载 -->
+		<association property="user" javaType="cn.spring.mvn.note.web.entity.User">
+			<id property="cn_user_id" column="cn_user_id" />
+			<result property="cn_user_name" column="cn_user_name" />
+			<result property="cn_user_password" column="cn_user_password" />
+			<result property="cn_user_token" column="cn_user_token" />
+			<result property="cn_user_desc" column="cn_user_desc" />
+		</association>
+	</resultMap>
+	
+</mapper>

@@ -9,7 +9,7 @@
 	<artifactId>cloud-mvn-web</artifactId>
 	<packaging>pom</packaging>
 	<name>cloud-mvn-web</name>
-	<description>cloud-mvn-web-side</description>
+	<description>cloud-mvn-web</description>
 	<properties>
 		<jstl.version>1.2</jstl.version>
 		<javax.servlet.api.version>4.0.1</javax.servlet.api.version>
@@ -92,6 +92,7 @@
 	</build>
 	<modules>
 		<module>cloud-mvn-web-client</module>
+		<module>cloud-mvn-web-note</module>
 		<module>cloud-mvn-web-server</module>
   </modules>
 </project>
