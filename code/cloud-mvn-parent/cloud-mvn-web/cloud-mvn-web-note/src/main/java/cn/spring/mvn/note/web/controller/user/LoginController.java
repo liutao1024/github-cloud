@@ -31,7 +31,16 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public ModelAndView login(){
-		return new ModelAndView("log_in");
+		return new ModelAndView("login");
 	}
-
+	
+	@RequestMapping("/edit")
+	public ModelAndView edit(){
+		return new ModelAndView("edit");
+	}
+	
+	@RequestMapping("/activity")
+	public ModelAndView activity(){
+		return new ModelAndView("activity");
+	}
 }

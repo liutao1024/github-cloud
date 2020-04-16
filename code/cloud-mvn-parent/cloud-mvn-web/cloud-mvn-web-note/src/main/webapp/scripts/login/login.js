@@ -105,7 +105,7 @@ function logout(){
 	var userId = getCookie("tarena_cloud_note_user");
 	delCookie("tarena_cloud_note_user");//删除用户cookie
 	delCookie(userId+"_token");//删除token
-	location.href="log_in.html";
+	location.href="login";
 }
 
 /**

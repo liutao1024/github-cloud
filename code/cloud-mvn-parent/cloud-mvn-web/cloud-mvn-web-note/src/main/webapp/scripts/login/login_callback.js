@@ -7,7 +7,9 @@ function loginSuccess(result){
 		//用户名：用户id存cookie
 		addCookie(cookie_key,result.data,2);
 //		addCookie(UserName,result.resource.cnUserName,2);
-		window.location.href="edit.html";
+//		window.location.href="edit.html";
+//		window.location.href="http://www.baidu.com";
+		location.href="edit";
 	}else{
 		alert("登录失败");
 	}
