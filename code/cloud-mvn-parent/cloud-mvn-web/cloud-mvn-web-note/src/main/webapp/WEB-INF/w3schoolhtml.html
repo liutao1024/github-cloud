@@ -16,7 +16,7 @@
 			 */
 		</style>
 	</head>
-	<body bgcolor="yellow"><!-- 定义html文档主体 -->
+	<body bgcolor="gray"><!-- 定义html文档主体 -->
 		<h6>h1-h6标签字体加粗由大到小</h6>
 		<p>p标签定义段落</p>
 		<a href="http://www.baidu.com">a标签定义连接</a>
@@ -111,19 +111,72 @@
 		 <a href="#tips">提示</a><!-- 点击 提示 跳转到命名锚处 -->
 		 <!-- 图片 -->
 		 <p>
-		 	这是一张图片:<img alt="" src="http://www.w3school.com.cn/images/boat.gif">
+		 	这是一张图片:<img alt="预备替换的文字(无法载入图片时,提示文本)" src="http://www.w3school.com.cn/images/boat.gif">
 		 </p>
-		 
-		 
-		 
+		 <map name="baiduMap"></map>
+		 <img src="../images/planets.jpg" border="0" usemap="#planetmap" alt="Planets" />
+		 <map name="planetmap" id="planetmap">
+		 	<area shape="circle" coords="180,139,14" href ="venus.html" alt="Venus" />
+		 	<area shape="circle" coords="129,161,10" href ="merglobe.html" alt="Mercury" />
+		 	<area shape="rect" coords="0,0,110,260" href ="sun.html" alt="Sun" />
+		 </map>
+		 <!-- 
+		 	<table> 元素的作用是显示表格化的数据
+		 	table标签中
+		 		border属性设置边框距离
+		 		frame
+		  -->
+		 <table border="4" cellspacing="10" cellpadding="10" bgcolor="blue" frame="void">
+		 	<caption align="right">表格标题</caption>
+		 	<thead>
+		 		<tr>
+		 			<th bgcolor="green">商品名称</th>
+		 			<th>商品单价</th>
+		 			<th>商品颜色</th>
+		 			<th>商品成色</th>
+		 			<th>商品库存</th>
+		 		</tr>
+		 	</thead>
+		 	<tbody>
+		 		<tr bgcolor="red">
+			 		<td>Iphone11</td>
+			 		<td>5999.00</td>
+			 		<td>白色;黑色</td>
+			 		<td>全新</td>
+			 		<td>1000</td>
+		 		</tr>
+		 		<tr>
+			 		<td>IphoneX</td>
+			 		<td>5999.00</td>
+			 		<td>白色;黑色</td>
+			 		<td>全新</td>
+			 		<td>800</td>
+		 		</tr>
+		 		<tr>
+			 		<td>Airpod_2</td>
+			 		<td>999.00</td>
+			 		<td>白色</td>
+			 		<td>全新</td>
+			 		<td>50</td>
+		 		</tr>
+		 		<tr>
+			 		<td>Airpod_1</td>
+			 		<td>799.00</td>
+			 		<td>白色</td>
+			 		<td>全新</td>
+			 		<td>&nbsp;</td>
+		 		</tr>
+		 	</tbody>
+		 	<tr></tr>
+		 </table>
 		 <table border="1" width="12px" height="5px" align="center" background="black" bgcolor="read"><!-- 定义html文档的表格,border为表格边框的属性附加信息-->
-		 	<caption></caption>
+		 	<caption align="top">定义表格标题</caption><!--  -->
 		 	<col>
-		 	<colgroup></colgroup>
+		 	<colgroup></colgroup><!-- 定义表格的组 -->
 		 	<del></del><!-- 删除 -->
 		 	<ins></ins><!-- 下划线 -->
 		 	<tr></tr>
-		 	<thead>
+		 	<thead><!-- 定义表格的页眉 -->
 		 		<del>
 		 			<a></a>
 		 		</del>
@@ -166,6 +219,32 @@
 		 		</tr>
 		 	</tfoot>
 		 </table>
+		 <!-- 无序列表 -->
+		 <ul>
+		 	<li>Java</li>
+		 	<li>Python</li>
+		 	<li>C#</li>
+		 </ul>
+		 <!-- 有序列表 -->
+		 <ol>
+		 	<li>MySQL</li>
+		 	<li>Oracle</li>
+		 	<li>DB2</li>
+		 	<li>SQLServer</li>
+		 </ol>
+		 <!-- 自定义列表 -->
+		 <dl>
+		 	<dt>计算机</dt>
+		 	<dd>用来计算的仪器 ... ...</dd>
+		 	<dt>显示器</dt>
+		 	<dd>以视觉方式显示信息的装置 ... ...</dd>
+		 </dl>
+		 <!-- 块级元素 -->
+		 <div id="theDiv" class="theDiv" style="color: #00FF00;background-color: black;width: 500px;height: 300px;" align="justify">
+		 	<h1>块级元素</h1>
+		 	<p>黄色块块</p>
+		 </div>
+		 
 		 <a href="http://www.w3school.com.cn">This is a link</a>
 		 <address>
 		 	<p>作者:<a href="https://mail.163.com/">刘涛</a>liuta</p>
