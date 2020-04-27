@@ -132,8 +132,7 @@ var Sunline = function() {
 									true);
 								});	
 								
-							}
-							else{
+							}else{
 								$('input[name="authus"]', $("#index_checkModal")).val("");
 								$('input[name="authpw1"]', $("#index_checkModal")).val("");
 								$("#index_checkModal").modal("hide");
