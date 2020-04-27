@@ -63,31 +63,16 @@ var Datatable = function() {
 										}
 									},
 									// "orderCellsTop": true,
-									"pagingType" : "bootstrap_extended", // pagination
-																			// type(bootstrap,
-																			// bootstrap_full_number
-																			// or
-																			// bootstrap_extended)
-									"autoWidth" : false, // disable fixed
-															// width and enable
-															// fluid table
-									"processing" : false, // enable/disable
-															// display message
-															// box on record
-															// load
-									"serverSide" : true, // enable/disable
-															// server side ajax
-															// loading
+									"pagingType" : "bootstrap_extended", // pagination type(bootstrap, bootstrap_full_number or bootstrap_extended)
+									"autoWidth" : false, // disable fixed width and enable fluid table
+									"processing" : false, // enable/disable display message box on record load
+									"serverSide" : true, // enable/disable server side ajax loading
 
 									"ajax" : { // define ajax settings
 										"url" : "", // ajax URL
 										"type" : "POST", // request type
 										"timeout" : 20000,
-										"data" : function(data) { // add
-																	// request
-																	// parameters
-																	// before
-																	// submit
+										"data" : function(data) { // add request parameters before submit
 											$.each(ajaxParams, function(key, value) {
 												data[key] = value;
 											});
@@ -99,11 +84,7 @@ var Datatable = function() {
 														boxed : true
 													});
 										},
-										"dataSrc" : function(res) { // Manipulate
-																	// the data
-																	// returned
-																	// from the
-																	// server
+										"dataSrc" : function(res) { // Manipulate the data returned from the server
 											if (res.customActionMessage) {
 												Metronic.alert({
 															type : (res.customActionStatus == 'OK' ? 'success' : 'danger'),
@@ -128,10 +109,7 @@ var Datatable = function() {
 											Metronic.unblockUI(tableContainer);
 											return res.data;
 										},
-										"error" : function(data) { // handle
-																	// general
-																	// connection
-																	// errors
+										"error" : function(data) { // handle general connection errors
 											if (tableOptions.onError) {
 												tableOptions.onError.call(undefined, the);
 											}
@@ -145,21 +123,9 @@ var Datatable = function() {
 											Metronic.unblockUI(tableContainer);
 										}
 									},
-									"drawCallback" : function(oSettings) { // run
-																			// some
-																			// code
-																			// on
-																			// table
-																			// redraw
-										if (tableInitialized === false) { // check
-																			// if
-																			// table
-																			// has
-																			// been
-																			// initialized
-											tableInitialized = true; // set
-																		// table
-																		// initialized
+									"drawCallback" : function(oSettings) { // run some code on table redraw
+										if (tableInitialized === false) { // check if table has been initialized
+											tableInitialized = true; // set table initialized
 											table.show(); // display table
 										}
 										Metronic.initUniform($('input[type="checkbox"]', table)); // reinitialize uniform checkboxes on each table reload

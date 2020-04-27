@@ -47,7 +47,9 @@ var Sunline = function() {
 		var _contentType = "application/json";
 		if (dataType == "json") {
 			_contentType = "application/json";
-		} else if (dataType == "xml") {
+		} else if(dataType == "jsonp") {//解决ajax跨域
+			_contentType = "application/jsonp";
+		}else if (dataType == "xml") {
 			_contentType = "application/xml";
 		} else if (dataType == "html") {
 			_contentType = "text/html";
@@ -298,8 +300,7 @@ var Sunline = function() {
 			accept : "请输入拥有合法后缀名的字符串",
 			maxlength : jQuery.validator.format("请输入一个 长度最多是 {0} 的字符串"),
 			minlength : jQuery.validator.format("请输入一个 长度最少是 {0} 的字符串"),
-			rangelength : jQuery.validator
-					.format("请输入 一个长度介于 {0} 和 {1} 之间的字符串"),
+			rangelength : jQuery.validator.format("请输入 一个长度介于 {0} 和 {1} 之间的字符串"),
 			range : jQuery.validator.format("请输入一个介于 {0} 和 {1} 之间的值"),
 			max : jQuery.validator.format("请输入一个最大为{0} 的值"),
 			min : jQuery.validator.format("请输入一个最小为{0} 的值")
@@ -313,12 +314,9 @@ var Sunline = function() {
 	var _getIntervalBetween = function(date1, date2) {
 		var interval = date2 - date1;
 		var days = Math.floor(interval / 1000 / 60 / 60 / 24);
-		var hours = Math
-				.floor((interval - days * 3600 * 24 * 1000) / 1000 / 60 / 60);
-		var minuts = Math
-				.floor((interval - days * 3600 * 24 * 1000 - hours * 3600 * 1000) / 1000 / 60);
-		var seconds = Math.floor((interval - days * 3600 * 24 * 1000 - hours
-				* 3600 * 1000 - minuts * 60 * 1000) / 1000);
+		var hours = Math.floor((interval - days * 3600 * 24 * 1000) / 1000 / 60 / 60);
+		var minuts = Math.floor((interval - days * 3600 * 24 * 1000 - hours * 3600 * 1000) / 1000 / 60);
+		var seconds = Math.floor((interval - days * 3600 * 24 * 1000 - hours * 3600 * 1000 - minuts * 60 * 1000) / 1000);
 		return [ days, hours, minuts, seconds ];
 	}
 	
@@ -355,7 +353,6 @@ var Sunline = function() {
 		 */
 		getURLParameter : function(paramName) {
 			var searchString = window.location.search.substring(1), i, val, params = searchString.split("&");
-
 			for (i = 0; i < params.length; i++) {
 				val = params[i].split("=");
 				if (val[0] == paramName) {
