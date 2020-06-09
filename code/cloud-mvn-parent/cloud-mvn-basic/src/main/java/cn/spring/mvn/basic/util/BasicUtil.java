@@ -6,6 +6,7 @@ import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -15,6 +16,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
+
+import cn.spring.mvn.basic.tools.BasicReflection;
 
 public class BasicUtil{
 	private static final Logger LOGGER = Logger.getLogger(BasicUtil.class);
@@ -31,16 +34,16 @@ public class BasicUtil{
 	 * @return
 	 * @throws IllegalAccessException
 	 */
-//	public static Map<String, Object> recursionObjectToMap(String timeFormatStr, Object obj, String... excludeFields) throws IllegalAccessException {
-//		Map<String, Object> map = new HashMap<>();
-//		if (excludeFields.length != 0) {
-//			List<String> list = Arrays.asList(excludeFields);
-//			BasicReflection.getMapByReflecFormatObjectMapAndFields(timeFormatStr, obj, map, list);
-//		} else {
-//			BasicReflection.getMapByReflecFormatObjectMapAndFields(timeFormatStr, obj, map, null);
-//		}
-//		return map;
-//	}
+	public static Map<String, Object> recursionObjectToMap(String timeFormatStr, Object obj, String... excludeFields) throws IllegalAccessException {
+		Map<String, Object> map = new HashMap<>();
+		if (excludeFields.length != 0) {
+			List<String> list = Arrays.asList(excludeFields);
+			BasicReflection.getMapByReflecFormatObjectMapAndFields(timeFormatStr, obj, map, list);
+		} else {
+			BasicReflection.getMapByReflecFormatObjectMapAndFields(timeFormatStr, obj, map, null);
+		}
+		return map;
+	}
 	
 	/**
 	 * @author LiuTao @date 2018年6月9日 下午1:01:49 
@@ -230,11 +233,10 @@ public class BasicUtil{
 		String oneStr = srcStr.substring(0, from);
 		String twoStr = srcStr.substring(from, to);
 		String threeStr = srcStr.substring(to,srcStr.length());
-		if(flag){
+		if(flag)
 			twoStr = twoStr.toUpperCase();
-		}else {
+		else 
 			twoStr = twoStr.toLowerCase();
-		}
 		return oneStr+twoStr+threeStr;
 	}
 	
@@ -256,18 +258,14 @@ public class BasicUtil{
 //		}
 //		return rstBoolean;
 		boolean b = false;
-		if(object == null){
+		if(object == null)
 			b = true;
-		}
-		if(object instanceof CharSequence){
+		if(object instanceof CharSequence)
 			b = ((CharSequence) object).length() == 0;
-		}
-		if (object instanceof Collection) {
+		if (object instanceof Collection) 
 			b = ((Collection) object).isEmpty();
-		}
-		if(object instanceof Map){
+		if(object instanceof Map)
 			b = ((Map) object).isEmpty();
-		}
 		if(object instanceof Object[]){
 			Object[] objects = (Object[]) object;
 			if(objects.length == 0){
@@ -306,14 +304,12 @@ public class BasicUtil{
 	 */
 	public static boolean equals(Object objectOne, Object objectTwo) {
 		boolean rstBoolean = false;
-		if(objectOne == objectTwo){//是否同一对象
+		if(objectOne == objectTwo)//是否同一对象
 			rstBoolean = true;
-		}else if(objectOne.equals(objectTwo)){//值是否相等
+		if(objectOne.equals(objectTwo))//值是否相等
 			rstBoolean = true;
-		}
 		return rstBoolean;
 	}
-	
 	
 	/**
 	 * @author LiuTao @date 2018年5月26日 下午9:18:06 
@@ -324,9 +320,8 @@ public class BasicUtil{
 	 * @return
 	 */
 	public static String sourceStrCastHeadStr(String headStr, String srcStr){
-		if(srcStr.indexOf(headStr) == 0){
+		if(srcStr.indexOf(headStr) == 0)
 			srcStr = srcStr.substring(headStr.length());
-		}
 		return srcStr;
 	}
 	/**
@@ -383,11 +378,10 @@ public class BasicUtil{
 	            sb.append(s);
 	        }
 	    }
-	    if(UOL){
+	    if(UOL)
 	    	result = sb.toString().toUpperCase();
-	    }else {
+	    else 
 	    	result = sb.toString().toLowerCase();
-		}
 	    return result;
 	}
 
@@ -444,6 +438,20 @@ public class BasicUtil{
 		} catch (Exception exception) {
 			throw new Exception("属性复制失败:" + exception.getMessage());
 		}
+    }
+    /**
+     * @Author LiuTao @Date 2020年6月9日 下午1:54:33 
+     * @Title: nvl 
+     * @Description: object为空时,返回defaultObject,否则返回object 
+     * @param object
+     * @param defaultObj
+     * @return
+     */
+    public static Object nvl(Object object, Object defaultObj){
+    	if(isNull(object))
+    		return defaultObj;
+    	else
+    		return object;
     }
     /**
      * @author LiuTao @date 2018年11月14日 下午3:48:41 
