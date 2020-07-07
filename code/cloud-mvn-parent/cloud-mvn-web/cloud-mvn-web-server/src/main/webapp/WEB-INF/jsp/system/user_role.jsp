@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/common/taglib.jsp"%>
-<div aria-hidden="true" style="display: none;" id="edit_setting"
-	class="modal fade" tabindex="-1" data-width="900">
+<div aria-hidden="true" style="display: none;" id="edit_setting" class="modal fade" tabindex="-1" data-width="900">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close closeModal" data-dismiss="modal"
-					aria-hidden="true"></button>
+				<button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true"></button>
 				<h4 class="modal-title">角色信息</h4>
 			</div>
 			<div class="modal-body">

@@ -4,8 +4,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close closeModal" data-dismiss="modal"
-					aria-hidden="true"></button>
+				<button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true"></button>
 				<h4 class="modal-title">角色信息</h4>
 			</div>
 			<div class="modal-body">
