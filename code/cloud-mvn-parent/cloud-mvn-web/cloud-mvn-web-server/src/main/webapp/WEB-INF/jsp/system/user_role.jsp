@@ -11,8 +11,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-container" id="add_role_set">
-							<table class="table table-striped table-bordered table-hover"
-								id="role_auth_ajax">
+							<table class="table table-striped table-bordered table-hover" id="role_auth_ajax"  style="white-space: nowrap;">
 								<thead>
 									<tr role="row" class="heading">
 										<th width="20%">注册机构号</th>
@@ -36,8 +35,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default closeModal"
-						data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-default closeModal" data-dismiss="modal">关闭</button>
 					<button type="button" class="btn blue" id="sub_btn">保存</button>
 				</div>
 			</div>
