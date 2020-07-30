@@ -166,6 +166,7 @@ public class SetTest {
 		System.out.println(set);
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void enumSetTest(){
 		EnumSet es1 = EnumSet.allOf(Season.class);
 		System.out.println(es1);
