@@ -3,8 +3,10 @@ package org.cloud.mvn.zstudy.java;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
@@ -108,5 +110,20 @@ public class ListTest {
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
+	}
+	/**
+	 * @Author LiuTao @Date 2020年7月31日 下午8:03:23 
+	 * @Title: queueTest 
+	 * @Description: TODO(Describe)
+	 */
+	public static void queueTest(){
+		Queue<String> queue = new LinkedList<String>();
+		queue.add("Spring");
+		queue.element();
+		System.out.println(queue);
+	}
+	
+	public static void linkedListTest(){
+		
 	}
 }
