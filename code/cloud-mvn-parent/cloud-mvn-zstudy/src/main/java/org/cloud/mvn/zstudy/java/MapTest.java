@@ -12,6 +12,7 @@ import java.util.Set;
  * @ClassName: MapTest 
  * @Description: HashMap介绍:https://blog.csdn.net/qq_41345773/article/details/92066554
  */
+@SuppressWarnings("unused")
 public class MapTest {
 	public static void main(String[] args) {
 		hashMapAndHashtableTest();
