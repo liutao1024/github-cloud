@@ -32,4 +32,16 @@ public class Test {
 	        System.out.println(s);
 	 }
 
+	 public static void Test20200916(){
+		 int con = 0;
+		 while (con < 5) {
+			System.out.println(con);
+			con++;
+		}
+		 
+		do{
+			System.out.println(con);
+			con++;
+		 }while(con < 5);
+	 }
 }
