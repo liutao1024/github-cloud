@@ -3,11 +3,18 @@ package org.cloud.mvn.zstudy.javaVirtualMachine.classLoading;
  * 非主动使用类字段演示
  */
 public class NotInitialization {
+	/**
+	 * @Author LiuTao @Date 2020年9月17日 下午9:20:46 
+	 * @Title: main 
+	 * @Description: TODO(Describe) 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 //		Test001();
 //		Test002();
 //		Test003();
-		Test0024();
+		Test004();
+//		Test0024();
 	}
 	/**
 	 * @Author LiuTao @Date 2020年9月17日 上午9:39:45 
@@ -34,7 +41,14 @@ public class NotInitialization {
 	public static void Test003(){
 		System.out.println(ConstClass.HELLOWORD);
 	}
-	
+	/**
+	 * @Author LiuTao @Date 2020年9月17日 下午9:20:06 
+	 * @Title: Test004 
+	 * @Description: TODO(Describe)
+	 */
+	public static void Test004(){
+		System.out.println(Sub.B);
+	}
 	/**
 	 * @Author LiuTao @Date 2020年9月17日 上午9:41:05 
 	 * @Title: Test002 
@@ -76,4 +90,14 @@ class SubClass extends SuperClass {
 	public void sayHello(String s){
 		System.out.println("Hello, I am Super!");
 	}
+}
+class Parent {
+	public static int A = 1;
+	static {
+		A = 2;
+//		System.out.println(i);//Cannot reference a field before it is defined
+	}
+}
+class Sub extends Parent{
+	public static int B = A;
 }
