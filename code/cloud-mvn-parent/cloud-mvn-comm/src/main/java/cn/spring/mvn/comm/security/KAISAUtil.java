@@ -1,5 +1,10 @@
 package cn.spring.mvn.comm.security;
 
+/**
+ * @Author LiuTao @Date 2020年9月18日 下午5:13:42
+ * @ClassName: KAISAUtil 
+ * @Description: TODO(Describe)
+ */
 public class KAISAUtil {
 	/***
 	 * 使用凯撒加密方式加密数据
@@ -27,7 +32,6 @@ public class KAISAUtil {
 	
 	/**
 	 * 使用凯撒加密方式解密数据
-	 *
 	 * @param encryptedData :密文
 	 * @param key           :密钥
 	 * @return : 源数据

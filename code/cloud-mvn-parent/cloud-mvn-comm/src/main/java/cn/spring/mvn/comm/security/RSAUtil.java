@@ -21,7 +21,6 @@ public class RSAUtil {
  
 	/**
      * 生成密钥对并保存在本地文件中
-     *
      * @param algorithm : 算法
      * @param pubPath   : 公钥保存路径
      * @param priPath   : 私钥保存路径
@@ -50,7 +49,6 @@ public class RSAUtil {
  
     /**
      * 从文件中加载公钥
-     *
      * @param algorithm : 算法
      * @param filePath  : 文件路径
      * @return : 公钥
@@ -59,14 +57,11 @@ public class RSAUtil {
     public static PublicKey loadPublicKeyFromFile(String algorithm, String filePath) throws Exception {
         // 将文件内容转为字符串
         String keyString =  FileTool.readFileByFileName(filePath);
- 
         return loadPublicKeyFromString(algorithm, keyString);
- 
     }
  
     /**
      * 从字符串中加载公钥
-     *
      * @param algorithm : 算法
      * @param keyString : 公钥字符串
      * @return : 公钥
@@ -81,12 +76,10 @@ public class RSAUtil {
         X509EncodedKeySpec keyspec = new X509EncodedKeySpec(decode);
         // 获取公钥
         return keyFactory.generatePublic(keyspec);
- 
     }
  
     /**
      * 从文件中加载私钥
-     *
      * @param algorithm : 算法
      * @param filePath  : 文件路径
      * @return : 私钥
@@ -101,7 +94,6 @@ public class RSAUtil {
  
     /**
      * 从字符串中加载私钥
-     *
      * @param algorithm : 算法
      * @param keyString : 私钥字符串
      * @return : 私钥
@@ -116,12 +108,10 @@ public class RSAUtil {
         PKCS8EncodedKeySpec keyspec = new PKCS8EncodedKeySpec(decode);
         // 生成私钥
         return keyFactory.generatePrivate(keyspec);
- 
     }
  
     /**
      * 使用密钥加密数据
-     *
      * @param algorithm      : 算法
      * @param input          : 原文
      * @param key            : 密钥
@@ -143,7 +133,6 @@ public class RSAUtil {
         decodeByte(maxEncryptSize, cipher, data, total, baos);
         // 对密文进行Base64编码
         return Base64Util.encode(baos.toByteArray());
- 
     }
  
     /**
@@ -166,16 +155,13 @@ public class RSAUtil {
         int total = data.length;
         // 输出流
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
- 
         decodeByte(maxDecryptSize, cipher, data, total, baos);
         // 输出原文
         return baos.toString();
- 
     }
  
     /**
      * 分段处理数据
-     *
      * @param maxSize : 最大处理能力
      * @param cipher  : Cipher对象
      * @param data    : 要处理的byte数组

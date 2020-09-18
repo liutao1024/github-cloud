@@ -9,10 +9,9 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 public class PBEUtil {
-public static final String ALGORITHM = "PBEWITHMD5andDES";
+	public static final String ALGORITHM = "PBEWITHMD5andDES";
 	
 	public static final int ITERATION_COUNT = 100;
-	
 	
 	public static byte[] initSalt() throws Exception{
 		//实例化安全随机数
@@ -91,7 +90,6 @@ public static final String ALGORITHM = "PBEWITHMD5andDES";
 		return sb.toString();
 	}
 	
-	
 	public static void main(String[] args) throws Exception{
 		byte[] salt = initSalt();
 		System.out.println("salt："+showByteArray(salt));
@@ -108,5 +106,4 @@ public static final String ALGORITHM = "PBEWITHMD5andDES";
         System.out.println("解密后数据: byte[]:"+showByteArray(decryptData));
         System.out.println("解密后数据: string:"+new String(decryptData));
 	}
-
 }
