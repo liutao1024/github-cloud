@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cn.spring.mvn.client.Client;
 import cn.spring.mvn.client.web.model.BSBUser;
-import cn.spring.mvn.comm.tools.MD5Tool;
+import cn.spring.mvn.comm.security.MD5Util;
 
 @Controller("LoginController")
 @ResponseBody
@@ -36,7 +36,7 @@ public class LoginController {
 		Map<String, Object> rspMap = new HashMap<String, Object>();//
 		String cropno = bsbUser.getCorpno();
 		String userid = bsbUser.getUserid();
-		String passwd = MD5Tool.md5EncryptString(bsbUser.getPasswd());
+		String passwd = MD5Util.md5EncryptString(bsbUser.getPasswd());
 		//是否需要校验密码
 		boolean ischck = false;
 		reqMap.put("cropno", cropno);
@@ -68,7 +68,7 @@ public class LoginController {
 		Map<String, Object> rspMap = new HashMap<String, Object>();
 		String cropno = bsbUser.getCorpno();
 		String userid = bsbUser.getUserid();
-		String passwd = MD5Tool.md5EncryptString(bsbUser.getPasswd());
+		String passwd = MD5Util.md5EncryptString(bsbUser.getPasswd());
 		reqMap.put("cropno", cropno);
 		reqMap.put("userid", userid);
 		reqMap.put("passwd", passwd);

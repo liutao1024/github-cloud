@@ -1,4 +1,4 @@
-package cn.spring.mvn.comm.tools;
+package cn.spring.mvn.comm.security;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -15,10 +15,10 @@ import cn.spring.mvn.basic.exception.Exceptions;
 
 /**
  * @author LiuTao @date 2018年5月13日 下午8:45:58
- * @ClassName: MD5Tools 
- * @Description: TODO(MD5加密的不可逆性,没有解密方法)
+ * @ClassName: MD5Util 
+ * @Description: MD5(Message Digest Algorithm)加密的不可逆性,没有解密方法)
  */
-public class MD5Tool {
+public class MD5Util {
 	private static final String MD5 = "MD5";
 	private static final String SHA1 = "SHA-1";
 	private static SecureRandom random = new SecureRandom();
@@ -79,6 +79,19 @@ public class MD5Tool {
 		}
 		return null;
 	}
+	/***
+	 * MD5加密(生成唯一的MD5值)
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public static byte[] encryMD5(byte[] data) throws Exception {
+		MessageDigest MD = MessageDigest.getInstance(MD5);
+		MD.update(data);
+		return MD.digest();
+	}
+	
+	
 	/**
 	 * @author LiuTao @date 2018年5月13日 下午8:39:29 
 	 * @Title: md5EncryptArray 

@@ -378,7 +378,7 @@ public class FileTool {
      * @param lines
      * @throws Exception 
      */
-    public void writeFileByLines(File file, String lines) throws Exception {
+    public static void writeFileByLines(File file, String lines) throws Exception {
 		if(!file.exists()){
 			file.getPath();
 			return;
@@ -393,5 +393,22 @@ public class FileTool {
 			throw e;
 		}
 	}
+    @SuppressWarnings("resource")
+	public static String readFileByFileName(String fileName){
+    	 try {
+    		 StringBuffer sb = new StringBuffer();
+    		 File file = new File(fileName);
+    		 FileReader fileReader = new FileReader(file);
+    		 BufferedReader bufferedReader = new BufferedReader(fileReader);
+    		 String str = null;
+    		 while ((str = bufferedReader.readLine()) != null) {
+    			 sb.append(str);
+    		 }
+    		 return sb.toString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "";
+		}
+    }
 }
-;

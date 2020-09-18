@@ -29,8 +29,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.spring.mvn.basic.tools.BasicReflection;
+import cn.spring.mvn.comm.security.MD5Util;
 import cn.spring.mvn.comm.tools.FileTool;
-import cn.spring.mvn.comm.tools.MD5Tool;
 import cn.spring.mvn.comm.util.CommUtil;
 import cn.spring.mvn.comm.util.SpringContextUtil;
 import cn.spring.mvn.socket.server.old.SocketHandlerImpl;
@@ -316,7 +316,7 @@ public class SpringMVCHeibrntTest {
 		sysUser.setRegistCd("001");
 		sysUser.setUserid("10001");
 		sysUser.setUserna("鍙ゅぉ涔�");
-		sysUser.setPasswd(MD5Tool.md5EncryptString("123456"));
+		sysUser.setPasswd(MD5Util.md5EncryptString("123456"));
 		sysUser.setUserst("0");
 		sysUser.setErrort(0);
 		try {
@@ -357,7 +357,7 @@ public class SpringMVCHeibrntTest {
 	public void update(){
 		SysUser sysUser = sysUserServiceImpl.selectOneByPrimeKey("001", "709422963");
 		sysUser.setUserna("寮犲杈�");
-		sysUser.setPasswd(MD5Tool.md5EncryptString("654321"));
+		sysUser.setPasswd(MD5Util.md5EncryptString("654321"));
 		sysUserServiceImpl.update(sysUser);
 	}
 	@Test

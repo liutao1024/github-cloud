@@ -27,8 +27,8 @@ import cn.spring.mvn.client.model.repository.ApSysEncapRepository;
 import cn.spring.mvn.client.model.repository.ApSysMsgRepository;
 import cn.spring.mvn.client.model.repository.ApSysServsRepository;
 import cn.spring.mvn.client.model.repository.ApSysTransRepository;
+import cn.spring.mvn.comm.security.MD5Util;
 import cn.spring.mvn.comm.tools.DateTool;
-import cn.spring.mvn.comm.tools.MD5Tool;
 import cn.spring.mvn.comm.util.CommUtil;
 
 /**
@@ -184,7 +184,7 @@ public class ClientImpl implements Client {
 		// 交易渠道时间
 		reqData.put(Constants.SERVTM, CommUtil.getObject(reqData.get(Constants.SERVTM), DateTool.getNow(DateTool.HHMMSS)));
 		// 交易渠道流水
-		reqData.put(Constants.SERVSQ, CommUtil.getObject(reqData.get(Constants.SERVSQ), MD5Tool.getSerial()));
+		reqData.put(Constants.SERVSQ, CommUtil.getObject(reqData.get(Constants.SERVSQ), MD5Util.getSerial()));
 		/*
 		 * 2.核心系统
 		 * 		按理说以下字段均为空

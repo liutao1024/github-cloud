@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import cn.spring.mvn.comm.tools.MD5Tool;
+import cn.spring.mvn.comm.security.MD5Util;
 import cn.spring.mvn.comm.util.CommUtil;
 import cn.spring.mvn.system.entity.SysUser;
 import cn.spring.mvn.system.entity.service.SysUserService;
@@ -36,7 +36,7 @@ public class LoginController {
 		Map<String, Object> resMap = new HashMap<String, Object>();//
 		String cropno = sysUser.getRegistCd();
 		String userid = sysUser.getUserid();
-		String passwd = MD5Tool.md5EncryptString(sysUser.getPasswd());
+		String passwd = MD5Util.md5EncryptString(sysUser.getPasswd());
 		//是否需要校验密码
 		boolean checkPasswdFlag = true;
 		SysUser resetSysUser = sysUserServiceImpl.selectOneByPrimeKey(cropno, userid);
@@ -80,7 +80,7 @@ public class LoginController {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		String cropno = sysUser.getRegistCd();
 		String userid = sysUser.getUserid();
-		String passwd = MD5Tool.md5EncryptString(sysUser.getPasswd());
+		String passwd = MD5Util.md5EncryptString(sysUser.getPasswd());
 		boolean checkPasswdFlag = true;
 		String ret = "success";
 		String msg = "登录成功";

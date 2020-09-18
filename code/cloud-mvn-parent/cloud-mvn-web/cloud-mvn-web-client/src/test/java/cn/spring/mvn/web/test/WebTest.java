@@ -17,8 +17,8 @@ import cn.spring.mvn.client.Constants;
 import cn.spring.mvn.client.Message;
 import cn.spring.mvn.client.model.ApSysMsg;
 import cn.spring.mvn.client.model.repository.ApSysMsgRepository;
+import cn.spring.mvn.comm.security.MD5Util;
 import cn.spring.mvn.comm.tools.DateTool;
-import cn.spring.mvn.comm.tools.MD5Tool;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-context.xml" })
@@ -69,7 +69,7 @@ public class WebTest {
 		Map<String, Object> reqMap = new HashMap<String, Object>();//
 		Map<String, Object> rspMap = new HashMap<String, Object>();//
 		String userid = "10001";
-		String passwd = MD5Tool.md5EncryptString("123456");
+		String passwd = MD5Util.md5EncryptString("123456");
 		//是否需要校验密码
 		boolean ischck = false;
 		reqMap.put("userid", userid);

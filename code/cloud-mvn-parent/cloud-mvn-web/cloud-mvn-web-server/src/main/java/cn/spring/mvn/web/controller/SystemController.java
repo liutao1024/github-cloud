@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import cn.spring.mvn.comm.tools.MD5Tool;
+import cn.spring.mvn.comm.security.MD5Util;
 import cn.spring.mvn.comm.util.CommUtil;
 import cn.spring.mvn.system.entity.SysAuth;
 import cn.spring.mvn.system.entity.SysRoleAuth;
@@ -49,7 +49,7 @@ import cn.spring.mvn.system.entity.service.SysUserService;
 @SessionAttributes("SysUser")
 public class SystemController {
 	private static final Logger LOGGER = Logger.getLogger(SystemController.class);
-	private static final String PASSWD = MD5Tool.md5EncryptString("123456");
+	private static final String PASSWD = MD5Util.md5EncryptString("123456");
 	private static String AUTHTYPE = "2";//菜单权限类型
 	private String[] strArray = {};//user用    有权限AuthCd数组
 	@Autowired
@@ -225,8 +225,8 @@ public class SystemController {
 		SysUser theSysUser = sysUserServiceImpl.selectOneByPrimeKey(sysUser.getRegistCd(), sysUser.getUserid());
 		String oldPasswd = requestMap.get("passwd").toString();
 		String newPasswd = requestMap.get("nwpswd").toString();
-		if(CommUtil.equal(theSysUser.getPasswd(), MD5Tool.md5EncryptString(oldPasswd))){
-			theSysUser.setPasswd(MD5Tool.md5EncryptString(newPasswd));
+		if(CommUtil.equal(theSysUser.getPasswd(), MD5Util.md5EncryptString(oldPasswd))){
+			theSysUser.setPasswd(MD5Util.md5EncryptString(newPasswd));
 			try {
 				sysUserServiceImpl.saveOrUpdate(theSysUser);
 				resMap.put("ret", "success");

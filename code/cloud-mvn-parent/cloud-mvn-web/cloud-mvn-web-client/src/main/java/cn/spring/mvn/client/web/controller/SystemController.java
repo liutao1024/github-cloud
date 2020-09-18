@@ -219,8 +219,8 @@ public class SystemController {
 //		SysUser theSysUser = sysUserServiceImpl.selectOneByPrimeKey(sysUser.getRegistCd(), sysUser.getUserid());
 //		String oldPasswd = requestMap.get("passwd").toString();
 //		String newPasswd = requestMap.get("nwpswd").toString();
-//		if(CommUtil.equal(theSysUser.getPasswd(), MD5Tool.md5EncryptString(oldPasswd))){
-//			theSysUser.setPasswd(MD5Tool.md5EncryptString(newPasswd));
+//		if(CommUtil.equal(theSysUser.getPasswd(), MD5Util.md5EncryptString(oldPasswd))){
+//			theSysUser.setPasswd(MD5Util.md5EncryptString(newPasswd));
 //			try {
 //				sysUserServiceImpl.saveOrUpdate(theSysUser);
 //				resMap.put("ret", "success");

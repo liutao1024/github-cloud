@@ -3,7 +3,7 @@ package cn.spring.mvn.web.zport.impl;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
-//import cn.spring.mvn.comm.tools.MD5Tool;
+//import cn.spring.mvn.comm.tools.MD5Util;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +31,7 @@ import cn.spring.mvn.web.zport.UserinOutput;
 //@SuppressWarnings("unused")
 public class WebServiceImpl extends SpringContextUtil {
 //	private static final Logger LOGGER = LoggerFactory.getLogger(WebServiceImpl.class);
-//	private static final String PASSWD = MD5Tool.md5EncryptString("123456");
+//	private static final String PASSWD = MD5Util.md5EncryptString("123456");
 	
 	private static SysUserService sysUserServiceImpl = (SysUserService) applicationContext.getBean(SysUserService.class);
 //	private static SysAuthService sysAuthServiceImpl = (SysAuthService) applicationContext.getBean(SysAuthService.class);
