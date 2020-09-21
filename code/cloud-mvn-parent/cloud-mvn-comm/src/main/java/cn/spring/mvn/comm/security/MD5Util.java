@@ -101,7 +101,7 @@ public class MD5Util {
 	 */
 	public static String md5EncryptArray(byte[] str) {
 		try {
-			MessageDigest localMessageDigest = MessageDigest.getInstance("MD5");
+			MessageDigest localMessageDigest = MessageDigest.getInstance(MD5);
 			localMessageDigest.update(str);
 			byte[] arrayOfByte = localMessageDigest.digest();
 			StringBuffer localStringBuffer = new StringBuffer("");

@@ -71,7 +71,7 @@ public class RSAEncrypt {
 	public static void genKeyPair() throws NoSuchAlgorithmException {  
 		// KeyPairGenerator类用于生成公钥和私钥对,基于RSA算法生成对象  
 		KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");  
-		// 初始化密钥对生成器,密钥大小为96-1024位  
+		// 初始化密钥对生成器,密钥大小为96-2048位  
 		keyPairGen.initialize(2048, new SecureRandom());  
 		// 生成一个密钥对,保存在keyPair中  
 		KeyPair keyPair = keyPairGen.generateKeyPair();  
@@ -112,8 +112,8 @@ public class RSAEncrypt {
 	 * @Author LiuTao @Date 2020年9月17日 下午10:13:32 
 	 * @Title: decrypt 
 	 * @Description: RSA 私钥解密
-	 * @param str  加密字符串
-	 * @param privateKey  私钥 
+	 * @param str 加密字符串
+	 * @param privateKey 私钥 
 	 * @return 铭文
 	 * @throws Exception 解密过程中的异常信息 
 	 */
@@ -131,8 +131,4 @@ public class RSAEncrypt {
 		String outStr = new String(cipher.doFinal(inputByte));
 		return outStr;
 	}
-	
-	
-	
-
 }

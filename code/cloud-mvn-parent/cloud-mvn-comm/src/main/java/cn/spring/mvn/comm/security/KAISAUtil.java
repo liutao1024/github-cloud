@@ -51,7 +51,6 @@ public class KAISAUtil {
 	        // 拼接数据
 	        sb.append(result);
 	    }
- 
 	    return sb.toString();
 	}
 	
@@ -62,7 +61,7 @@ public class KAISAUtil {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String str = "open fire";
+		String str = "159liudaye520tao";
 		String encode = encryptKaisa(str, 3);
 		System.out.println("加密后："+encode);
 		

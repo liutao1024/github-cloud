@@ -40,7 +40,6 @@ public class DESUtil {
 		}
 	}
 	
-	
 	/***
 	 * 获取加密的信息
 	 * @param str
@@ -65,7 +64,6 @@ public class DESUtil {
 		}
 	}
 	
-	
 	/***
 	 * 获取解密之后的信息
 	 * @param str
@@ -86,5 +84,17 @@ public class DESUtil {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+	/**
+	 * @Author LiuTao @Date 2020年9月19日 下午9:44:22 
+	 * @Title: main 
+	 * @Description: TODO(Describe) 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		String str = "159liudaye520tao";
+		String mi = getEncryptString(str);
+		System.out.println(mi);
+		System.out.println(getDecryptString(mi));
 	}
 }

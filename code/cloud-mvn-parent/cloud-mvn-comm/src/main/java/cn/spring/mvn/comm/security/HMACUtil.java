@@ -19,7 +19,6 @@ public static final String KEY_MAC = "HmacMD5";
 	 * @throws Exception
 	 */
 	public static String initMacKey() throws Exception{
-		
 		KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_MAC);
 		SecretKey secreKey = keyGenerator.generateKey();
 		return Base64Util.encode(secreKey.getEncoded());

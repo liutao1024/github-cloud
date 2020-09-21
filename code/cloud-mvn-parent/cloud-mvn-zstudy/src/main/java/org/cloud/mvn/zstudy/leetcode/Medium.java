@@ -1,7 +1,5 @@
 package org.cloud.mvn.zstudy.leetcode;
 
-import javax.management.ListenerNotFoundException;
-
 /**
  * @Author LiuTao @Date 2020年9月21日 下午5:12:35
  * @ClassName: Medium 
@@ -9,7 +7,7 @@ import javax.management.ListenerNotFoundException;
  */
 public class Medium {
 
-	public static void addTwoNumber() {
+	public static ListNode addTwoNumber(ListNode l1, ListNode l2) {
 		ListNode dummyHead = new ListNode(0);
 	    ListNode p = l1, q = l2, curr = dummyHead;
 	    int carry = 0;
@@ -30,11 +28,21 @@ public class Medium {
 	}
 }
 class ListNode {
-	private int[] l;
+	public ListNode next;
+	public int val;
 	public ListNode(int i){
-		l = new int[i];
+		this.val = i;
 	}
-	public ListNode(int[] l){
-		this.l = l;
+	public ListNode getNext() {
+		return next;
+	}
+	public void setNext(ListNode next) {
+		this.next = next;
+	}
+	public int getVal() {
+		return val;
+	}
+	public void setVal(int val) {
+		this.val = val;
 	}
 } 

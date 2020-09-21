@@ -54,7 +54,6 @@ public class PBEUtil {
 		return cipher.doFinal(data);
 	}
 	
-	
 	/***
 	 * 解密
 	 * @param data 待解密数据

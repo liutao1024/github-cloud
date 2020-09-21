@@ -22,7 +22,6 @@ import cn.spring.mvn.basic.util.BasicUtil;
  */
 public class IBatisTParam<T> {
 	private T entity; //传入的参数
-	
 	private Integer page; //目前是第几页
 	private Integer size; //每页记录数
 	private String tableName;//数据库表名
@@ -35,7 +34,11 @@ public class IBatisTParam<T> {
 //	public IBatisTParam(){
 //		super();
 //	}
-	//insert,delete,update时的构造函数
+	/**
+	 * <p>Title: insert,delete,update时的构造函数</p> 
+	 * <p>Description: </p> 
+	 * @param entity
+	 */
 	public IBatisTParam(T entity){
 		super();
 		this.entity = entity;
@@ -43,7 +46,13 @@ public class IBatisTParam<T> {
 		this.paramMap = this.getParamMap();
 		this.PKMap = this.getPKMap();
 	}
-	//select不分页查询时构造函数
+	/**
+	 * <p>Title: select不分页查询时构造函数</p> 
+	 * <p>Description: </p> 
+	 * @param entity
+	 * @param orderColumn
+	 * @param orderTurn
+	 */
 	public IBatisTParam(T entity, String orderColumn, String orderTurn) {
 		super();
 		this.entity = entity;
@@ -53,7 +62,15 @@ public class IBatisTParam<T> {
 		this.orderColumn = orderColumn;
 		this.orderTurn = BasicUtil.isNull(orderTurn) ? this.orderTurn : orderTurn;
 	}
-	//select分页查询时的构造函数
+	/**
+	 * <p>Title: select分页查询时的构造函数</p> 
+	 * <p>Description: </p> 
+	 * @param entity
+	 * @param page
+	 * @param size
+	 * @param orderColumn
+	 * @param orderTurn
+	 */
 	public IBatisTParam(T entity, Integer page, Integer size, String orderColumn, String orderTurn) {
 		super();
 		this.entity = entity;
@@ -65,7 +82,18 @@ public class IBatisTParam<T> {
 		this.orderColumn = orderColumn;
 		this.orderTurn = BasicUtil.isNull(orderTurn) ? this.orderTurn : orderTurn;
 	}
-	//国际惯例全参的构造函数
+	/**
+	 * <p>Title: 国际惯例全参的构造函数</p> 
+	 * <p>Description: </p> 
+	 * @param entity
+	 * @param page
+	 * @param size
+	 * @param tableName
+	 * @param paramMap
+	 * @param pKMap
+	 * @param orderColumn
+	 * @param orderTurn
+	 */
 	public IBatisTParam(T entity, Integer page, Integer size, String tableName, Map<String, Object> paramMap, Map<String, Object> pKMap, String orderColumn, String orderTurn) {
 		super();
 		this.entity = entity;

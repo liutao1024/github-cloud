@@ -67,7 +67,7 @@ public class RSAUtil {
      * @return : 公钥
      * @throws Exception
      */
-    private static PublicKey loadPublicKeyFromString(String algorithm, String keyString) throws Exception {
+    public static PublicKey loadPublicKeyFromString(String algorithm, String keyString) throws Exception {
         // 进行Base64解码
         byte[] decode = Base64.decode(keyString);
         // 获取密钥工厂
@@ -89,7 +89,6 @@ public class RSAUtil {
         // 将文件内容转为字符串
         String keyString = FileTool.readFileByFileName(filePath);
         return loadPrivateKeyFromString(algorithm, keyString);
- 
     }
  
     /**
@@ -99,7 +98,7 @@ public class RSAUtil {
      * @return : 私钥
      * @throws Exception
      */
-    private static PrivateKey loadPrivateKeyFromString(String algorithm, String keyString) throws Exception {
+    public static PrivateKey loadPrivateKeyFromString(String algorithm, String keyString) throws Exception {
         // 进行Base64解码
         byte[] decode = Base64.decode(keyString);
         // 获取密钥工厂
@@ -192,4 +191,8 @@ public class RSAUtil {
             baos.write(buffer);
         }
     }
+    
+    public static void main(String[] args) {
+		
+	}
 }
