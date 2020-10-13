@@ -9,7 +9,7 @@
 	<description>cloud父项目</description>
 	<properties>
 		<!-- TEST 版本 -->
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<!-- Spring 版本jdk1.8需要srping4.0以上才支持 5.0.8.RELEASE-->
 		<spring.version>4.3.24.RELEASE</spring.version>
 		<c3p0.version>0.9.5.2</c3p0.version>
