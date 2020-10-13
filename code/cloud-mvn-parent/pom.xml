@@ -9,7 +9,7 @@
 	<description>cloud-mvn-parent 父工程,用于聚合所有的模块.其中包括:基础通用工具+核心服务+web应用+app应用</description>
 	<properties>
 		<!-- TEST 版本 -->
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<!-- Spring 版本jdk1.8需要srping4.0以上才支持 -->
 		<spring.version>5.0.8.RELEASE</spring.version>
 		<!-- <c3p0.version>0.9.5.2</c3p0.version> -->
