@@ -228,5 +228,6 @@
 		<module>cloud-mvn-web</module>
 	    <module>cloud-mvn-zookeeper</module>
     	<module>cloud-mvn-zstudy</module>
+    	<module>cloud-mvn-zzspring</module>
   </modules>
 </project>
