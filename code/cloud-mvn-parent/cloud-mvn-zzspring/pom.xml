@@ -10,7 +10,6 @@
 	</parent>
 	<groupId>cloud-mvn-zzspring</groupId>
 	<artifactId>cloud-mvn-zzspring</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>cloud-mvn-zzspring</name>
 	<url>http://maven.apache.org</url>
 	<properties>
