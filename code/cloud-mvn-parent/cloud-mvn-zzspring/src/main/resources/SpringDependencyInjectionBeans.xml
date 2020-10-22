@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+	<!-- Spring 依赖注入 
+		两种依赖注入方式不能同时存在
+	-->
+
+	<!-- 1.1. Spring 基于构造函数的依赖注入 -->
+	<!-- Definition for textEditor bean -->
+	<!-- <bean id="constructorTextEditor" class="org.cloud.mvn.spring.dependencyinjection.TextEditor">
+		<constructor-arg ref="spellChecker"/>
+	</bean> -->
+	<!-- 1.2. Spring 基于设值函数的依赖注入 -->
+	<!-- Definition for textEditor bean -->
+	<bean id="propertyTextEditor" class="org.cloud.mvn.spring.dependencyinjection.TextEditor">
+		<property name="spellChecker" ref="spellChecker"/>
+	</bean>
+	<bean id="person" class="org.cloud.mvn.spring.dependencyinjection.Person">
+		<property name="age" value="28"/>
+		<property name="name" value="Jack"/>
+		<property name="birth" value="19941024"/>
+	</bean>
+	<!-- 上述 XML 配置文件可以使用 p-namespace 以一种更简洁的方式重写 -->
+	<bean id="person2" class="org.cloud.mvn.spring.dependencyinjection.Person"
+		p:age = "28"
+		p:name = "Jack"
+		p:birth = "19941024">
+	</bean>
+	
+	<!-- Definition for spellChecker bean -->
+	<bean id="spellChecker" class="org.cloud.mvn.spring.dependencyinjection.SpellChecker"/>
+
+	<!-- 1.3. Spring 注入内部Beans -->
+	<bean id="textEditorOutter" class="org.cloud.mvn.spring.dependencyinjection.TextEditor">
+		<property name="spellChecker">
+			<bean id="spellCheckerInner" class="org.cloud.mvn.spring.dependencyinjection.SpellChecker"/>
+		</property>
+	</bean>
+	
+	<!-- 1.4. Spring 注入集合 -->
+   <bean id="javaCollection" class="org.cloud.mvn.spring.dependencyinjection.JavaCollection">
+      <!-- results in a setAddressList(java.util.List) call -->
+      <property name="addressList">
+         <list>
+            <value>INDIA</value>
+            <value>Pakistan</value>
+            <value>USA</value>
+            <value>USK</value>
+         </list>
+      </property>
+
+      <!-- results in a setAddressSet(java.util.Set) call -->
+      <property name="addressSet">
+         <set>
+            <value>INDIA</value>
+            <value>Pakistan</value>
+            <value>USA</value>
+            <value>USK</value>
+        </set>
+      </property>
+
+      <!-- results in a setAddressMap(java.util.Map) call -->
+      <property name="addressMap">
+         <map>
+            <entry key="1" value="INDIA"/>
+            <entry key="2" value="Pakistan"/>
+            <entry key="3" value="USA"/>
+            <entry key="4" value="USK"/>
+         </map>
+      </property>
+
+      <!-- results in a setAddressProp(java.util.Properties) call -->
+      <property name="addressProp">
+         <props>
+            <prop key="one">INDIA</prop>
+            <prop key="two">Pakistan</prop>
+            <prop key="three">USA</prop>
+            <prop key="four">USK</prop>
+         </props>
+      </property>
+   </bean>
+</beans>

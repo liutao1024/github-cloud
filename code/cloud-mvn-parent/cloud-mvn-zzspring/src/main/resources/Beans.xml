@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- A simple bean definition -->
+	<bean id="..." class="...">
+		<!-- collaborators and configuration for this bean go here -->
+	</bean>
+
+	<!-- A bean definition with lazy init set on 懒加载 -->
+	<bean id="..." class="..." lazy-init="true">
+		<!-- collaborators and configuration for this bean go here -->
+	</bean>
+
+	<!-- A bean definition with initialization method 带初始化方法 -->
+	<bean id="..." class="..." init-method="...">
+		<!-- collaborators and configuration for this bean go here -->
+	</bean>
+
+	<!-- A bean definition with destruction method 带销毁方法 -->
+	<bean id="..." class="..." destroy-method="...">
+		<!-- collaborators and configuration for this bean go here -->
+	</bean>
+	<!-- more bean definitions go here -->
+
+	<!-- Singleton是单例类型，就是在创建起容器时就同时自动创建了一个bean的对象，不管你是否使用，他都存在了， 
+			每次获取到的对象都是同一个对象。注意，Singleton作用域是Spring中的缺省作用域(默认作用域,未指定时,默认为singleton) -->
+	<!-- A bean definition with singleton scope -->
+	<bean id="" class="" scope="singleton">
+		<!-- collaborators and configuration for this bean go here -->
+	</bean>
+	<!-- A bean definition with prototype scope -->
+	<bean id="..." class="..." scope="prototype">
+		<!-- collaborators and configuration for this bean go here -->
+	</bean>
+	<!-- Spring 注入内部Beans -->
+	<bean id="outerBean" class="...">
+		<property name="target"><!-- 外部内的属性 -->
+			<bean id="innerBean" class="..." />
+		</property>
+	</bean>
+	<!-- Bean Definition to handle references and values -->
+   <bean id="..." class="...">
+
+      <!-- Passing bean reference  for java.util.List -->
+      <property name="addressList">
+         <list>
+            <ref bean="address1"/>
+            <ref bean="address2"/>
+            <value>Pakistan</value>
+         </list>
+      </property>
+
+      <!-- Passing bean reference  for java.util.Set -->
+      <property name="addressSet">
+         <set>
+            <ref bean="address1"/>
+            <ref bean="address2"/>
+            <value>Pakistan</value>
+         </set>
+      </property>
+
+      <!-- Passing bean reference  for java.util.Map -->
+      <property name="addressMap">
+         <map>
+            <entry key="one" value="INDIA"/>
+            <entry key ="two" value-ref="address1"/>
+            <entry key ="three" value-ref="address2"/>
+         </map>
+      </property>
+
+   </bean>
+</beans>

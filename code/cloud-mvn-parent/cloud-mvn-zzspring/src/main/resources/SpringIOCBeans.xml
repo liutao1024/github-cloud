@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!-- default-init-method="init"  default-destroy-method="destroy" 使用默认人的初始化和销户方法 -->
+	<!-- Spring IOC容器 -->
+
+   <bean id="helloWorld" class="org.cloud.mvn.spring.ioc.HelloWorld">
+       <property name="message" value="Hello World!"/>
+       <property name="message2" value="Hello Second World!"/>
+   </bean>
+   <bean id="singletonHelloWorld" class="org.cloud.mvn.spring.ioc.HelloWorld" scope="singleton"/>
+   <bean id="prototypeHelloWorld" class="org.cloud.mvn.spring.ioc.HelloWorld" scope="prototype"/>
+   <bean id="initDestroyMethodHelloWorld" class="org.cloud.mvn.spring.ioc.HelloWorld" init-method="init" destroy-method="destroy">
+       <property name="message" value="Hello World!"/>
+   </bean>
+   <bean class="org.cloud.mvn.spring.ioc.InitHelloWorld"/>
+   
+   <bean id="beanTeamplate" abstract="true">
+      <property name="message" value="Hello World!"/>
+      <property name="message2" value="Hello Second World!"/>
+      <property name="message3" value="Namaste India!"/>
+   </bean>
+   <!-- 指定helloWorld为父bean -->
+   <bean id="helloChina" class="org.cloud.mvn.spring.ioc.HelloChina" parent="beanTeamplate">
+       <property name="message" value="Hello China!"/>
+       <property name="message3" value="Namaste China!"/>
+   </bean>
+</beans>
