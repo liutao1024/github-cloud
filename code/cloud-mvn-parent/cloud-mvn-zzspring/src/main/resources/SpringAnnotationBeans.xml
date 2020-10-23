@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- Spring 基于注解的配置 -->
+	<context:annotation-config />
+	<!-- bean definitions go here -->
+	<!-- Definition for student bean -->
+	<bean id="requiredStudent" class="org.cloud.mvn.spring.annotation.Student">
+		<property name="name" value="Zara"/>
+		<!-- try without passing age and check the result -->
+		<property name="age" value="11"/>
+	</bean>
+	<bean id="qualifier" class="org.cloud.mvn.spring.annotation.Profile"/>
+	<bean id="student1" class="org.cloud.mvn.spring.annotation.Student">
+		<property name="name" value="Nike"/>
+		<!-- try without passing age and check the result -->
+		<property name="age" value="24"/>
+	</bean>
+	<bean id="student2" class="org.cloud.mvn.spring.annotation.Student">
+		<property name="name" value="Apple"/>
+		<!-- try without passing age and check the result -->
+		<property name="age" value="28"/>
+	</bean>
+</beans>
