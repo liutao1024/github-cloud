@@ -8,10 +8,10 @@
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 
 	<!-- bean definition & AOP specific configuration -->
-	<!-- <aop:config>
+	<!-- 
+	<aop:config>
 		<aop:aspect id="myAspect" ref="aBean">
-			<aop:pointcut id="businessService"
-				expression="execution(* org.cloud.mvn.spring.aop.*.*(..))" />
+			<aop:pointcut id="businessService" expression="execution(* org.cloud.mvn.spring.aop.*.*(..))" />
 		</aop:aspect>
 	</aop:config>
 	<bean id="aBean" class="...">
@@ -33,11 +33,15 @@
 			<aop:around pointcut-ref="businessService" method="doRequiredTask" />
 		</aop:aspect>
 	</aop:config>
-	<bean id="aBean" class="..."> -->
-	</bean>
-	<aop:config>
-		<aop:aspect id="log" ref="logging">
-			<aop:pointcut id="selectAll" expression="execution(* org.cloud.mvn.spring.aop.*.*(..))" />
+	<bean id="aBean" class="..."> 
+	</bean>-->
+	<aop:config><!-- aop配置 -->
+		<aop:aspect id="log" ref="logging"><!-- 声明一个切面 -->
+			<!-- <aop:pointcut id="selectAll" expression="execution(* org.cloud.mvn.spring.aop.*.*(..))" /> --><!-- 声明一个切点 -->
+			<aop:pointcut id="selectAll" expression="execution(* org.cloud.mvn.spring.aop.Student.getName(..))" /><!-- 声明一个切点 -->
+			<!-- AOP五个建议
+			使用 <aop:{ADVICE NAME}> 元素在一个 中声明五个建议中的任何一个
+			 -->
 			<!-- a before advice definition -->	
 			<aop:before pointcut-ref="selectAll" method="beforeAdvice" />
 			<!-- an after advice definition -->
@@ -47,7 +51,7 @@
 			<aop:after-returning pointcut-ref="selectAll" returning="retVal" method="afterReturningAdvice" />
 			<!-- an after-throwing advice definition -->
 			<!-- The doRequiredTask method must have parameter named ex  -->
-			<aop:after-throwing pointcut-ref="selectAll" throwing="ex" method="AfterThrowingAdvice" />
+			<aop:after-throwing pointcut-ref="selectAll" throwing="ex" method="afterThrowingAdvice" />
 			<!-- an around advice definition -->
 			<!-- <aop:around pointcut-ref="selectAll" method="doRequiredTask" /> -->
 		</aop:aspect>
@@ -60,5 +64,5 @@
 	</bean>
 
 	<!-- Definition for logging aspect -->
-	<bean id="logging" class="com.tutorialspoint.Logging" /> 
+	<bean id="logging" class="org.cloud.mvn.spring.aop.Logging" /> 
 </beans>
