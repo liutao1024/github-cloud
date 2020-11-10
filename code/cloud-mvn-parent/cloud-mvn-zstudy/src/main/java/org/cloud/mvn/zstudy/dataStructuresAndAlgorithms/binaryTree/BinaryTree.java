@@ -89,6 +89,11 @@ public class BinaryTree {
 		return Integer.parseInt(s);
 	}
 }
+/**
+ * @Author LiuTao @Date 2020年11月10日 下午5:09:41
+ * @ClassName: Node 
+ * @Description: 节点类
+ */
 class Node{
 	public int iData;
 	public double dData;
@@ -102,6 +107,11 @@ class Node{
 		System.out.print("}");
 	}
 }
+/**
+ * @Author LiuTao @Date 2020年11月10日 下午5:09:27
+ * @ClassName: Tree 
+ * @Description: 树类
+ */
 class Tree{
 	private Node root;
 	public Tree(){
@@ -140,10 +150,15 @@ class Tree{
 		if(root == null){
 			root = newNode;
 		}else {
+//			Node parent = root;
+//			
+//			while(true){
+//				
+//			}
 			Node current = root;
 			Node parent;
 			while(true){
-				parent = current;
+				parent = current;//此处类似递归,子节点不为空时,将该子节点作为父节点赋值
 				if(id < current.iData){
 					current = current.leftChild;
 					if(current == null){
@@ -158,6 +173,25 @@ class Tree{
 					}
 				}
 			}
+			
+			
+//			Node parent = root;
+//			Node current;
+//			while(true){
+//				if(id < parent.iData){
+//					current = parent.leftChild;
+//					if(current == null){
+//						parent.leftChild = newNode;
+//						return;
+//					}
+//				}else {
+//					current = parent.rightChild;
+//					if(current == null){
+//						parent.rightChild = newNode;
+//						return;
+//					}
+//				}
+//			}
 		}
 	}
 	/**
@@ -274,7 +308,7 @@ class Tree{
 	/**
 	 * @Author LiuTao @Date 2020年6月9日 上午10:10:00 
 	 * @Title: displayTree 
-	 * @Description: 打印树
+	 * @Description: 打印树,从根节点开始打印,每一级的节点在同一个Stack中
 	 */
 	public void displayTree(){
 		Stack<Node> globalStack = new Stack<Node>();
@@ -291,7 +325,7 @@ class Tree{
 				Node temp = globalStack.pop();
 				if(temp != null){
 					System.out.print(temp.iData);
-					localStack.push(temp.leftChild);
+					localStack.push(temp.leftChild);//这儿先放左节点再放右节点,当pop时后进先出,
 					localStack.push(temp.rightChild);
 					if(temp.leftChild != null || temp.rightChild != null)
 						isRowEmpty = false;
@@ -306,7 +340,7 @@ class Tree{
 			System.out.println();
 			nBlanks /= 2;
 			while (localStack.isEmpty() == false) 
-				globalStack.push(localStack.pop());
+				globalStack.push(localStack.pop());//localStack.pop后进先出,再push到globalStack时,左节点在栈顶
 		}
 		System.out.println("---------------------------------------------------------------------------------------------");
 	}
