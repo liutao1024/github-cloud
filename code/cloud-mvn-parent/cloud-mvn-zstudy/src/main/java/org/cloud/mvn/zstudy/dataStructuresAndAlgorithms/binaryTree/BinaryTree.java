@@ -205,40 +205,41 @@ class Tree{
 		Node current = root;
 		Node parent = root;
 		boolean isLeftChild = true;
-		while(current.iData != key){
+		while(current.iData != key){//定位到输入key对应的节点,非当前节点
 			parent = current;
-			if(key < current.iData){
+			if(key < current.iData){//key比当前节点id小,在左子树中寻找
 				isLeftChild = true;
 				current = current.leftChild;
-			}else {
+			}else {//在右子树中寻找
 				isLeftChild = false;
 				current = current.rightChild;
 			}
-			if(current == null)
+			if(current == null)//输入key没有对应的节点,直接返回
 				return false;
 		}
-		if(current.leftChild == null && current.rightChild == null){
+		//删除操作
+		if(current.leftChild == null && current.rightChild == null){//左右子节点均为空时
 			if(current == root)
 				root = null;
 			else if (isLeftChild) 
 				current.leftChild = null;
 			else
 				current.rightChild = null;
-		}else if(current.rightChild == null){
+		}else if(current.rightChild == null){//右节点为空
 			if(current == root)
 				root = current.leftChild;
 			else if (isLeftChild) 
 				parent.leftChild = current.leftChild;
 			else
 				parent.rightChild = current.leftChild;
-		}else if(current.leftChild == null){
+		}else if(current.leftChild == null){//左节点为空
 			if(current == root)
 				root = current.rightChild;
 			else if (isLeftChild) 
 				parent.leftChild = current.rightChild;
 			else
 				parent.rightChild = current.rightChild;
-		}else {
+		}else {//左右节点均不为空
 			Node successor = getSuccessor(current);
 			if(current == root)
 				root = successor;
@@ -251,6 +252,13 @@ class Tree{
 		return true;
 			
 	} 
+	/**
+	 * @Author LiuTao @Date 2020年11月11日 上午11:40:33 
+	 * @Title: getSuccessor 
+	 * @Description: 获取删除节点的后续节点
+	 * @param delNode
+	 * @return
+	 */
 	public Node getSuccessor(Node delNode){
 		Node successorParent = delNode;
 		Node successor = delNode;
@@ -282,6 +290,15 @@ class Tree{
 			break;
 		}
 	}
+	/**
+	 * @Author LiuTao @Date 2020年11月11日 上午9:42:32 
+	 * @Title: preOrder 
+	 * @Description: 前缀 
+	 * 访问该节点
+	 * 调用自身遍历节点左子树
+	 * 调用自身遍历节点右子树
+	 * @param localRoot
+	 */
 	public void preOrder(Node localRoot){
 		if(localRoot != null){
 			System.out.print(localRoot.iData + " " );
@@ -289,6 +306,15 @@ class Tree{
 			preOrder(localRoot.rightChild);
 		}
 	}
+	/**
+	 * @Author LiuTao @Date 2020年11月11日 上午9:30:19 
+	 * @Title: inOrder 
+	 * @Description: 中序遍历
+	 * 调用自身遍历节点左子树
+	 * 访问该节点
+	 * 调用自身遍历节点右子树
+	 * @param localRoot
+	 */
 	public void inOrder(Node localRoot){
 		if(localRoot != null){
 			inOrder(localRoot.leftChild);
@@ -297,6 +323,15 @@ class Tree{
 		}
 		
 	}
+	/**
+	 * @Author LiuTao @Date 2020年11月11日 上午9:47:38 
+	 * @Title: postOrder 
+	 * @Description: 后缀遍历
+	 * 调用自身遍历节点左子树
+	 * 调用自身遍历节点右子树 
+	 * 访问该节点
+	 * @param localRoot
+	 */
 	public void postOrder(Node localRoot){
 		if(localRoot != null){
 			postOrder(localRoot.leftChild);
@@ -304,6 +339,36 @@ class Tree{
 			System.out.print(localRoot.iData + " " );
 		}
 		
+	}
+	/**
+	 * @Author LiuTao @Date 2020年11月11日 上午11:20:27 
+	 * @Title: miniNumber 
+	 * @Description: 最小数 
+	 * @return
+	 */
+	public Node miniNumber() {
+		Node current = root;
+		Node last = new Node();
+		while (current != null){
+			last = current;
+			current = current.leftChild;
+		}
+		return last;
+	}
+	/**
+	 * @Author LiuTao @Date 2020年11月11日 上午11:20:45 
+	 * @Title: maxNumber 
+	 * @Description: 最大 
+	 * @return
+	 */
+	public Node maxNumber() {
+		Node current = root;
+		Node last = new Node();
+		while (current != null){
+			last = current;
+			current = current.rightChild;
+		}
+		return last;
 	}
 	/**
 	 * @Author LiuTao @Date 2020年6月9日 上午10:10:00 
@@ -325,7 +390,7 @@ class Tree{
 				Node temp = globalStack.pop();
 				if(temp != null){
 					System.out.print(temp.iData);
-					localStack.push(temp.leftChild);//这儿先放左节点再放右节点,当pop时后进先出,
+					localStack.push(temp.leftChild);//这儿先放左节点再放右节点,当pop时后进先出
 					localStack.push(temp.rightChild);
 					if(temp.leftChild != null || temp.rightChild != null)
 						isRowEmpty = false;
