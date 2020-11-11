@@ -6,6 +6,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 红黑树-Java实现例子
+ * https://blog.csdn.net/weixin_40037053/article/details/89947885
+ * hashMap与红黑树
+ * https://www.cnblogs.com/xrq730/p/6867924.html
  */
 @SuppressWarnings({"hiding","unchecked","rawtypes","unused"})
 public class RBTree<T extends Comparable<T>, D> {
