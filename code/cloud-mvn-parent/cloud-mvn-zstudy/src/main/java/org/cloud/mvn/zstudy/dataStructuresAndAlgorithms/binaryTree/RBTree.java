@@ -336,36 +336,28 @@ public class RBTree<T extends Comparable<T>, D> {
 	 * 红黑树删除后的平衡调整 (删除操作比较复杂,所以我加了很多过程状态追踪)
 	 * @param node
 	 * @param parent
-	 *
 	 *            入参只可能是下面这两种情况: 
 	 *            1. node=替换节点 parent=替换节点的父亲节点 
 	 *            2. node=替换节点的孩子节点 parent=替换节点
 	 *            3. node=替换节点的孩子节点 parent=替换节点的父节点
-	 *
 	 *            无论是上面哪种情况,都满足:node和parent是儿子父亲的关系
-	 *
 	 *            首先要清楚,什么情况下会进入到这个方法？
 	 *            1.待删节点是黑色节点(且待删节点只有一个子树) 或者
 	 *            2.替换节点是黑色节点(待删节点的左右子树都不为空)
-	 *
 	 *            下面仔细分析下上面两种情况,为何只有这两种情况下,才有必要进行调整. 对于上面的情况1:
 	 *            待删节点只有一个子树,说明只有一条路径,待删节点移除掉之后,只会影响一条路径上的黑色节点个数.
 	 *            回忆下红黑树的性质,同一个节点出发直到叶子,每一个不同的路径下的黑色节点个数必须是相同的.
 	 *            那既然它只有一个子树,说明只有一条路径.假如待删节点是红色,它移除掉之后,不会影响这条路劲下的黑色节点个数,所以不需要调整.
 	 *            反之,假如它是黑色,它一旦被移除,这一条路径上的黑色个数就减少了,这样会导致这一条路径的黑色节点直接减一
 	 *            这样就会导致这一条路径和 其他由树根出发的路径相比,不再相等.
-	 *
 	 *            对于上面的情况2: 因为待删节点下,有两个子树,那要让树继续保持二叉树的关系,那待删位置上必须放入一个符合规则的元素.
 	 *            符合什么规则呢？也就是必须比左子树大,比右子树小,所以我们编程上通常选右子树的最小值.
 	 *            待删元素被删,就要选右子树的最小值放到待删元素位置,那替换节点的指针就会丢失,因为做了移动.
 	 *            既然右子树中有个元素被移除了,假如这个被移除指针的替换节点,是红色,不会对整棵树的平衡性有任何影响.
 	 *            但假如这个替换节点是黑色,一旦被移除,会导致右子树的黑色个数减一,不再相等,所以需要调整.
-	 *
 	 *            对于一次调整过程,最多不会超过三次,这是为什么？ 上述的情况1比较简单,不需要做任何旋转,只需要染色即可.
 	 *            复杂的是情况2. 情况2又可以分为细分两种情况: 1.替换节点在新父亲的左侧 2.替换节点在新父亲的右侧
 	 *            (只要理解了其中一种情况,另一种其实也清楚了)
-	 *
-	 *
 	 *            下面只选其中一种情况,做总结
 	 *            对于替换节点在新父亲的左侧这种情况,又可以细分成几种情况(下面这几种情况,才是我觉得红黑树中最难理解的部分):
 	 *            1.兄弟节点是红色:兄弟变黑,父亲变红,父亲左旋 
@@ -442,55 +434,33 @@ public class RBTree<T extends Comparable<T>, D> {
 					this.printTreeLevel2();
 					continue;
 				} else {
-
 					if (isBlack(other.leftChild) && isBlack(other.rightChild)) {
-
 						System.out.println("other当前的左孩子是黑色,other的右孩子是黑色");
-						System.out
-								.println("进入balanceDeletion的while(情况2-R-b:兄弟的左右孩子都是黑色)----other变红,指针回溯");
-
+						System.out.println("进入balanceDeletion的while(情况2-R-b:兄弟的左右孩子都是黑色)----other变红,指针回溯");
 						setRed(other);
 						node = parent;
 						parent = parentOf(node);
-
 						this.printTreeLevel2();
-
-					} else if (isRed(other.rightChild)
-							&& isBlack(other.leftChild)) {
-
+					} else if (isRed(other.rightChild) && isBlack(other.leftChild)) {
 						System.out.println("other当前的右孩子是红色,other的左孩子是黑色");
-						System.out
-								.println("进入balanceDeletion的while(情况2-R-c:兄弟的右孩子是红色,左孩子是黑色)----parent变红,other的右孩子变黑,然后other做左旋");
-
+						System.out.println("进入balanceDeletion的while(情况2-R-c:兄弟的右孩子是红色,左孩子是黑色)----parent变红,other的右孩子变黑,然后other做左旋");
 						setRed(parent);
 						setBlack(other.rightChild);
 						leftRonate(other);
-
 						this.printTreeLevel2();
-
 					} else if (isRed(other.leftChild)) {
-
 						System.out.println("other的左孩子是红色");
-						System.out
-								.println("进入balanceDeletion的while(情况2-R-d:兄弟的左孩子是红色)----父亲的颜色赋值到other,父亲染黑,other的左孩子染黑,父亲右旋,跳出while循环");
-
+						System.out.println("进入balanceDeletion的while(情况2-R-d:兄弟的左孩子是红色)----父亲的颜色赋值到other,父亲染黑,other的左孩子染黑,父亲右旋,跳出while循环");
 						setColor(other, colorOf(parent));
 						setBlack(parent);
 						setBlack(other.leftChild);
 						rightRonate(parent);
-
 						this.printTreeLevel2();
-
 						break;
-
 					}
-
 				}
-
 			}
-
 		}
-
 		// 在这里,node其实是即将放入被删位置的替代节点
 		// 假如node是红色,那同时被删节点是黑色,
 		// 那说明,直接把node的颜色由红变黑,就直接满足了,不需要做任何旋转
@@ -498,44 +468,38 @@ public class RBTree<T extends Comparable<T>, D> {
 			System.out.println("节点:" + node.key + "染黑");
 		}
 		setBlack(node);
-
 		this.printTreeLevel2();
-
 		System.out.println("调整完成！！！！！！！");
-
 	}
 
-	// 红黑树添加操作
+	/**
+	 * 红黑树添加操作 
+	 * @param key
+	 * @param data
+	 */
 	public void insertNode(T key, D data) {
-
 		int com;
 		RBNode<T, D> x = this.root;
 		RBNode<T, D> y = null;
-
 		// 这个过程和二叉查找树的过程是一样的,从上循环到底,直到找到为止
 		while (x != null) {
 			y = x;
 			com = key.compareTo(x.key);
-
 			if (com == 0) {
 				// 说明相等,找到了,直接替换新值,返回
 				// TODO
-
 				return;
 			}
-
 			if (com < 0) {
 				x = x.leftChild;
 			} else {
 				x = x.rightChild;
 			}
 		}
-
 		// 生成一个新的节点
 		RBNode<T, D> node = new RBNode<T, D>(BLACK, key, data, null, null, null);
 		// 通过上面的比较,已经找到了父亲
 		node.parent = y;
-
 		if (y != null) {
 			// 再次做比较,决定要把新节点放在父亲的哪一边
 			com = node.key.compareTo(y.key);
@@ -548,59 +512,59 @@ public class RBTree<T extends Comparable<T>, D> {
 			// 假如找到的父亲为空,那说明肯定之前就没有根,是空树
 			// 把这个新节点作为根
 			this.root = node;
-
 		}
 		// 根据红黑树的性质,把默认节点设置为红色,向上回溯,更容易列举可能出现的情况,
 		// 所以这里新节点都默认设置成红色
 		setRed(node);
-
 		// 接下来这个就是最关键的方法 ,插入后的自平衡过程,调整让它保持红黑树的性质
 		balanceInsertion(node);
-
 	}
-
+	/**
+	 * @Author LiuTao @Date 2020年11月12日 上午10:31:54 
+	 * @Title: insert 
+	 * @Description: 插入
+	 * @param key
+	 * @param data
+	 */
 	public void insert(T key, D data) {
 		insertNode(key, data);
 	}
-
+	/**
+	 * @Author LiuTao @Date 2020年11月12日 上午10:32:08 
+	 * @Title: add 
+	 * @Description:新增
+	 * @param key
+	 * @param data
+	 */
 	public void add(T key, D data) {
 		insertNode(key, data);
 	}
 
 	/**
 	 * 红黑树删除操作
-	 *
-	 * @param node
-	 *            传入的是待删除节点
+	 * @param node 传入的是待删除节点
 	 */
 	public void delete(RBNode<T, D> node) {
-
 		RBNode<T, D> child, parent, replace;
 		Boolean color = true;
-
 		// 删除从整体上也分两种情况,然后两种情况下再细分
-
 		// 假如待删除节点的双节点都不为空,这种情况较复杂
 		if (node.leftChild != null && node.rightChild != null) {
-
 			// 找到了替换节点,就是要接替待删节点指针的新节点
 			replace = successor(node);
 			// 找到替换节点的父亲节点
 			parent = parentOf(replace);
 			// 因为替换节点已经是右子树中的最小值了,所以只有右孩子
 			child = replace.rightChild;
-
 			// 在这里为什么要获取替换节点的颜色呢？
 			// 可以这样想,因为替换节点的指针最终肯定是会丢失的,因为替换节点即将接受待删节点的指针,所以替换节点的指针就不再保留了
 			// 既然不再保留,那说明原来替换节点这里肯定就少了一环,少了一个节点,所以这里就有判断它颜色的必要
 			// 假如少的恰恰是黑色,那说明它会影响整棵树的平衡性,不再满足红黑树性质
 			color = colorOf(replace);
-
 			if (node == parentOf(replace)) {
 				// 假如替换节点的父亲节点就是当前待删除节点
 				// 那就直接把待删除节点的指针赋值给parent
 				parent = replace;
-
 			} else {
 				// 假如替换节点的父亲不是待删除节点的父亲
 				if (child != null) {
@@ -613,14 +577,12 @@ public class RBTree<T extends Comparable<T>, D> {
 				replace.rightChild = node.rightChild;
 				setParent(node.rightChild, replace);
 			}
-
 			// 把目标删除节点node的父亲设置成替换节点的父亲
 			setParent(replace, parentOf(node));
 			replace.leftChild = node.leftChild;
 			setParent(node.leftChild, replace);
 			// 除了指针的调整,颜色也要覆盖,替换节点既然来到了待删节点的位置,那么颜色也要沿用之前的颜色,这样才能满足整棵树的性质
 			setColor(replace, colorOf(node));
-
 			if (parentOf(node) != null) {
 				// 待删节点的父亲节点假如不为空,那就要调整父亲节点的左右孩子指针
 				if (node.parent.leftChild == node) {
@@ -628,18 +590,14 @@ public class RBTree<T extends Comparable<T>, D> {
 				} else {
 					node.parent.rightChild = replace;
 				}
-
 			} else {
 				this.root = replace;
 			}
 			// 上面整个过程就是用replace的指针完全取代了node节点,到此为止,node节点就是一个孤立节点了,就算是删除了
-
 			if (color == BLACK) {
 				balanceDeletion(child, parent);
 			}
-
 		} else {
-
 			// 假如待删节点只有左子树或者右子树
 			if (node.leftChild != null) {
 				replace = node.leftChild;
@@ -648,7 +606,6 @@ public class RBTree<T extends Comparable<T>, D> {
 			}
 			// 找到待删节点的父亲节点
 			parent = parentOf(node);
-
 			if (parent != null) {
 				// 判断待删节点属于父亲的左还是右
 				if (parent.leftChild == node) {
@@ -661,10 +618,8 @@ public class RBTree<T extends Comparable<T>, D> {
 				// 它被删了,所以孩子升为根
 				this.root = replace;
 			}
-
 			// 把parent设置成replace的父亲
 			setParent(replace, parent);
-
 			color = colorOf(node);
 			child = replace;
 			// 假如待删节点是黑色节点,那说明本次删除肯定会影响红黑树的性质
@@ -672,11 +627,15 @@ public class RBTree<T extends Comparable<T>, D> {
 			if (color == BLACK) {
 				balanceDeletion(child, parent);
 			}
-
 		}
-
 	}
 
+	/**
+	 * @Author LiuTao @Date 2020年11月12日 上午10:38:11 
+	 * @Title: delete 
+	 * @Description: 删除
+	 * @param key
+	 */
 	public void delete(T key) {
 		RBNode<T, D> node;
 		if ((node = search(key, this.root)) != null) {
@@ -684,7 +643,12 @@ public class RBTree<T extends Comparable<T>, D> {
 		}
 
 	}
-
+	/**
+	 * @Author LiuTao @Date 2020年11月12日 上午10:38:15 
+	 * @Title: remove 
+	 * @Description: 移除 
+	 * @param key
+	 */
 	public void remove(T key) {
 		RBNode<T, D> node;
 		if ((node = search(key, this.root)) != null) {
@@ -693,79 +657,73 @@ public class RBTree<T extends Comparable<T>, D> {
 
 	}
 
-	// 前序遍历
+	/**
+	 * 前序遍历 某个节点
+	 * @param node 
+	 */
 	public void preOrder(RBNode<T, D> node) {
 		if (node != null) {
-
 			System.out.print(node.key + " ");
 			preOrder(node.leftChild);
 			preOrder(node.rightChild);
-
 		}
-
 	}
-
+	/**
+	 * @Author LiuTao @Date 2020年11月12日 上午10:39:42 
+	 * @Title: preOrder 
+	 * @Description: 全树前序遍历
+	 */
 	public void preOrder() {
 		preOrder(this.root);
-
 	}
 
-	// 中序遍历
+	/**
+	 * 中序遍历 
+	 * @param node
+	 */
 	public void inOrder(RBNode<T, D> node) {
 		if (node != null) {
 			inOrder(node.leftChild);
 			System.out.print(node.key + " ");
 			inOrder(node.rightChild);
-
 		}
-
 	}
 
 	public void inOrder() {
 		inOrder(this.root);
-
 	}
 
-	// 后序遍历
+	/**
+	 * 后序遍历
+	 * @param node
+	 */
 	public void postOrder(RBNode<T, D> node) {
 		if (node != null) {
 			postOrder(node.leftChild);
 			postOrder(node.rightChild);
 			System.out.print(node.key + " ");
-
 		}
-
 	}
 
 	public void postOrder() {
 		postOrder(this.root);
-
 	}
 
 	/**
 	 * 打印出整棵树的层级结构,为了方便跟踪旋转的过程
-	 *
 	 */
 	public void printTreeLevel() {
-
 		System.out.println("开始输出树的层级结构");
 		ConcurrentHashMap<Integer, List<RBNode>> map = showTree();
 		int size = map.size();
-
 		for (int i = 0; i < map.size(); i++) {
 			System.out.println();
 			for (int j = 0; j < map.get(i).size(); j++) {
-				System.out.print(makeSpace2(size, i)
-						+ (map.get(i).get(j).key == null ? " " : (map.get(i)
-								.get(j).key)
-								+ (map.get(i).get(j).color ? "(黑)" : "(红)"))
-						+ makeSpace2(size, i));
-
+				System.out.print(makeSpace2(size, i) + (map.get(i).get(j).key == null ? " " : (map.get(i) .get(j).key) + (map.get(i).get(j).color ? "(黑)" : "(红)")) + makeSpace2(size, i));
 			}
 			System.out.println();
 		}
 		System.out.println("结束输出树的层级结构");
-
 	}
 
 	/**
@@ -774,52 +732,36 @@ public class RBTree<T extends Comparable<T>, D> {
 	 * @Description: TODO(Describe)
 	 */
 	public void printTreeLevel2() {
-
 		System.out.println("开始输出树的Graphviz结构");
 		ConcurrentHashMap<Integer, List<RBNode>> map = showTree();
 		int size = map.size();
 		System.out.println("digraph kunghsu{");
 		for (int i = 0; i < map.size(); i++) {
 			for (int j = 0; j < map.get(i).size(); j++) {
-
 				if (map.get(i).get(j).key != null) {
-					System.out
-							.println(map.get(i).get(j).key
-									+ " [color="
-									+ (map.get(i).get(j).color == RED ? "red"
-											: "black")
-									+ " style=filled fontcolor=white] ");
+					System.out.println(map.get(i).get(j).key + " [color=" + (map.get(i).get(j).color == RED ? "red" : "black") + " style=filled fontcolor=white] ");
 				}
 			}
 		}
-
 		for (int i = 0; i < map.size(); i++) {
 			for (int j = 0; j < map.get(i).size(); j++) {
 				String content = "";
-
 				if (map.get(i).get(j).key != null) {
 					if (map.get(i).get(j).leftChild != null) {
-						System.out.println(map.get(i).get(j).key + "->"
-								+ map.get(i).get(j).leftChild.key
-								+ "[label=left]");
+						System.out.println(map.get(i).get(j).key + "->" + map.get(i).get(j).leftChild.key + "[label=left]");
 					}
 					if (map.get(i).get(j).rightChild != null) {
-						System.out.println(map.get(i).get(j).key + "->"
-								+ map.get(i).get(j).rightChild.key
-								+ "[label=right]");
+						System.out.println(map.get(i).get(j).key + "->" + map.get(i).get(j).rightChild.key + "[label=right]");
 					}
 				}
 			}
 		}
 		System.out.println("}");
-
 		System.out.println("结束输出树的Graphviz结构");
-
 	}
 
 	/**
 	 * 为了让输出更有结构感,在元素前拼接一些空格,对齐
-	 *
 	 * @param size
 	 * @param index
 	 * @return
@@ -833,20 +775,16 @@ public class RBTree<T extends Comparable<T>, D> {
 	}
 
 	public ConcurrentHashMap<Integer, List<RBNode>> showTree() {
-
 		ConcurrentHashMap<Integer, List<RBNode>> map = new ConcurrentHashMap<>();
 		showTree(root, 0, map);
 		return map;
 	}
 
-	public void showTree(RBNode root, int count,
-			ConcurrentHashMap<Integer, List<RBNode>> map) {
-
+	public void showTree(RBNode root, int count, ConcurrentHashMap<Integer, List<RBNode>> map) {
 		if (map.get(count) == null) {
 			map.put(count, new ArrayList<>());
 		}
 		map.get(count).add(root);
-
 		if (root.leftChild != null) {
 			showTree(root.leftChild, count + 1, map);
 		} else {
@@ -854,8 +792,7 @@ public class RBTree<T extends Comparable<T>, D> {
 			if (map.get(count + 1) == null) {
 				map.put(count + 1, new ArrayList<>());
 			}
-			map.get(count + 1).add(
-					new RBNode(false, null, null, null, null, null));
+			map.get(count + 1).add(new RBNode(false, null, null, null, null, null));
 		}
 		if (root.rightChild != null) {
 			showTree(root.rightChild, count + 1, map);
@@ -863,8 +800,13 @@ public class RBTree<T extends Comparable<T>, D> {
 			if (map.get(count + 1) == null) {
 				map.put(count + 1, new ArrayList<>());
 			}
-			map.get(count + 1).add(
-					new RBNode(false, null, null, null, null, null));
+			map.get(count + 1).add(new RBNode(false, null, null, null, null, null));
 		}
+	}
+	
+	public static void main(String[] args) {
+//		RBTree<Comparable<int>, Double> rbt = new RBTree<Comparable<Integer>, Double>();
+		String[] s = new String[10];
+		String str = s[2];
 	}
 }
