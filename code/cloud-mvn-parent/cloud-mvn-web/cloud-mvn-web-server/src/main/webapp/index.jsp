@@ -7,7 +7,7 @@
 </head>
 <body>
 	<center>
-		<h2>Hello World</h2>
+		<h2>Hello World1</h2>
 		<h3>
 			<a href="hello?name=zhangsan">点击跳转</a>
 		</h3>

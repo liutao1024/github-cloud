@@ -29,6 +29,6 @@
 	<!-- <bean id="coreServerImpl" class="cn.spring.mvn.server.service.CoreServerImpl"></bean> -->
 	
 	<!-- 将SocketManager交给spring管理,在Spring容器启动时,启动服务器类 -->
-	<!-- udapet 20180903 这样子的话,web项目的启动线程会一直卡在socket这儿,项目启动不成功 -->
+	<!-- update 20180903 这样子的话,web项目的启动线程会一直卡在socket这儿,项目启动不成功 -->
 	<!-- <bean id="socketManager" class="cn.spring.mvn.server.SocketManager" scope="singleton"  init-method="initializeServer"></bean> -->				  
 </beans>
