@@ -21,7 +21,7 @@
 		<quartz.version>2.3.0</quartz.version>
 		<servlet.api.version>3.0-alpha-1</servlet.api.version>
 		<!-- mysql 版本 -->
-		<mysql.version>5.1.34</mysql.version>
+		<mysql.version>8.0.28</mysql.version>
 		<!-- hibernate 版本5.3.6.Final/4.3.11.Final -->
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<!-- mybatis 版本号 -->
